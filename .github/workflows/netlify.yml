@@ -1,48 +1,20 @@
-name: Build and Deploy to Netlify
+name: Netlify Deploy
+
 on:
   push:
-  pull_request:
+    branches:
+      - main
+
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # ( Build to ./dist or other directory... )
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0
-        with:
-          publish-dir: ./united-reason
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
-
-
-# name: Netlify Deploy
-
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v3
-
-#     - name: Build and Deploy to Netlify
-#       uses: nwtgck/actions-netlify@v1
-#       with:
-#         publish-dir: ./build
-#         deploy-token:
+    - name: Build and Deploy to Netlify
+      uses: nwtgck/actions-netlify@v1
+      with:
+        publish-dir: ./build
+        deploy-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
