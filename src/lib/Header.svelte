@@ -21,7 +21,7 @@
             <div class="hidden md:block">
                 <a href="/login"> Sign in</a>
             </div>
-            <Button href="/register" color="blue" variant="solid" className="">
+            <Button href="/register" color="blue" className="">
                 <span>
                     Get started <span class="hidden lg:inline">today</span>
                 </span>
