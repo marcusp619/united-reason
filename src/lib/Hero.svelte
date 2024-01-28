@@ -1,6 +1,19 @@
 <script>
     import Container from "$lib/Container.svelte";
     import Button from "$lib/Button.svelte";
+
+    let images = [
+            [
+              { name: 'Transistor', logo: logoTransistor },
+              { name: 'Tuple', logo: logoTuple },
+              { name: 'StaticKit', logo: logoStaticKit },
+            ],
+            [
+              { name: 'Mirage', logo: logoMirage },
+              { name: 'Laravel', logo: logoLaravel },
+              { name: 'Statamic', logo: logoStatamic },
+            ],
+          ]
 </script>
 
 <Container class="pb-16 pt-20 text-center lg:pt-32" className="">
@@ -47,6 +60,9 @@
           role="list"
           class="mt-8 flex items-center justify-center gap-x-8 sm:flex-col sm:gap-x-0 sm:gap-y-10 xl:flex-row xl:gap-x-12 xl:gap-y-0"
         >
+        {#each items as item}
+		<li>{item.name} x {item.qty}</li>
+	{/each}
           
         </ul>
       </div>
