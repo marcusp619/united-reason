@@ -1,6 +1,7 @@
 <script>
 	import Header from "$lib/Header.svelte";
 	import Hero from "$lib/Hero.svelte";
+	import PrimaryFeatures from "$lib/PrimaryFeatures.svelte";
 
 </script>
 <!-- <h1>Welcome to SvelteKit</h1>
@@ -8,4 +9,5 @@
 <Header />
 <main>
 	 <Hero />
+	 <PrimaryFeatures />
 </main>
