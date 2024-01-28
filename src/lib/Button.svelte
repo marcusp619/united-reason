@@ -33,22 +33,23 @@
 	export let color = 'slate';
 	export let href: string | undefined;
 
+	
 	const buttonClassName = () => {
 		const baseStyle = baseStyles[variant as keyof typeof baseStyles];
 		const variantStyle =
-			variantStyles[variant as keyof typeof variantStyles][
-				color as keyof (typeof variantStyles)[keyof typeof variantStyles]
-			] as string;
+		variantStyles[variant as keyof typeof variantStyles][
+			color as keyof (typeof variantStyles)[keyof typeof variantStyles]
+		] as string;
 		return `${baseStyle} ${variantStyle} ${className || ''}`.trim();
 	};
 </script>
 
 {#if typeof href === 'undefined'}
-	<button class={buttonClassName()} {...$$restProps}>
+	<button class={buttonClassName()} {...$$props}>
 		<slot />
 	</button>
 {:else}
-	<a class={buttonClassName()} {...$$restProps}>
+	<a class={buttonClassName()} {...$$props}>
 		<slot />
 	</a>
 {/if}
