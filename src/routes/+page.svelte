@@ -1,5 +1,6 @@
 <script>
 	import Header from "$lib/Header.svelte";
+	import PrimaryFeatures from "$lib/PrimaryFeatures.svelte";
 	import Hero from "$lib/Hero.svelte";
 
 </script>
@@ -8,4 +9,5 @@
 <Header />
 <main>
 	 <Hero />
+   <PrimaryFeatures />
 </main>
