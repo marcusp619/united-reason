@@ -18,7 +18,7 @@ pub fn Header() -> impl IntoView {
                     </a>
                     <div class="hidden md:flex md:gap-x-6">
                         <a href="#Articles" class="ml-12 text-gray-600 hover:text-gray-800">Articles</a>
-                        <a href="#Job" class="ml-12 text-gray-600 hover:text-gray-800">Find a job</a>
+                        <a href="/jobs" class="ml-12 text-gray-600 hover:text-gray-800">Find a job</a>
                         <a href="#About" class="ml-12 text-gray-600 hover:text-gray-800">About</a>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 use crate::error_template::{AppError, ErrorTemplate};
 use crate::routes::home::HomePage;
+use crate::routes::jobs::Jobs;
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
@@ -26,9 +27,10 @@ pub fn App() -> impl IntoView {
             }
             .into_view()
         }>
-            <main class="flex h-full flex-col">
+            <main class="h-full min-h-screen flex flex-col bg-white">
                 <Routes>
                     <Route path="" view=HomePage/>
+                    <Route path="/jobs" view=Jobs/>
                 </Routes>
             </main>
         </Router>

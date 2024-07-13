@@ -737,6 +737,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "icondata_core"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6c97be924215abd5e630d84e95a47c710138a6559b4c55039f4f33aa897fa859"
+
+[[package]]
+name = "icondata_hi"
+version = "0.0.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3435d50de04c61799613995e753e613dc4f2771aa08eb94a7318289a5ea9d784"
+dependencies = [
+ "icondata_core",
+]
+
+[[package]]
 name = "ident_case"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -916,6 +931,21 @@ dependencies = [
  "serde",
  "syn 2.0.66",
  "walkdir",
+]
+
+[[package]]
+name = "leptos_icons"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9a9f8ac3d938dd22d605c01e2272cb6b816d3edcae3647610679b8b81c059ccb"
+dependencies = [
+ "bytes",
+ "encoding_rs",
+ "icondata_core",
+ "lazy_static",
+ "leptos",
+ "log",
+ "paste",
 ]
 
 [[package]]
@@ -2015,8 +2045,10 @@ dependencies = [
  "console_error_panic_hook",
  "console_log",
  "http 1.1.0",
+ "icondata_hi",
  "leptos",
  "leptos_axum",
+ "leptos_icons",
  "leptos_meta",
  "leptos_router",
  "log",
