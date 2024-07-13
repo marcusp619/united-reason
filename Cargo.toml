@@ -13,10 +13,10 @@ console_log = "1"
 icondata_hi = { version = "0.0.10" }
 leptos = { version = "0.6.11", features = ["nightly"] }
 leptos_axum = { version = "0.6", optional = true }
-leptos_icons = { git = "https://github.com/bankai-labs/leptos-icons", features = [
-  "HeroiconsOutline",
-  "HeroiconsSolid"
-]}
+# leptos_icons = { git = "https://github.com/bankai-labs/leptos-icons", features = [
+  # "HeroiconsOutline",
+  # "HeroiconsSolid"
+# ]}
 leptos_meta = { version = "0.6.11", features = ["nightly"] }
 leptos_router = { version = "0.6.11", features = ["nightly"] }
 log = "0.4"
