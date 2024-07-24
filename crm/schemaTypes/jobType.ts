@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
 export const jobType = defineType({
-  name: 'job',
-  title: 'Job',
+  name: 'jobPosting',
+  title: 'Job Posting',
   type: 'document',
   fields: [
     defineField({
@@ -11,18 +11,49 @@ export const jobType = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'department',
-      title: 'Department',
-      type: 'string',
+      name: 'company',
+      title: 'Company',
+      type: 'reference',
+      to: [{type: 'company'}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'reportsTo',
-      title: 'Reports To',
-      type: 'string',
+      name: 'category',
+      title: 'Job Category',
+      type: 'reference',
+      to: [{type: 'jobCategory'}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'whyUs',
       title: 'Why Us',
+      type: 'string',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'reference',
+      to: [{type: 'location'}],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'employmentType',
+      title: 'Employment Type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Full-time', value: 'full-time'},
+          {title: 'Part-time', value: 'part-time'},
+          {title: 'Contract', value: 'contract'},
+          {title: 'Temporary', value: 'temporary'},
+          {title: 'Internship', value: 'internship'},
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'salaryRange',
+      title: 'Salary Range',
       type: 'string',
     }),
     defineField({
