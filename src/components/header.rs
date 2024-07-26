@@ -1,5 +1,5 @@
 use leptos::{component, view, IntoView};
-use crate::components::button::{ButtonLink, Color};
+use crate::components::lib::button::{ButtonLink, Color};
 use crate::components::container::Container;
 
 #[component]

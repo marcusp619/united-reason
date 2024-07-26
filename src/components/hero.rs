@@ -1,5 +1,5 @@
 use leptos::{component, view, CollectView, IntoView};
-use crate::components::{container::Container, button::{ButtonLink, Variant}};
+use crate::components::{container::Container, lib::button::{ButtonLink, Variant}};
 
 #[derive(Debug)]
 struct Image {

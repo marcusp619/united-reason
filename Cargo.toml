@@ -10,13 +10,10 @@ crate-type = ["cdylib", "rlib"]
 axum = { version = "0.7", optional = true }
 console_error_panic_hook = "0.1.7"
 console_log = "1"
-icondata_hi = { version = "0.0.10" }
+icondata = "0.3.1"
 leptos = { version = "0.6.11", features = ["nightly"] }
 leptos_axum = { version = "0.6", optional = true }
-# leptos_icons = { git = "https://github.com/bankai-labs/leptos-icons", features = [
-  # "HeroiconsOutline",
-  # "HeroiconsSolid"
-# ]}
+leptos_icons = "0.3.1"
 leptos_meta = { version = "0.6.11", features = ["nightly"] }
 leptos_router = { version = "0.6.11", features = ["nightly"] }
 log = "0.4"
