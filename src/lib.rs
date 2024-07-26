@@ -1,6 +1,6 @@
 pub mod app;
-pub mod error_template;
 pub mod components;
+pub mod error_template;
 pub mod routes;
 
 #[cfg(feature = "ssr")]

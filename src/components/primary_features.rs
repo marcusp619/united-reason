@@ -1,5 +1,5 @@
-use leptos::{component, view, IntoView};
 use crate::components::container::Container;
+use leptos::{component, view, IntoView};
 
 #[derive(Debug)]
 struct Feature {

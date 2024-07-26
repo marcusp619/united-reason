@@ -1,15 +1,15 @@
-use leptos::{component, ev, view, Children, IntoView, Callback};
 use leptos::ev::MouseEvent;
+use leptos::{component, ev, view, Callback, Children, IntoView};
 
 pub enum Variant {
     Solid,
-    Outline
+    Outline,
 }
 
 pub enum Color {
     Slate,
     White,
-    Blue
+    Blue,
 }
 
 fn get_variant_style(variant: &Variant) -> String {
@@ -42,12 +42,9 @@ fn get_color_style<'a, 'b>(color: &'a Color, variant: &'a Variant) -> &'b str {
 #[component]
 pub fn Button(
     children: Children,
-    #[prop(default = Variant::Solid)]
-    variant: Variant,
-    #[prop(default = Color::Slate)]
-    color: Color,
-    #[prop(into, optional)]
-    on_click: Option<Callback<MouseEvent>>
+    #[prop(default = Variant::Solid)] variant: Variant,
+    #[prop(default = Color::Slate)] color: Color,
+    #[prop(into, optional)] on_click: Option<Callback<MouseEvent>>,
 ) -> impl IntoView {
     let variantStyle = get_variant_style(&variant);
     let colorStyle = get_color_style(&color, &variant);
@@ -56,20 +53,17 @@ pub fn Button(
         <button class={variantStyle + " " + colorStyle}>
             {children()}
         </button>
-    }.optional_event(ev::click, on_click)
+    }
+    .optional_event(ev::click, on_click)
 }
-
 
 #[component]
 pub fn ButtonLink(
     children: Children,
-    #[prop(default = Variant::Solid)]
-    variant: Variant,
-    #[prop(default = Color::Slate)]
-    color: Color,
+    #[prop(default = Variant::Solid)] variant: Variant,
+    #[prop(default = Color::Slate)] color: Color,
     href: String,
-    #[prop(into, optional)]
-    on_click: Option<Callback<MouseEvent>>
+    #[prop(into, optional)] on_click: Option<Callback<MouseEvent>>,
 ) -> impl IntoView {
     let variantStyle = get_variant_style(&variant);
     let colorStyle = get_color_style(&color, &variant);
@@ -78,5 +72,6 @@ pub fn ButtonLink(
         <a class={variantStyle + " " + colorStyle} href={href}>
             {children()}
         </a>
-    }.optional_event(ev::click, on_click)
+    }
+    .optional_event(ev::click, on_click)
 }

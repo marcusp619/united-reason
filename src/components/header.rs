@@ -1,6 +1,6 @@
-use leptos::{component, view, IntoView};
-use crate::components::lib::button::{ButtonLink, Color};
 use crate::components::container::Container;
+use crate::components::lib::button::{ButtonLink, Color};
+use leptos::{component, view, IntoView};
 
 #[component]
 pub fn Header() -> impl IntoView {
@@ -12,7 +12,7 @@ pub fn Header() -> impl IntoView {
                     <a href="/" class="flex items-center">
                         // <!-- <img src="#" alt="logo" class="h-10 w-auto" /> -->
                         <span class="ml-2 text-2xl font-bold text-gray-800">
-                            United 
+                            United
                             <span class="text-2xl font-bold text-blue-600">Reason</span>
                         </span>
                     </a>
