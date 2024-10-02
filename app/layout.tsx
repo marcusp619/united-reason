@@ -7,10 +7,10 @@ import { type Metadata } from 'next'
 export const metadata: Metadata = {
   title: {
     template: '%s - United Reason',
-    default: 'United Reason - Recruiting made simple for small businesses',
+    default: 'United Reason - Talent Aquisition made simple for small businesses',
   },
   description:
-    'Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
+    'Most recruiting software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
 }
 
 const inter = Inter({
