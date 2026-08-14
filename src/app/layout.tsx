@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Motion } from "@/components/motion";
 import { SiteFooter } from "@/components/site-footer";
@@ -45,6 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        {/* Cookieless by design — no consent banner needed, unlike GA. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
