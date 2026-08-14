@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Kicker, UrMark } from "@/components/primitives";
+import { Button, Kicker, UrMark } from "@/components/primitives";
 import { CalEmbed } from "@/components/sections/cal-embed";
 import { env } from "@/env";
 import { site } from "@/content/site";
@@ -16,6 +16,29 @@ const promises = [
   "Nothing to prepare — a rough description of the annoying bit is plenty.",
   "No follow-up sequence afterwards. One email, then it's your move.",
 ];
+
+/**
+ * Stands in for the Cal.com embed until NEXT_PUBLIC_CAL_LINK is set. An embed
+ * pointed at a non-existent event renders Cal's "event type not found" screen,
+ * which is worse than no embed on the page the whole site's CTA points at.
+ */
+function BookingFallback() {
+  return (
+    <div className="flex h-full min-h-[560px] flex-col justify-center border-2 border-[var(--color-divider)] px-6 py-10 md:px-10">
+      <Kicker>Booking opens shortly</Kicker>
+      <h2 className="m-0 mb-4 max-w-[20ch] text-[28px] leading-[1.05] tracking-[-0.025em] md:text-[38px]">
+        The calendar isn&rsquo;t live yet — email me and I&rsquo;ll find a time.
+      </h2>
+      <p className="text-muted m-0 mb-7 max-w-[46ch] text-[15px] leading-[1.5]">
+        Same thirty minutes, same no sales pitch. Tell me roughly what&rsquo;s eating your week and
+        I&rsquo;ll reply within {site.replyWindow} with a couple of times that work.
+      </p>
+      <Button href={`mailto:${site.email}`} size="lg" className="w-fit">
+        Email {site.email}
+      </Button>
+    </div>
+  );
+}
 
 export default function BookPage() {
   return (
@@ -53,7 +76,11 @@ export default function BookPage() {
         </aside>
 
         <div className="min-h-[640px] px-2 py-6 md:px-8 md:py-9">
-          <CalEmbed calLink={env.NEXT_PUBLIC_CAL_LINK} />
+          {env.NEXT_PUBLIC_CAL_LINK ? (
+            <CalEmbed calLink={env.NEXT_PUBLIC_CAL_LINK} />
+          ) : (
+            <BookingFallback />
+          )}
         </div>
       </div>
 

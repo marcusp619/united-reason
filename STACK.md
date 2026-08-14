@@ -63,7 +63,9 @@ verifies (lint → typecheck → test → build), then creates `marcusp619/unite
 ## Deploying
 
 1. Import the repo at [vercel.com/new](https://vercel.com/new). Framework auto-detects.
-2. Set `NEXT_PUBLIC_SITE_URL=https://unitedreason.org` and `NEXT_PUBLIC_CAL_LINK` in Vercel env.
+2. Set `NEXT_PUBLIC_CAL_LINK` in Vercel env once the Cal.com event exists. Leave it unset until
+   then — `/book` falls back to email rather than showing Cal's "event type not found" screen.
+   The site URL is not an env var; it lives in `src/content/site.ts`.
 3. Add the domain in Vercel → Project → Domains.
 4. In **Bluehost DNS** (the zone is empty after the Aug 2026 Netlify teardown), add the records
    Vercel shows you — typically `A @ → 76.76.21.21` and `CNAME www → cname.vercel-dns.com`. Use
