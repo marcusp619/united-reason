@@ -21,7 +21,7 @@ const uses = [
   },
   {
     title: "Looking things up for staff",
-    body: '"What\'s our warranty on that?" — answered in seconds.',
+    body: '"What\'s our warranty on that?" Answered in seconds.',
   },
   {
     title: "Drafting the replies you send daily",
@@ -44,7 +44,7 @@ const priceSteps = [
 export default function AiAssistantsPage() {
   return (
     <>
-      <Band>
+      <Band reveal={false}>
         <Kicker>What I do — AI assistants</Kicker>
         <h1 className="m-0 mb-5.5 max-w-[18ch] text-[38px] leading-none tracking-[-0.03em] md:text-[62px]">
           An assistant that knows your business, not the internet.

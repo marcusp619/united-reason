@@ -31,7 +31,7 @@ export function SiteHeader() {
                 href={item.href}
                 aria-current={current ? "page" : undefined}
                 className={cn(
-                  "text-sm no-underline transition-colors",
+                  "link-wipe text-sm no-underline transition-colors",
                   current ? "text-brand" : "text-ink hover:text-brand",
                 )}
               >

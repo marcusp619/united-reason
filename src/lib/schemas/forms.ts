@@ -16,7 +16,7 @@ export const enquirySchema = z.object({
   email: z.string().min(1, "Email is required").email("That doesn't look like an email address"),
   problem: z
     .string()
-    .min(10, "A sentence is fine — just a little more detail")
+    .min(10, "A sentence is fine, just a little more detail")
     .max(2000, "Keep it under 2000 characters"),
   /** Honeypot: real people leave this empty. */
   company: z.string().max(0).optional(),

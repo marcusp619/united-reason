@@ -23,7 +23,7 @@ const stats = [
 export default function HomePage() {
   return (
     <>
-      <Band className="md:pt-18">
+      <Band reveal={false} className="md:pt-18">
         <Kicker>Software consultancy for small business</Kicker>
         <h1 className="m-0 mb-7 max-w-[15ch] text-[42px] leading-[0.98] tracking-[-0.035em] md:text-[76px]">
           Bring the idea. Leave with a plan and a price.
@@ -44,7 +44,7 @@ export default function HomePage() {
           </h2>
           <p className="m-0 mb-4.5 max-w-[44ch] text-base leading-[1.55]">
             You describe what&rsquo;s slow, expensive or embarrassing. I work out whether software
-            actually fixes it — and tell you if it doesn&rsquo;t.
+            actually fixes it, and tell you if it doesn&rsquo;t.
           </p>
           <p className="text-muted m-0 text-sm">30 minutes · free · no follow-up sequence</p>
         </div>
@@ -66,7 +66,7 @@ export default function HomePage() {
           If it isn&rsquo;t worth building, I&rsquo;ll say so.
         </h2>
         <p className="m-0 text-[17px] leading-[1.55] md:text-lg">
-          Half the businesses I speak to don&rsquo;t need custom software — they need a setting
+          Half the businesses I speak to don&rsquo;t need custom software. They need a setting
           changed in a tool they already pay for. I&rsquo;d rather tell you that in the first half
           hour than take the work. It costs me a project and earns me the next three.
         </p>
@@ -94,7 +94,10 @@ export default function HomePage() {
                   : ""
               }`}
             >
-              <p className="font-heading text-brand m-0 text-[32px] leading-none font-extrabold md:text-[46px]">
+              <p
+                data-count={s.n}
+                className="font-heading text-brand m-0 text-[32px] leading-none font-extrabold md:text-[46px]"
+              >
                 {s.n}
               </p>
               <p className="text-muted mt-1.5 mb-0 text-[11px] tracking-[0.16em] uppercase md:text-xs">

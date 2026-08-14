@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 export default function WhatIDoPage() {
   return (
     <>
-      <Band>
+      <Band reveal={false}>
         <Kicker>What I do</Kicker>
         <h1 className="m-0 mb-5 text-[40px] leading-none tracking-[-0.03em] md:text-[64px]">
           Three kinds of work.
         </h1>
         <p className="m-0 max-w-[58ch] text-base md:text-lg">
-          Everything is quoted after a call — no packages, no hourly guessing, no &ldquo;from
+          Everything is quoted after a call. No packages, no hourly guessing, no &ldquo;from
           $X&rdquo; that turns into three times $X.
         </p>
       </Band>
