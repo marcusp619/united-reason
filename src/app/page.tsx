@@ -39,6 +39,7 @@ const businessSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: site.name,
+  legalName: site.legalName,
   url: site.url,
   email: site.email,
   description:
