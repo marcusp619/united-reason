@@ -9,4 +9,6 @@ import type { ComponentType } from "react";
  * way an unwritten post simply isn't a key, and `/notes/[slug]` falls back to
  * the shell and stays noindexed until a body exists.
  */
-export const noteBodies: Record<string, () => Promise<{ default: ComponentType }>> = {};
+export const noteBodies: Record<string, () => Promise<{ default: ComponentType }>> = {
+  "what-a-website-should-cost": () => import("./what-a-website-should-cost.mdx"),
+};
