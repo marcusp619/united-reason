@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MessageSquare, Play } from "lucide-react";
+import { MessageSquare, Workflow } from "lucide-react";
 
 import { Band, Button, Kicker } from "@/components/primitives";
 import { PipelineDiagram } from "@/components/sections/pipeline-diagram";
@@ -22,7 +22,7 @@ export default function ExamplesPage() {
         </h1>
         <p className="m-0 max-w-[60ch] text-base md:text-lg">
           Straight up: this practice is new, so there&rsquo;s no logo wall here. Instead,
-          here&rsquo;s the actual work: built by me, running, and you can watch it happen.
+          here&rsquo;s the actual work: built by me, running, and broken down step by step.
         </p>
       </Band>
 
@@ -31,14 +31,14 @@ export default function ExamplesPage() {
           <div className="bg-brand-100 flex min-h-[240px] flex-col justify-center gap-5.5 border-b-2 border-[var(--color-divider)] px-5 py-8 md:h-70 md:px-10">
             <PipelineDiagram steps={["Invoice", "Read", "Ledger"]} />
             <div className="flex items-center gap-3 border-t-2 border-[var(--color-divider)] pt-4">
-              <Play size={26} className="fill-brand text-brand" />
+              <Workflow size={26} strokeWidth={2} className="text-brand" />
               <span className="text-[13px] font-bold tracking-[0.14em] uppercase">
-                Watch · 2 min
+                Every step, in order
               </span>
             </div>
           </div>
           <div className="px-5 py-7 md:px-10">
-            <Kicker className="mb-3">Demo · 2 min</Kicker>
+            <Kicker className="mb-3">Walkthrough</Kicker>
             <h3 className="m-0 mb-2.5 text-[22px] md:text-[28px]">
               Invoice inbox → spreadsheet, untouched by human hands
             </h3>

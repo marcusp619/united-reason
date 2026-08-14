@@ -60,7 +60,8 @@ export default function NotesPage() {
             One note a month. Nothing else, ever.
           </h2>
           <p className="text-muted m-0 text-base">
-            Written for owners, not developers. Unsubscribe link at the top, where it should be.
+            Written for owners, not developers. The list isn&rsquo;t automated yet, so this opens an
+            email and I add you by hand. Unsubscribe by replying.
           </p>
         </div>
         <NewsletterForm />
