@@ -51,11 +51,19 @@ export function SiteFooter() {
         </nav>
       </div>
 
-      <div className="text-muted flex flex-col gap-1.5 border-t-2 border-[var(--color-divider)] px-5 py-5 text-[13px] md:flex-row md:justify-between md:px-16">
+      <div className="text-muted flex flex-col gap-1.5 border-t-2 border-[var(--color-divider)] px-5 py-5 text-[13px] md:flex-row md:items-center md:justify-between md:px-16">
         <span>
           © {year} {site.legalName}. All rights reserved.
         </span>
-        <span>Built and run by {site.owner}.</span>
+        <span className="flex items-center gap-5">
+          <Link
+            href="/privacy"
+            className="text-muted hover:text-brand no-underline transition-colors"
+          >
+            Privacy
+          </Link>
+          <span>Built and run by {site.owner}.</span>
+        </span>
       </div>
     </footer>
   );
