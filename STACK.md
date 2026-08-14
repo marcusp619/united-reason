@@ -40,10 +40,11 @@ verifies (lint → typecheck → test → build), then creates `marcusp619/unite
 
 ## Decisions taken
 
-- **All three homepage directions are built.** `/` is variant C (the offer as a promise, which
-  the deck itself suggested taking forward); variants A and B live at `/v/person` and
-  `/v/problems`, both `noindex` so they can't compete in search. Pick one, promote it to `/`,
-  delete `src/app/v/`.
+- **The homepage merges variants A and B.** All three directions were built and compared in a
+  browser; the chosen shape is A's fold (the person, the promise, the UR mark panel) running
+  into B's interactive problem picker, then A's services trio and demo. A's static "Sound like
+  you?" quotes were dropped because the picker does that job better, and B's "just me" panel
+  because the fold already establishes it. Variant C and the `/v/` routes are deleted.
 - **The owner is "Mark"** — set once in `src/content/site.ts`, referenced everywhere else.
 - **Cal.com embed rather than a custom picker.** The mockup drew its own day/time grid; this is
   the real widget wearing that design. No scheduling, timezone, or invite logic to own.
