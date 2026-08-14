@@ -70,7 +70,7 @@ export const steps = [
 export const faqs = [
   {
     q: "What does this usually cost?",
-    a: "Most automations land in the low thousands; websites and apps more. You get the real number in writing before you commit to anything.",
+    a: "Websites start at $4,000 and most land between $4,000 and $12,000. Automating a single workflow starts around $2,500. You get one fixed number in writing before you commit to anything, and if a template would do the job I'll tell you that instead.",
   },
   {
     q: "What if it doesn't work?",

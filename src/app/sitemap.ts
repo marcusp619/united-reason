@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 
+import { noteBodies } from "@/content/notes";
 import { site } from "@/content/site";
 
 /**
- * The note shells are deliberately absent: they carry `noindex` until the
- * bodies are written, and listing a noindexed URL in a sitemap is a
- * contradictory signal. Add them here when they have content.
+ * Notes are included only once they have a body. An unwritten shell carries
+ * `noindex`, and listing a noindexed URL in a sitemap is a contradictory
+ * signal — so both facts follow from the same registry rather than from two
+ * lists that can drift.
  */
 const routes = [
   { path: "/", changeFrequency: "monthly", priority: 1 },
@@ -19,10 +21,20 @@ const routes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return routes.map(({ path, changeFrequency, priority }) => ({
+
+  const pages = routes.map(({ path, changeFrequency, priority }) => ({
     url: `${site.url}${path}`,
     lastModified,
     changeFrequency,
     priority,
   }));
+
+  const writtenNotes = Object.keys(noteBodies).map((slug) => ({
+    url: `${site.url}/notes/${slug}`,
+    lastModified,
+    changeFrequency: "yearly" as const,
+    priority: 0.7,
+  }));
+
+  return [...pages, ...writtenNotes];
 }
