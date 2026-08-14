@@ -8,7 +8,13 @@ export type Post = {
   read: string;
 };
 
+/**
+ * The card at the top of /notes. It carries a slug so it links somewhere —
+ * previously it rendered a title, excerpt and read time for a post that had
+ * no route at all.
+ */
 export const featured = {
+  slug: "five-tasks-to-automate-first",
   cat: "Automation",
   title: "The five tasks I'd automate first in any small business",
   excerpt:
@@ -18,6 +24,12 @@ export const featured = {
 } as const;
 
 export const posts: readonly Post[] = [
+  {
+    slug: featured.slug,
+    cat: featured.cat,
+    title: featured.title,
+    read: "6 min",
+  },
   {
     slug: "three-hours-a-week",
     cat: "Automation",

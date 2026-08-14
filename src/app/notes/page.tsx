@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { Kicker } from "@/components/primitives";
 import { NewsletterForm } from "@/components/sections/newsletter-form";
@@ -38,9 +39,11 @@ export default function NotesPage() {
 
         <article className="px-5 py-8 md:px-14 md:py-12">
           <Kicker>Latest · {featured.cat}</Kicker>
-          <h2 className="m-0 mb-4 max-w-[18ch] text-[28px] leading-[1.05] md:text-[38px]">
-            {featured.title}
-          </h2>
+          <Link href={`/notes/${featured.slug}`} className="group no-underline">
+            <h2 className="text-ink group-hover:text-brand m-0 mb-4 max-w-[18ch] text-[28px] leading-[1.05] transition-colors md:text-[38px]">
+              {featured.title}
+            </h2>
+          </Link>
           <p className="m-0 mb-5 max-w-[50ch] text-base leading-[1.55]">{featured.excerpt}</p>
           <p className="text-muted m-0 text-sm">
             {featured.read} · {featured.date}
