@@ -5,6 +5,8 @@
 
 export const site = {
   name: "UnitedReason",
+  /** The registered entity. Used in the footer notice and the Organization schema. */
+  legalName: "UnitedReason LLC",
   wordmark: "UNITEDREASON",
   owner: "Mark",
   tagline: "software for small business",
