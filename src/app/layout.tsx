@@ -37,6 +37,12 @@ export const metadata: Metadata = {
     url: site.url,
   },
   twitter: { card: "summary_large_image" },
+  /**
+   * Search Console. The same token verifies either property type: as a DNS TXT
+   * record for the domain property, or as this tag for the URL-prefix one.
+   * Having both means verification survives losing access to either.
+   */
+  verification: { google: "A8P6-lc63jG6_rdRCyAE3FArqNlsgHYuchQvpZjxrtQ" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
