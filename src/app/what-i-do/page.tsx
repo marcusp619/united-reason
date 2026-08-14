@@ -20,7 +20,7 @@ export default function WhatIDoPage() {
         </h1>
         <p className="m-0 max-w-[58ch] text-base md:text-lg">
           Everything is quoted after a call — no packages, no hourly guessing, no &ldquo;from
-          £X&rdquo; that turns into three times £X.
+          $X&rdquo; that turns into three times $X.
         </p>
       </Band>
 
