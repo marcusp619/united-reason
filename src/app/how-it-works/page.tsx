@@ -29,14 +29,14 @@ export default function HowItWorksPage() {
               i > 0 ? "border-t-2 border-[var(--color-divider)]" : ""
             }`}
           >
-            <span className="font-heading text-[28px] font-extrabold text-brand md:text-[34px]">
+            <span className="font-heading text-brand text-[28px] font-extrabold md:text-[34px]">
               {step.n}
             </span>
             <div>
               <h3 className="m-0 mb-2 text-[22px] md:text-[28px]">{step.title}</h3>
               <p className="m-0 max-w-[64ch] text-base leading-[1.55]">{step.body}</p>
             </div>
-            <span className="text-sm text-muted md:text-right">{step.when}</span>
+            <span className="text-muted text-sm md:text-right">{step.when}</span>
           </div>
         ))}
       </div>
@@ -46,21 +46,23 @@ export default function HowItWorksPage() {
         <dl className="grid gap-8 md:grid-cols-2 md:gap-9 md:gap-x-14">
           {faqs.map((f) => (
             <div key={f.q}>
-              <dt className="mb-2 font-heading text-[18px] font-extrabold md:text-xl">{f.q}</dt>
-              <dd className="m-0 text-[15px] leading-[1.55] text-muted">{f.a}</dd>
+              <dt className="font-heading mb-2 text-[18px] font-extrabold md:text-xl">{f.q}</dt>
+              <dd className="text-muted m-0 text-[15px] leading-[1.55]">{f.a}</dd>
             </div>
           ))}
         </dl>
       </Band>
 
-      <div className="grid bg-brand-100 md:grid-cols-[320px_1fr]">
-        <div className="grid-panel flex min-h-[220px] flex-col justify-between border-b-2 border-[var(--color-divider)] p-8 text-ground md:border-r-2 md:border-b-0">
+      <div className="bg-brand-100 grid md:grid-cols-[320px_1fr]">
+        <div className="grid-panel text-ground flex min-h-[220px] flex-col justify-between border-b-2 border-[var(--color-divider)] p-8 md:border-r-2 md:border-b-0">
           <Clock size={34} strokeWidth={2} />
           <div>
-            <p className="m-0 font-heading text-[48px] leading-[0.9] font-extrabold tracking-[-0.04em] md:text-[62px]">
+            <p className="font-heading m-0 text-[48px] leading-[0.9] font-extrabold tracking-[-0.04em] md:text-[62px]">
               30:00
             </p>
-            <p className="mt-2.5 mb-0 text-[13px] tracking-[0.16em] uppercase">One call · no cost</p>
+            <p className="mt-2.5 mb-0 text-[13px] tracking-[0.16em] uppercase">
+              One call · no cost
+            </p>
           </div>
         </div>
         <div className="px-5 py-8 md:px-14 md:py-12">

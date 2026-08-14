@@ -27,11 +27,11 @@ export default function NotesPage() {
           aria-hidden="true"
           className="grid min-h-[200px] grid-cols-4 grid-rows-4 border-b-2 border-[var(--color-divider)] md:min-h-[340px] md:border-r-2 md:border-b-0"
         >
-          <div className="col-span-2 row-span-2 border-r-2 border-b-2 border-[var(--color-divider)] bg-brand" />
+          <div className="bg-brand col-span-2 row-span-2 border-r-2 border-b-2 border-[var(--color-divider)]" />
           <div className="col-span-2 border-r-2 border-b-2 border-[var(--color-divider)]" />
-          <div className="col-start-1 row-span-2 row-start-3 border-r-2 border-b-2 border-[var(--color-divider)] bg-brand-200" />
-          <div className="col-span-3 col-start-2 row-start-3 border-r-2 border-b-2 border-[var(--color-divider)] bg-brand" />
-          <div className="col-start-3 row-start-4 border-r-2 border-b-2 border-[var(--color-divider)] bg-brand-200" />
+          <div className="bg-brand-200 col-start-1 row-span-2 row-start-3 border-r-2 border-b-2 border-[var(--color-divider)]" />
+          <div className="bg-brand col-span-3 col-start-2 row-start-3 border-r-2 border-b-2 border-[var(--color-divider)]" />
+          <div className="bg-brand-200 col-start-3 row-start-4 border-r-2 border-b-2 border-[var(--color-divider)]" />
           <div className="col-start-4 row-span-2 row-start-2 border-r-2 border-b-2 border-[var(--color-divider)]" />
         </div>
 
@@ -41,7 +41,7 @@ export default function NotesPage() {
             {featured.title}
           </h2>
           <p className="m-0 mb-5 max-w-[50ch] text-base leading-[1.55]">{featured.excerpt}</p>
-          <p className="m-0 text-sm text-muted">
+          <p className="text-muted m-0 text-sm">
             {featured.read} · {featured.date}
           </p>
         </article>
@@ -53,12 +53,12 @@ export default function NotesPage() {
         </div>
       </section>
 
-      <section className="grid items-center gap-8 bg-brand-100 px-5 py-8 md:grid-cols-[1fr_420px] md:gap-12 md:px-16 md:py-12">
+      <section className="bg-brand-100 grid items-center gap-8 px-5 py-8 md:grid-cols-[1fr_420px] md:gap-12 md:px-16 md:py-12">
         <div>
           <h2 className="m-0 mb-2.5 max-w-[22ch] text-[26px] md:text-[32px]">
             One note a month. Nothing else, ever.
           </h2>
-          <p className="m-0 text-base text-muted">
+          <p className="text-muted m-0 text-base">
             Written for owners, not developers. Unsubscribe link at the top, where it should be.
           </p>
         </div>

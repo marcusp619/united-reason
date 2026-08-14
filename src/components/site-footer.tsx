@@ -6,7 +6,7 @@ export function SiteFooter() {
       <span className="text-muted">
         {site.name} — {site.tagline}
       </span>
-      <a href={`mailto:${site.email}`} className="text-muted no-underline hover:text-brand">
+      <a href={`mailto:${site.email}`} className="text-muted hover:text-brand no-underline">
         {site.email}
       </a>
     </footer>

@@ -17,7 +17,7 @@ export function SiteHeader() {
       <div className="flex items-center gap-8 px-5 py-4 md:px-16 md:py-5">
         <Link
           href="/"
-          className="mr-auto font-heading text-[15px] font-extrabold tracking-[0.04em] text-ink no-underline md:text-[19px]"
+          className="font-heading text-ink mr-auto text-[15px] font-extrabold tracking-[0.04em] no-underline md:text-[19px]"
         >
           {site.wordmark}
         </Link>
@@ -41,7 +41,7 @@ export function SiteHeader() {
           })}
           <Link
             href={cta.href}
-            className="bg-brand px-[18px] py-[11px] font-heading text-sm font-extrabold text-ground no-underline transition-colors hover:bg-[var(--color-accent-600)] active:bg-[var(--color-accent-700)]"
+            className="bg-brand font-heading text-ground px-[18px] py-[11px] text-sm font-extrabold no-underline transition-colors hover:bg-[var(--color-accent-600)] active:bg-[var(--color-accent-700)]"
           >
             {cta.short}
           </Link>
@@ -53,7 +53,7 @@ export function SiteHeader() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="cursor-pointer bg-transparent p-1 text-ink md:hidden"
+          className="text-ink cursor-pointer bg-transparent p-1 md:hidden"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -69,7 +69,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="border-b-2 border-[var(--color-divider)] px-5 py-4 font-heading text-lg font-extrabold text-ink no-underline"
+              className="font-heading text-ink border-b-2 border-[var(--color-divider)] px-5 py-4 text-lg font-extrabold no-underline"
             >
               {item.label}
             </Link>
@@ -77,7 +77,7 @@ export function SiteHeader() {
           <Link
             href={cta.href}
             onClick={() => setOpen(false)}
-            className="bg-brand px-5 py-4 font-heading text-lg font-extrabold text-ground no-underline"
+            className="bg-brand font-heading text-ground px-5 py-4 text-lg font-extrabold no-underline"
           >
             {cta.long}
           </Link>

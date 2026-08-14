@@ -74,14 +74,14 @@ export default function AiAssistantsPage() {
                 }`}
               >
                 <h4 className="m-0 mb-1 text-[17px] md:text-[19px]">{u.title}</h4>
-                <p className="m-0 text-sm text-muted">{u.body}</p>
+                <p className="text-muted m-0 text-sm">{u.body}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="grid gap-6 border-b-2 border-[var(--color-divider)] bg-brand-100 px-5 py-8 md:grid-cols-[340px_1fr] md:gap-10 md:px-16 md:py-12">
+      <div className="bg-brand-100 grid gap-6 border-b-2 border-[var(--color-divider)] px-5 py-8 md:grid-cols-[340px_1fr] md:gap-10 md:px-16 md:py-12">
         <h2 className="m-0 max-w-[12ch] text-[28px] md:text-[36px]">What it won&rsquo;t do</h2>
         <div className="flex flex-col gap-3.5">
           {limits.map((l) => (
@@ -104,9 +104,9 @@ export default function AiAssistantsPage() {
                   : "border-t-2 border-[var(--color-divider)] pt-5 md:border-t-0 md:border-l-2 md:pt-0 md:pr-10 md:pl-10"
               }
             >
-              <p className="m-0 mb-2.5 text-[11px] tracking-[0.16em] text-brand">{s.n}</p>
+              <p className="text-brand m-0 mb-2.5 text-[11px] tracking-[0.16em]">{s.n}</p>
               <h3 className="m-0 mb-2 text-[22px] md:text-[26px]">{s.title}</h3>
-              <p className="m-0 text-[15px] text-muted">{s.body}</p>
+              <p className="text-muted m-0 text-[15px]">{s.body}</p>
             </div>
           ))}
         </div>

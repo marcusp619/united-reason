@@ -41,7 +41,7 @@ export default function BookPage() {
             <h2 className="m-0 mb-1.5 text-[22px]">
               {site.owner} · {site.name}
             </h2>
-            <p className="m-0 mb-5 text-sm text-muted">Intro call · 30 min · Video or phone</p>
+            <p className="text-muted m-0 mb-5 text-sm">Intro call · 30 min · Video or phone</p>
             <div className="flex flex-col gap-3 text-[15px] leading-[1.5]">
               {promises.map((p) => (
                 <p key={p} className="m-0">
@@ -58,16 +58,16 @@ export default function BookPage() {
       </div>
 
       <section className="flex flex-col gap-4 px-5 py-8 md:flex-row md:items-center md:gap-5 md:px-16 md:py-9">
-        <span className="text-[11px] tracking-[0.16em] uppercase text-muted">
+        <span className="text-muted text-[11px] tracking-[0.16em] uppercase">
           Rather write first?
         </span>
         <a
           href={`mailto:${site.email}`}
-          className="inline-flex w-fit cursor-pointer items-center border border-[var(--color-divider)] px-4.5 py-3 font-heading text-sm font-extrabold text-ink no-underline hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)]"
+          className="font-heading text-ink inline-flex w-fit cursor-pointer items-center border border-[var(--color-divider)] px-4.5 py-3 text-sm font-extrabold no-underline hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)]"
         >
           Email me instead
         </a>
-        <span className="text-sm text-muted">
+        <span className="text-muted text-sm">
           {site.email} — I reply within {site.replyWindow}.
         </span>
       </section>

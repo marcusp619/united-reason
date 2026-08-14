@@ -55,7 +55,7 @@ export default function PersonVariantPage() {
               See what I do
             </Button>
           </div>
-          <p className="mt-5 mb-0 text-sm text-muted">
+          <p className="text-muted mt-5 mb-0 text-sm">
             No pitch deck, no sales script. If it isn&rsquo;t worth building, I&rsquo;ll say so on
             the call.
           </p>
@@ -92,7 +92,7 @@ export default function PersonVariantPage() {
                     : "border-t-2 border-[var(--color-divider)] pt-6 md:border-t-0 md:border-l-2 md:pt-0 md:pr-9 md:pl-9"
                 }
               >
-                <div className="mb-3 flex items-center gap-2.5 text-brand">
+                <div className="text-brand mb-3 flex items-center gap-2.5">
                   <Icon size={22} strokeWidth={2} />
                   <span className="text-[11px] tracking-[0.16em]">
                     {String(i + 1).padStart(2, "0")}
@@ -106,7 +106,7 @@ export default function PersonVariantPage() {
         </div>
       </Band>
 
-      <div className="grid border-b-2 border-[var(--color-divider)] bg-brand-100 md:grid-cols-2">
+      <div className="bg-brand-100 grid border-b-2 border-[var(--color-divider)] md:grid-cols-2">
         <div className="flex min-h-[280px] items-center border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:px-10 md:py-11">
           <div className="flex w-full flex-col gap-5.5">
             <PipelineDiagram steps={["Inbox", "Read", "Match", "Books"]} />
@@ -141,10 +141,10 @@ export default function PersonVariantPage() {
                 i === recognitions.length - 1 ? "border-b-2" : ""
               }`}
             >
-              <span className="w-10 shrink-0 pt-1.5 text-[11px] tracking-[0.16em] text-brand">
+              <span className="text-brand w-10 shrink-0 pt-1.5 text-[11px] tracking-[0.16em]">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="m-0 font-heading text-[18px] leading-[1.35] font-extrabold md:text-[22px]">
+              <p className="font-heading m-0 text-[18px] leading-[1.35] font-extrabold md:text-[22px]">
                 &ldquo;{line}&rdquo;
               </p>
             </div>
@@ -152,11 +152,7 @@ export default function PersonVariantPage() {
         </div>
       </Band>
 
-      <PosterCta
-        headline="Tell me what's eating your week."
-        label={cta.long}
-        href={cta.href}
-      />
+      <PosterCta headline="Tell me what's eating your week." label={cta.long} href={cta.href} />
     </>
   );
 }
