@@ -95,5 +95,6 @@ says so when you ask it something unscripted.
 ## Deploying
 
 Import at [vercel.com/new](https://vercel.com/new) — framework auto-detects, no `vercel.json`
-needed. Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_CAL_LINK` in project env vars, add the
-domain, then add the records Vercel shows you to the Bluehost zone.
+needed. Set `NEXT_PUBLIC_CAL_LINK` in project env vars once your Cal.com event exists, add the
+domain, then add the records Vercel shows you to the Bluehost zone. The canonical site URL is
+not an env var — it lives in `src/content/site.ts`.
