@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { categories, posts } from "./posts";
+import { noteBodies } from "./notes";
+import { categories, featured, posts } from "./posts";
 import { problems } from "./problems";
 import { services } from "./services";
 import { nav } from "./site";
@@ -16,6 +17,17 @@ describe("content integrity", () => {
   it("keeps post slugs unique so routes don't collide", () => {
     const slugs = posts.map((p) => p.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  it("gives the featured card a post to link to", () => {
+    expect(posts.some((p) => p.slug === featured.slug)).toBe(true);
+  });
+
+  it("registers note bodies only against real post slugs", () => {
+    const slugs = new Set(posts.map((p) => p.slug));
+    for (const slug of Object.keys(noteBodies)) {
+      expect(slugs.has(slug), `${slug} has a body but no entry in posts.ts`).toBe(true);
+    }
   });
 
   it("keeps service slugs unique", () => {
