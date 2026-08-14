@@ -6,6 +6,7 @@ import { NotesIndex } from "@/components/sections/notes-index";
 import { featured } from "@/content/posts";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/notes" },
   title: "Notes",
   description:
     "Plain-English notes on automating a small business. Written for owners, not developers.",

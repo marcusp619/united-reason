@@ -5,6 +5,7 @@ import { AssistantDemo } from "@/components/sections/assistant-demo";
 import { cta } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/what-i-do/ai-assistants" },
   title: "AI assistants",
   description:
     "An assistant that knows your business, not the internet. It reads your price list, your policies and your past replies, and answers the way you would.",

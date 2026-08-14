@@ -21,7 +21,7 @@ export const posts: readonly Post[] = [
   {
     slug: "three-hours-a-week",
     cat: "Automation",
-    title: "Three hours a week, back — the boring maths",
+    title: "Three hours a week, back: the boring math",
     read: "3 min",
   },
   {

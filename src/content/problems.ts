@@ -26,7 +26,7 @@ export const problems: readonly Problem[] = [
     title: "Chasing quotes, bookings and follow-ups",
     build: "A follow-up system that never forgets",
     blurb:
-      "Every enquiry gets chased on schedule, in your tone, until someone says yes or no. Most businesses find money in this within a fortnight.",
+      "Every enquiry gets chased on schedule, in your tone, until someone says yes or no. Most businesses find money in this within two weeks.",
     timeline: "Usually 2–4 weeks",
   },
   {
