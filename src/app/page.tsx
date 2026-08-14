@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, LayoutGrid, MessageSquare, Play, Zap } from "lucide-react";
+import { Clock, LayoutGrid, MessageSquare, Workflow, Zap } from "lucide-react";
 
 import { JsonLd } from "@/components/json-ld";
 import { Band, Button, Kicker, PosterCta, UrMark } from "@/components/primitives";
@@ -146,9 +146,9 @@ export default function HomePage() {
           <div className="flex w-full flex-col gap-5.5">
             <PipelineDiagram steps={["Inbox", "Read", "Match", "Books"]} />
             <div className="flex items-center gap-3 border-t-2 border-[var(--color-divider)] pt-4">
-              <Play size={26} className="fill-brand text-brand" />
+              <Workflow size={26} strokeWidth={2} className="text-brand" />
               <span className="text-[13px] font-bold tracking-[0.14em] uppercase">
-                Play the 2-minute run
+                Every step, in order
               </span>
             </div>
           </div>
@@ -156,13 +156,13 @@ export default function HomePage() {
         <div className="px-5 py-8 md:px-12 md:py-13">
           <Kicker tone="deep">Instead of a case study</Kicker>
           <h2 className="m-0 mb-4 max-w-[16ch] text-[26px] md:text-[34px]">
-            Watch a real automation run, start to finish.
+            A real automation, start to finish.
           </h2>
           <p className="m-0 mb-6.5 max-w-[42ch] text-base leading-[1.55]">
-            Two minutes, no narration over stock footage. An invoice lands in an inbox and ends up
-            in the books without anyone touching it.
+            No stock footage, no logo wall. An invoice lands in an inbox and ends up in the books
+            without anyone touching it, laid out step by step.
           </p>
-          <Button href="/examples">Play the demo</Button>
+          <Button href="/examples">See how it works</Button>
         </div>
       </div>
 

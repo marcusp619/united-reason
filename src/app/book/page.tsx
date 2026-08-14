@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Button, Kicker, UrMark } from "@/components/primitives";
 import { CalEmbed } from "@/components/sections/cal-embed";
+import { EnquiryForm } from "@/components/sections/enquiry-form";
 import { env } from "@/env";
 import { site } from "@/content/site";
 
@@ -85,19 +86,18 @@ export default function BookPage() {
         </div>
       </div>
 
-      <section className="flex flex-col gap-4 px-5 py-8 md:flex-row md:items-center md:gap-5 md:px-16 md:py-9">
-        <span className="text-muted text-[11px] tracking-[0.16em] uppercase">
-          Rather write first?
-        </span>
-        <a
-          href={`mailto:${site.email}`}
-          className="font-heading text-ink inline-flex w-fit cursor-pointer items-center border border-[var(--color-divider)] px-4.5 py-3 text-sm font-extrabold no-underline hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)]"
-        >
-          Email me instead
-        </a>
-        <span className="text-muted text-sm">
-          {site.email}. I reply within {site.replyWindow}.
-        </span>
+      <section className="grid gap-8 px-5 py-8 md:grid-cols-[340px_1fr] md:gap-14 md:px-16 md:py-12">
+        <div>
+          <Kicker tone="muted">Rather write first?</Kicker>
+          <h2 className="m-0 mb-3 max-w-[18ch] text-[24px] md:text-[30px]">
+            Describe it in a paragraph and I&rsquo;ll come back to you.
+          </h2>
+          <p className="text-muted m-0 text-[15px] leading-[1.55]">
+            No call required. A rough description is plenty, and I&rsquo;ll tell you whether
+            it&rsquo;s worth a conversation.
+          </p>
+        </div>
+        <EnquiryForm />
       </section>
     </>
   );
