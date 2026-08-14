@@ -28,22 +28,21 @@ pnpm dev
 
 ## Routes
 
-| Route                      | Mockup | Notes                                                |
-| -------------------------- | ------ | ---------------------------------------------------- |
-| `/`                        | 1c     | Homepage — "the offer as a promise"                  |
-| `/v/person`                | 1a     | Homepage variant — "the person, plainly" (`noindex`) |
-| `/v/problems`              | 1b     | Homepage variant — "the problem list" (`noindex`)    |
-| `/what-i-do`               | 1d     | Services overview                                    |
-| `/what-i-do/ai-assistants` | 1e     | Service detail                                       |
-| `/how-it-works`            | 1f     | Four steps + FAQs                                    |
-| `/examples`                | 1g     | Demos, before/after, founding-client offer           |
-| `/notes`                   | 1h     | Blog index with working filters                      |
-| `/notes/[slug]`            | —      | Post shell; bodies not written yet                   |
-| `/book`                    | 1i     | Cal.com embed, themed                                |
+| Route                      | Mockup | Notes                                        |
+| -------------------------- | ------ | -------------------------------------------- |
+| `/`                        | 1a+1b  | Homepage — the person, then the problem list |
+| `/what-i-do`               | 1d     | Services overview                            |
+| `/what-i-do/ai-assistants` | 1e     | Service detail                               |
+| `/how-it-works`            | 1f     | Four steps + FAQs                            |
+| `/examples`                | 1g     | Demos, before/after, founding-client offer   |
+| `/notes`                   | 1h     | Blog index with working filters              |
+| `/notes/[slug]`            | —      | Post shell; bodies not written yet           |
+| `/book`                    | 1i     | Cal.com embed, themed                        |
 
-All three homepage variants are live so you can compare them in a real browser. When you pick
-one, move it to `/` and delete `src/app/v/`. The two variants carry `robots: { index: false }`
-so they can't compete with `/` in search while they're up.
+The homepage combines two of the three mockup directions: variant A's fold (the person, the
+promise, the UR mark panel) running into variant B's problem picker, then the services trio and
+the demo. Variant C ("the offer as a promise") and the `/v/` comparison routes have been
+deleted now that the direction is settled.
 
 ## How the design system is wired
 
@@ -73,7 +72,7 @@ Everything editable lives in `src/content/`:
 
 - `site.ts` — name, owner, email, nav, CTA labels
 - `services.ts` — the three services, the four process steps, the FAQs
-- `problems.ts` — the problem list driving `/v/problems`
+- `problems.ts` — the problem list driving the homepage picker
 - `posts.ts` — notes index and categories
 
 No copy is hardcoded in a component. Changing the owner's name is a one-line edit in `site.ts`.

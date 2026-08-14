@@ -1,129 +1,140 @@
-import { Band, Button, Kicker, PosterCta, Tag } from "@/components/primitives";
+import { Clock, LayoutGrid, MessageSquare, Play, Zap } from "lucide-react";
+
+import { Band, Button, Kicker, PosterCta, UrMark } from "@/components/primitives";
+import { PipelineDiagram } from "@/components/sections/pipeline-diagram";
+import { ProblemPicker } from "@/components/sections/problem-picker";
+import { services } from "@/content/services";
 import { cta, site } from "@/content/site";
 
 /**
- * Homepage — variant C from the mockups ("the offer as a promise").
- * No proof required: the fold is what happens after you book, made concrete.
+ * Homepage — variant A's fold running into variant B's problem list.
+ *
+ * The person introduces the offer, then the picker lets an owner recognise
+ * their own week in it. Variant A's static "Sound like you?" quotes are gone:
+ * the picker does that job interactively, and variant B's "just me" panel is
+ * gone too, since the fold already establishes who you'd be working with.
  */
 
-const capabilities = [
-  "Automations",
-  "AI assistants",
-  "Websites",
-  "Small internal apps",
-  "Integrations",
+const markPoints = [
+  { Icon: Zap, label: "Automations that run themselves" },
+  { Icon: MessageSquare, label: "Assistants trained on your own material" },
+  { Icon: LayoutGrid, label: "Sites and small internal tools" },
+  { Icon: Clock, label: "Fixed quote, fixed date" },
 ];
 
-const stats = [
-  { n: "10", label: "Years building" },
-  { n: "01", label: "Person on your job" },
-  { n: "00", label: "Surprise invoices" },
-];
+const serviceIcons = [Zap, MessageSquare, LayoutGrid];
 
 export default function HomePage() {
   return (
     <>
-      <Band reveal={false} className="md:pt-18">
-        <Kicker>Software consultancy for small business</Kicker>
-        <h1 className="m-0 mb-7 max-w-[15ch] text-[42px] leading-[0.98] tracking-[-0.035em] md:text-[76px]">
-          Bring the idea. Leave with a plan and a price.
-        </h1>
-        <div className="flex flex-wrap items-center gap-3.5">
-          <Button href={cta.href} size="lg">
-            {cta.long}
-          </Button>
-          <span className="text-muted text-[15px]">Thirty minutes. Free. Nothing to prepare.</span>
+      <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[minmax(0,1fr)_460px]">
+        <div className="border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:py-16 md:pr-14 md:pl-16">
+          <Kicker>
+            {site.owner} · {site.name}
+          </Kicker>
+          <h1 className="m-0 mb-6 max-w-[11ch] text-[34px] leading-[1.02] tracking-[-0.025em] md:text-[58px]">
+            I build the software small businesses keep asking for.
+          </h1>
+          <p className="m-0 mb-8 max-w-[44ch] text-base leading-[1.5] md:text-[19px]">
+            One person, start to finish. Tell me what&rsquo;s eating your week and I&rsquo;ll tell
+            you honestly whether software fixes it, roughly what it takes, and what it costs.
+          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <Button href={cta.href} size="lg">
+              {cta.long}
+            </Button>
+            <Button href="/what-i-do" variant="secondary" size="lg">
+              See what I do
+            </Button>
+          </div>
+          <p className="text-muted mt-5 mb-0 text-sm">
+            No pitch deck, no sales script. If it isn&rsquo;t worth building, I&rsquo;ll say so on
+            the call.
+          </p>
         </div>
-      </Band>
 
-      <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-2">
-        <div className="border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:px-12 md:py-12 md:pl-16">
-          <Kicker>On the call</Kicker>
-          <h2 className="m-0 mb-3.5 max-w-[18ch] text-[26px] md:text-[32px]">
-            You talk, I ask awkward questions.
-          </h2>
-          <p className="m-0 mb-4.5 max-w-[44ch] text-base leading-[1.55]">
-            You describe what&rsquo;s slow, expensive or embarrassing. I work out whether software
-            actually fixes it, and tell you if it doesn&rsquo;t.
-          </p>
-          <p className="text-muted m-0 text-sm">30 minutes · free · no follow-up sequence</p>
-        </div>
-        <div className="px-5 py-8 md:px-12 md:py-12 md:pr-16">
-          <Kicker>Three days later</Kicker>
-          <h2 className="m-0 mb-3.5 max-w-[18ch] text-[26px] md:text-[32px]">
-            A written scope and one fixed price.
-          </h2>
-          <p className="m-0 mb-4.5 max-w-[44ch] text-base leading-[1.55]">
-            What I&rsquo;d build, what it does, when it&rsquo;s done and what it costs. One number,
-            not a rate card. Yes or no, no hard feelings either way.
-          </p>
-          <p className="text-muted m-0 text-sm">Fixed price · you own everything I write</p>
-        </div>
+        <UrMark className="min-h-[260px] md:min-h-[620px]">
+          <div className="grid grid-cols-2 border-t-2 border-white/50">
+            {markPoints.map(({ Icon, label }, i) => (
+              <div
+                key={label}
+                className={`pt-5 ${i % 2 === 0 ? "pr-4" : "border-l-2 border-white/50 pl-4"} ${
+                  i > 1 ? "border-t-2 border-white/50" : ""
+                }`}
+              >
+                <Icon size={30} strokeWidth={2} />
+                <p className="mt-3 mb-0 text-sm leading-[1.4]">{label}</p>
+              </div>
+            ))}
+          </div>
+        </UrMark>
       </div>
 
-      <Band className="flex flex-col gap-6 md:flex-row md:gap-14">
-        <h2 className="m-0 max-w-[12ch] shrink-0 text-[30px] md:text-[38px]">
-          If it isn&rsquo;t worth building, I&rsquo;ll say so.
+      <Band rule={false} className="md:pb-10">
+        <h2 className="m-0 mb-4 text-[32px] leading-[1.02] tracking-[-0.03em] md:text-[52px]">
+          What are you still doing by hand?
         </h2>
-        <p className="m-0 text-[17px] leading-[1.55] md:text-lg">
-          Half the businesses I speak to don&rsquo;t need custom software. They need a setting
-          changed in a tool they already pay for. I&rsquo;d rather tell you that in the first half
-          hour than take the work. It costs me a project and earns me the next three.
+        <p className="text-muted m-0 max-w-[52ch] text-base md:text-lg">
+          Pick the one that stings. I&rsquo;ll show you what it turns into.
         </p>
       </Band>
 
-      <Band className="md:py-11">
-        <Kicker tone="muted">What I build</Kicker>
-        <div className="flex flex-wrap gap-2.5">
-          {capabilities.map((c) => (
-            <Tag key={c} variant="outline" className="px-4 py-2 text-sm">
-              {c}
-            </Tag>
-          ))}
+      <ProblemPicker />
+
+      <Band>
+        <Kicker tone="muted">Three things people hire me for</Kicker>
+        <div className="grid gap-8 md:grid-cols-3 md:gap-0">
+          {services.map((s, i) => {
+            const Icon = serviceIcons[i];
+            return (
+              <div
+                key={s.slug}
+                className={
+                  i === 0
+                    ? "md:pr-9"
+                    : "border-t-2 border-[var(--color-divider)] pt-6 md:border-t-0 md:border-l-2 md:pt-0 md:pr-9 md:pl-9"
+                }
+              >
+                <div className="text-brand mb-3 flex items-center gap-2.5">
+                  <Icon size={22} strokeWidth={2} />
+                  <span className="text-[11px] tracking-[0.16em]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="m-0 mb-3 text-[22px] md:text-[26px]">{s.title}</h3>
+                <p className="m-0 text-[15px] leading-[1.55]">{s.short}</p>
+              </div>
+            );
+          })}
         </div>
       </Band>
 
-      <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[340px_1fr]">
-        <div className="grid grid-cols-3 border-b-2 border-[var(--color-divider)] md:grid-cols-1 md:grid-rows-3 md:border-r-2 md:border-b-0">
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className={`px-4 py-6 md:px-7 ${
-                i < stats.length - 1
-                  ? "border-r-2 border-[var(--color-divider)] md:border-r-0 md:border-b-2"
-                  : ""
-              }`}
-            >
-              <p
-                data-count={s.n}
-                className="font-heading text-brand m-0 text-[32px] leading-none font-extrabold md:text-[46px]"
-              >
-                {s.n}
-              </p>
-              <p className="text-muted mt-1.5 mb-0 text-[11px] tracking-[0.16em] uppercase md:text-xs">
-                {s.label}
-              </p>
+      <div className="bg-brand-100 grid border-b-2 border-[var(--color-divider)] md:grid-cols-2">
+        <div className="flex min-h-[280px] items-center border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:px-10 md:py-11">
+          <div className="flex w-full flex-col gap-5.5">
+            <PipelineDiagram steps={["Inbox", "Read", "Match", "Books"]} />
+            <div className="flex items-center gap-3 border-t-2 border-[var(--color-divider)] pt-4">
+              <Play size={26} className="fill-brand text-brand" />
+              <span className="text-[13px] font-bold tracking-[0.14em] uppercase">
+                Play the 2-minute run
+              </span>
             </div>
-          ))}
+          </div>
         </div>
-        <div className="px-5 py-8 md:px-14 md:py-13">
-          <Kicker tone="muted">Who I am</Kicker>
-          <h2 className="m-0 mb-3.5 max-w-[22ch] text-[26px] md:text-[32px]">
-            I&rsquo;m {site.owner}. I&rsquo;ve spent ten years building software, mostly for people
-            who never wanted to think about it.
+        <div className="px-5 py-8 md:px-12 md:py-13">
+          <Kicker tone="deep">Instead of a case study</Kicker>
+          <h2 className="m-0 mb-4 max-w-[16ch] text-[26px] md:text-[34px]">
+            Watch a real automation run, start to finish.
           </h2>
-          <p className="m-0 max-w-[60ch] text-base leading-[1.55]">
-            {site.name} is deliberately one person: small enough to care about a job worth a few
-            thousand, experienced enough to build it properly.
+          <p className="m-0 mb-6.5 max-w-[42ch] text-base leading-[1.55]">
+            Two minutes, no narration over stock footage. An invoice lands in an inbox and ends up
+            in the books without anyone touching it.
           </p>
+          <Button href="/examples">Play the demo</Button>
         </div>
       </div>
 
-      <PosterCta
-        headline="The call is free and the quote is fixed."
-        label={cta.long}
-        href={cta.href}
-      />
+      <PosterCta headline="Tell me what's eating your week." label={cta.long} href={cta.href} />
     </>
   );
 }

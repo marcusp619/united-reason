@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="UnitedReason">
+  <!-- The UR mark. Accent red field, white letterforms, zero radius: the same
+       block that carries the UrMark panel on the site. Drawn as geometry rather
+       than <text> so it never depends on Archivo being installed locally, and
+       stays crisp down to 16px. The R's leg kicks out past the bowl, without
+       which the closed counter reads as a flat-topped A. -->
+  <rect width="64" height="64" fill="#ec3013"/>
+  <g fill="#f3f2f2">
+    <!-- U -->
+    <rect x="7" y="14" width="6" height="36"/>
+    <rect x="19" y="14" width="6" height="36"/>
+    <rect x="7" y="44" width="18" height="6"/>
+    <!-- R: stem, top bar, bowl right, middle bar, diagonal leg -->
+    <rect x="31" y="14" width="6" height="36"/>
+    <rect x="31" y="14" width="18" height="6"/>
+    <rect x="43" y="14" width="6" height="18"/>
+    <rect x="31" y="26" width="18" height="6"/>
+    <polygon points="39,32 45,32 55,50 48,50"/>
+  </g>
+</svg>
