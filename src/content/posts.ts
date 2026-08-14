@@ -18,8 +18,8 @@ export const featured = {
   cat: "Automation",
   title: "The five tasks I'd automate first in any small business",
   excerpt:
-    "None of them are clever. All of them are being done by hand somewhere in your business right now, and all five pay for themselves inside a month.",
-  read: "6 min read",
+    "None of them are clever. All of them are being done by hand somewhere in your business right now, and the arithmetic on whether they're worth fixing takes about two minutes.",
+  read: "4 min read",
   date: "August 2026",
 } as const;
 
@@ -28,7 +28,7 @@ export const posts: readonly Post[] = [
     slug: featured.slug,
     cat: featured.cat,
     title: featured.title,
-    read: "6 min",
+    read: "4 min",
   },
   {
     slug: "three-hours-a-week",
@@ -40,7 +40,7 @@ export const posts: readonly Post[] = [
     slug: "do-you-need-an-ai-bot",
     cat: "AI",
     title: "Do you actually need an AI bot?",
-    read: "4 min",
+    read: "3 min",
   },
   {
     slug: "what-a-website-should-cost",
@@ -52,12 +52,12 @@ export const posts: readonly Post[] = [
     slug: "the-spreadsheet",
     cat: "Automation",
     title: "The spreadsheet everyone's afraid to touch",
-    read: "7 min",
+    read: "4 min",
   },
   {
     slug: "stop-an-assistant-making-things-up",
     cat: "AI",
     title: "How I stop an assistant making things up",
-    read: "6 min",
+    read: "4 min",
   },
 ];

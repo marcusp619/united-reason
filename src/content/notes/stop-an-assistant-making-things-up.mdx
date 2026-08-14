@@ -1,0 +1,110 @@
+export const meta = {
+  slug: "stop-an-assistant-making-things-up",
+  published: "2026-08-14",
+};
+
+The first question anyone sensible asks about an assistant is what happens when
+it gets something wrong. Not if. When.
+
+It is the right question, and the answer is not "modern models are very good
+now." The answer is that you design for being wrong, the same way you design a
+form to handle someone typing letters into a phone number field.
+
+Here is what that looks like in practice.
+
+## Why it makes things up at all
+
+A language model predicts plausible text. Left alone, it will answer your
+customer's question about delivery to a postcode it has never heard of, in your
+tone, confidently, because plausible-sounding text is exactly what it is built
+to produce.
+
+It is not lying and it is not broken. It was asked a question and given nothing
+to answer from, so it filled the gap. Every technique below is a way of removing
+that gap.
+
+## 1. Never let it answer from memory
+
+The single biggest change: the assistant does not answer from what it learned in
+training. It answers from your documents, retrieved at the moment of the
+question.
+
+Your price list, your policies, your past replies, your opening hours. The
+question comes in, the relevant passages are pulled out, and the model is asked
+to answer using those and nothing else.
+
+This alone removes most of the problem, because it changes the job from "know
+about plumbing" to "read these three paragraphs and answer."
+
+## 2. Make refusal the default, not the failure
+
+Most assistants are built to always produce an answer. Yours should be built to
+decline.
+
+If the retrieved material does not contain the answer, the correct output is "I
+do not have that, I will pass this to someone who does," and then it actually
+gets passed. A handover is a good outcome. An invented answer that sounds right
+is the worst possible one, because nobody catches it.
+
+This is a instruction and a design decision, and it is the one clients push back
+on most, because a bot that says "I do not know" feels like a bot that is not
+working. It is the opposite. It is a bot you can trust the rest of the time.
+
+## 3. Make it show its source
+
+Every answer should be traceable to the passage it came from. Sometimes visibly
+to the customer, always visibly to you.
+
+Two reasons. It gives the person reading a way to check. And it gives you a way
+to debug, because when an answer is wrong you need to know whether the model
+reasoned badly or your document said something wrong, and those have completely
+different fixes.
+
+In my experience the document is at fault more often than the model.
+
+## 4. Keep the source material true
+
+The failure I see most is not hallucination. It is an assistant faithfully
+quoting a price list that changed in March.
+
+The model did its job perfectly. The material was stale. This is the real
+ongoing cost of running an assistant and almost nobody mentions it when they
+sell you one: something has to keep the underlying documents current, and that
+something is a person or a process.
+
+Anything you automate has to include how the knowledge stays true, or it decays
+into a confident liar over about a year.
+
+## 5. Test it like software, because it is
+
+Write down the questions it must get right. The twenty you actually get asked,
+plus the ten awkward ones, plus a few it should refuse.
+
+Run them whenever anything changes: the material, the model, the instructions.
+This is the same discipline as any other test suite, and it is the difference
+between knowing it works and hoping.
+
+Include deliberate traps. Ask about a service you do not offer. Ask about a
+place you do not deliver to. If it invents a helpful answer, you have found a
+gap before your customer did.
+
+## 6. Draw a line it cannot cross
+
+Some questions should never be answered automatically, however good the system
+is. Anything about money owed, legal obligations, safety, or a person's
+individual circumstances.
+
+Route those to a human by rule, not by the model's judgment about whether it
+feels confident. Confidence is not accuracy, and a model's sense of its own
+certainty is not something to hang a business on.
+
+## What this adds up to
+
+An assistant built this way is narrower than the demos you have seen. It answers
+from your material, admits what it does not know, shows where answers came from,
+gets tested, and refuses whole categories outright.
+
+It is also the only kind I would put in front of your customers with your name
+on it. The wide-open version is more impressive for about a week, until the
+first confident wrong answer goes out at eleven at night and you find out about
+it from a customer.

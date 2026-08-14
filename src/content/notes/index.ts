@@ -10,5 +10,10 @@ import type { ComponentType } from "react";
  * the shell and stays noindexed until a body exists.
  */
 export const noteBodies: Record<string, () => Promise<{ default: ComponentType }>> = {
+  "five-tasks-to-automate-first": () => import("./five-tasks-to-automate-first.mdx"),
+  "three-hours-a-week": () => import("./three-hours-a-week.mdx"),
+  "do-you-need-an-ai-bot": () => import("./do-you-need-an-ai-bot.mdx"),
   "what-a-website-should-cost": () => import("./what-a-website-should-cost.mdx"),
+  "the-spreadsheet": () => import("./the-spreadsheet.mdx"),
+  "stop-an-assistant-making-things-up": () => import("./stop-an-assistant-making-things-up.mdx"),
 };
