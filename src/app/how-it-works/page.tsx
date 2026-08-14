@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function HowItWorksPage() {
   return (
     <>
-      <Band>
+      <Band reveal={false}>
         <Kicker>How it works</Kicker>
         <h1 className="m-0 text-[40px] leading-none tracking-[-0.03em] md:text-[66px]">
           Four steps, no surprises.

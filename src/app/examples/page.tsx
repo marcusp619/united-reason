@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 export default function ExamplesPage() {
   return (
     <>
-      <Band>
+      <Band reveal={false}>
         <Kicker>Examples</Kicker>
         <h1 className="m-0 mb-5 max-w-[20ch] text-[38px] leading-none tracking-[-0.03em] md:text-[62px]">
           Things I&rsquo;ve built, and things I&rsquo;d build for you.
         </h1>
         <p className="m-0 max-w-[60ch] text-base md:text-lg">
           Straight up: this practice is new, so there&rsquo;s no logo wall here. Instead,
-          here&rsquo;s the actual work — built by me, running, and you can watch it happen.
+          here&rsquo;s the actual work: built by me, running, and you can watch it happen.
         </p>
       </Band>
 
@@ -54,7 +54,7 @@ export default function ExamplesPage() {
               Do you deliver to Hastings?
             </div>
             <div className="bg-brand text-ground max-w-[82%] self-end border-2 border-[var(--color-divider)] px-3.5 py-3 text-sm">
-              Yes — Tuesdays and Fridays, free over $200.
+              Yes. Tuesdays and Fridays, free over $200.
             </div>
             <div className="mt-1.5 flex items-center gap-2.5 border-t-2 border-[var(--color-divider)] pt-3.5">
               <MessageSquare size={22} strokeWidth={2} className="text-brand" />
@@ -69,7 +69,7 @@ export default function ExamplesPage() {
               An FAQ assistant answering from a real price list
             </h3>
             <p className="text-muted m-0 text-[15px] leading-[1.55]">
-              Trained on one plumbing firm&rsquo;s public pages. Try to catch it out — it&rsquo;s
+              Trained on one plumbing firm&rsquo;s public pages. Try to catch it out. It&rsquo;s
               supposed to admit when it doesn&rsquo;t know.
             </p>
           </div>

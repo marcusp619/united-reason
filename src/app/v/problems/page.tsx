@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function ProblemsVariantPage() {
   return (
     <>
-      <Band rule={false} className="md:pb-10">
+      <Band reveal={false} rule={false} className="md:pb-10">
         <h1 className="m-0 mb-4 text-[38px] leading-[1.02] tracking-[-0.03em] md:text-[60px]">
           What are you still doing by hand?
         </h1>
@@ -43,7 +43,7 @@ export default function ProblemsVariantPage() {
         <div className="px-5 py-8 md:px-14 md:py-13">
           <Kicker tone="muted">Who you&rsquo;d be working with</Kicker>
           <h2 className="m-0 mb-4 max-w-[20ch] text-[26px] md:text-[34px]">
-            Just me, {site.owner} — and I answer my own emails.
+            Just me, {site.owner}, and I answer my own emails.
           </h2>
           <p className="m-0 max-w-[56ch] text-base leading-[1.55]">
             No account manager, no handover to a junior. You describe the problem to the person who

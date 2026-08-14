@@ -35,18 +35,27 @@ export function Kicker({
   );
 }
 
-/** A full-bleed section with the system's 2px bottom rule. */
+/**
+ * A full-bleed section with the system's 2px bottom rule.
+ *
+ * Reveals on scroll by default. Pass `reveal={false}` for anything above the
+ * fold — a hero that starts at opacity 0 delays the largest contentful paint
+ * for no visual gain, since it's on screen before there's anything to reveal.
+ */
 export function Band({
   children,
   className,
   rule = true,
+  reveal = true,
 }: {
   children: ReactNode;
   className?: string;
   rule?: boolean;
+  reveal?: boolean;
 }) {
   return (
     <section
+      data-reveal={reveal ? "" : undefined}
       className={cn(
         "px-5 py-8 md:px-16 md:py-13",
         rule && "border-b-2 border-[var(--color-divider)]",

@@ -52,6 +52,13 @@
   --radius-md: 0px;
   --radius-lg: 0px;
 
+  /* Motion. Architectural, not decorative: short, linear-feeling easing and
+     transform/opacity only, so nothing reflows and nothing bounces. */
+  --motion-fast: 120ms;
+  --motion-base: 520ms;
+  --motion-count: 900ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
   --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
   --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
   --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
@@ -199,5 +206,61 @@
 
   .text-muted {
     color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  }
+
+  /* ── motion ──────────────────────────────────────────────────────────────
+     Everything below is armed only once <Motion /> adds .motion-ready to
+     <html>. Without JS — and before hydration — content renders plainly at
+     full opacity, so nothing depends on script to be readable. */
+
+  .motion-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(var(--space-3));
+  }
+
+  .motion-ready [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--motion-base) var(--ease-out),
+      transform var(--motion-base) var(--ease-out);
+  }
+
+  /* The accent rule that wipes in under a nav link. 2px, like every other
+     divider in the system. */
+  .link-wipe {
+    position: relative;
+  }
+
+  .link-wipe::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -3px;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--motion-fast) var(--ease-out);
+  }
+
+  .link-wipe:hover::after,
+  .link-wipe:focus-visible::after,
+  .link-wipe[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Honour the OS setting: no reveals, no counting, no wipes. */
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready [data-reveal],
+  .motion-ready [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .link-wipe::after {
+    transition: none;
   }
 }

@@ -25,7 +25,7 @@ export const services: readonly Service[] = [
     blurb:
       "An assistant that knows your business rather than the internet: your prices, your policies, your opening hours. It answers customers, takes enquiries, or helps your staff find things quickly.",
     short:
-      "An assistant that answers from your own material — your prices, your policies, your way of saying things.",
+      "An assistant that answers from your own material: your prices, your policies, your way of saying things.",
     tags: ["Customer Q&A", "Lead intake", "Internal helper", "Drafting replies"],
   },
   {
@@ -74,11 +74,11 @@ export const faqs = [
   },
   {
     q: "What if it doesn't work?",
-    a: "You see it weekly, so you'd know long before the end. If what I build doesn't do what the scope says, I fix it — that's not extra.",
+    a: "You see it weekly, so you'd know long before the end. If what I build doesn't do what the scope says, I fix it. That's not extra.",
   },
   {
     q: "Do I own it?",
-    a: "Yes. Code, accounts, documentation — all in your name, on your systems. No hostage situations.",
+    a: "Yes. Code, accounts and documentation, all in your name and on your systems. No hostage situations.",
   },
   {
     q: "You're one person. What if you disappear?",

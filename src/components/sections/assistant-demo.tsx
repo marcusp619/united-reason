@@ -10,7 +10,7 @@ const SEED: Turn[] = [
   { role: "user", text: "Do you work with businesses in the trades?" },
   {
     role: "assistant",
-    text: "Yes — plumbers, electricians and small building firms are most of the automation work. Usually it's quoting and job scheduling. Want me to book you a call about it?",
+    text: "Yes. Plumbers, electricians and small building firms are most of the automation work. Usually it's quoting and job scheduling. Want me to book you a call about it?",
   },
 ];
 
@@ -31,7 +31,7 @@ export function AssistantDemo() {
       { role: "user", text: question },
       {
         role: "assistant",
-        text: "This demo only carries a couple of scripted answers — the real one reads your own material. Book a call and I'll show you a live one trained on your site.",
+        text: "This demo only carries a couple of scripted answers. The real one reads your own material. Book a call and I'll show you a live one trained on your site.",
       },
     ]);
   }

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const promises = [
   "You'll be talking to me, not a salesperson.",
-  "Nothing to prepare — a rough description of the annoying bit is plenty.",
+  "Nothing to prepare. A rough description of the annoying bit is plenty.",
   "No follow-up sequence afterwards. One email, then it's your move.",
 ];
 
@@ -27,7 +27,7 @@ function BookingFallback() {
     <div className="flex h-full min-h-[560px] flex-col justify-center border-2 border-[var(--color-divider)] px-6 py-10 md:px-10">
       <Kicker>Booking opens shortly</Kicker>
       <h2 className="m-0 mb-4 max-w-[20ch] text-[28px] leading-[1.05] tracking-[-0.025em] md:text-[38px]">
-        The calendar isn&rsquo;t live yet — email me and I&rsquo;ll find a time.
+        The calendar isn&rsquo;t live yet. Email me and I&rsquo;ll find a time.
       </h2>
       <p className="text-muted m-0 mb-7 max-w-[46ch] text-[15px] leading-[1.5]">
         Same thirty minutes, same no sales pitch. Tell me roughly what&rsquo;s eating your week and
@@ -50,8 +50,8 @@ export default function BookPage() {
         </h1>
         <p className="m-0 max-w-[62ch] text-base leading-[1.5] md:text-lg">
           You describe the problem. I tell you whether software fixes it, roughly what it would
-          take, and whether I&rsquo;m the right person for it. Sometimes the answer is no —
-          that&rsquo;s still a useful half hour.
+          take, and whether I&rsquo;m the right person for it. Sometimes the answer is no.
+          That&rsquo;s still a useful half hour.
         </p>
       </section>
 
@@ -95,7 +95,7 @@ export default function BookPage() {
           Email me instead
         </a>
         <span className="text-muted text-sm">
-          {site.email} — I reply within {site.replyWindow}.
+          {site.email}. I reply within {site.replyWindow}.
         </span>
       </section>
     </>

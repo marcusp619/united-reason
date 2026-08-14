@@ -29,7 +29,7 @@ export default async function NotePage({ params }: Props) {
 
   return (
     <>
-      <Band>
+      <Band reveal={false}>
         <Kicker>
           {post.cat} · {post.read}
         </Kicker>
