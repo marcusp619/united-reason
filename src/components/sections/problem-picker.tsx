@@ -42,7 +42,7 @@ export function ProblemPicker() {
               onClick={() => setSelected(i)}
               className={cn(
                 "flex w-full cursor-pointer items-center gap-5 border-b-2 border-[var(--color-divider)] px-5 py-5 text-left transition-colors md:gap-7 md:px-16 md:py-6.5",
-                on ? "bg-brand text-ground" : "bg-transparent text-ink hover:bg-brand-100",
+                on ? "bg-brand text-ground" : "text-ink hover:bg-brand-100 bg-transparent",
               )}
             >
               <span
@@ -53,10 +53,13 @@ export function ProblemPicker() {
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="flex-1 font-heading text-[20px] font-extrabold tracking-[-0.015em] md:text-[28px]">
+              <span className="font-heading flex-1 text-[20px] font-extrabold tracking-[-0.015em] md:text-[28px]">
                 {p.title}
               </span>
-              <span aria-hidden="true" className={cn("text-2xl", on ? "opacity-100" : "opacity-35")}>
+              <span
+                aria-hidden="true"
+                className={cn("text-2xl", on ? "opacity-100" : "opacity-35")}
+              >
                 →
               </span>
             </button>
@@ -68,23 +71,23 @@ export function ProblemPicker() {
         id="problem-panel"
         role="tabpanel"
         aria-labelledby={`problem-tab-${selected}`}
-        className="grid border-b-2 border-[var(--color-divider)] bg-brand-100 md:grid-cols-2"
+        className="bg-brand-100 grid border-b-2 border-[var(--color-divider)] md:grid-cols-2"
       >
         <div className="px-5 py-8 md:py-12 md:pr-11 md:pl-16">
-          <p className="m-0 mb-4.5 text-[11px] tracking-[0.16em] uppercase text-brand-700">
+          <p className="text-brand-700 m-0 mb-4.5 text-[11px] tracking-[0.16em] uppercase">
             What I&rsquo;d build for that
           </p>
           <h2 className="m-0 mb-4 max-w-[18ch] text-[26px] md:text-[34px]">{sel.build}</h2>
           <p className="m-0 mb-6 max-w-[44ch] text-base leading-[1.55]">{sel.blurb}</p>
           <div className="flex flex-wrap items-center gap-2.5">
             <Button href={cta.href}>Book a call about this</Button>
-            <span className="text-sm text-muted">{sel.timeline} · fixed quote</span>
+            <span className="text-muted text-sm">{sel.timeline} · fixed quote</span>
           </div>
         </div>
 
         <div className="flex min-h-[300px] items-center border-t-2 border-[var(--color-divider)] p-5 md:border-t-0 md:border-l-2 md:p-10">
-          <div className="w-full border-2 border-[var(--color-divider)] bg-ground">
-            <div className="flex items-center justify-between border-b-2 border-[var(--color-divider)] bg-brand px-3.5 py-3 text-ground">
+          <div className="bg-ground w-full border-2 border-[var(--color-divider)]">
+            <div className="bg-brand text-ground flex items-center justify-between border-b-2 border-[var(--color-divider)] px-3.5 py-3">
               <span className="text-[11px] font-bold tracking-[0.16em] uppercase">Jobs today</span>
               <span className="text-[11px] tracking-[0.16em]">
                 {String(jobsToday.length).padStart(2, "0")}
@@ -99,7 +102,7 @@ export function ProblemPicker() {
                 )}
               >
                 <span>{job.label}</span>
-                <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-brand-700">
+                <span className="text-brand-700 text-[11px] font-bold tracking-[0.14em] uppercase">
                   {job.status}
                 </span>
               </div>

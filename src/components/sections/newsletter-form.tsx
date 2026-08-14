@@ -16,7 +16,6 @@ export function NewsletterForm() {
   async function onSubmit(values: NewsletterInput) {
     // TODO: point at your list provider (Buttondown, Resend audiences, …).
     await new Promise((r) => setTimeout(r, 300));
-    // eslint-disable-next-line no-console
     console.info("subscribe", values.email);
     reset();
   }
@@ -34,25 +33,29 @@ export function NewsletterForm() {
           placeholder="your@email.com"
           aria-invalid={errors.email ? true : undefined}
           aria-describedby={errors.email ? "newsletter-email-error" : undefined}
-          className="min-h-9 w-full border border-[var(--color-divider)] bg-[var(--color-surface)] px-2.5 py-1.5 text-sm caret-brand focus-visible:border-brand"
+          className="caret-brand focus-visible:border-brand min-h-9 w-full border border-[var(--color-divider)] bg-[var(--color-surface)] px-2.5 py-1.5 text-sm"
           {...register("email")}
         />
         <button
           type="submit"
           disabled={isSubmitting}
-          className="shrink-0 cursor-pointer bg-brand px-4 py-2 font-heading text-sm font-extrabold text-ground hover:bg-[var(--color-accent-600)] disabled:cursor-not-allowed disabled:opacity-45"
+          className="bg-brand font-heading text-ground shrink-0 cursor-pointer px-4 py-2 text-sm font-extrabold hover:bg-[var(--color-accent-600)] disabled:cursor-not-allowed disabled:opacity-45"
         >
           Subscribe
         </button>
       </div>
 
       {errors.email && (
-        <p id="newsletter-email-error" role="alert" className="mt-2 mb-0 text-[13px] text-brand-700">
+        <p
+          id="newsletter-email-error"
+          role="alert"
+          className="text-brand-700 mt-2 mb-0 text-[13px]"
+        >
           {errors.email.message}
         </p>
       )}
       {isSubmitSuccessful && !errors.email && (
-        <p role="status" className="mt-2 mb-0 text-[13px] text-brand-700">
+        <p role="status" className="text-brand-700 mt-2 mb-0 text-[13px]">
           You&rsquo;re on the list. One note a month, nothing else.
         </p>
       )}

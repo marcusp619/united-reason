@@ -26,7 +26,7 @@ export function NotesIndex() {
                 "inline-flex cursor-pointer items-center border px-4 py-2 text-sm transition-colors",
                 on
                   ? "border-brand bg-brand text-ground"
-                  : "border-[var(--color-divider)] bg-transparent text-ink hover:bg-brand-100",
+                  : "text-ink hover:bg-brand-100 border-[var(--color-divider)] bg-transparent",
               )}
             >
               {c}
@@ -42,13 +42,13 @@ export function NotesIndex() {
             href={`/notes/${p.slug}`}
             className="grid items-baseline gap-2 border-b-2 border-[var(--color-divider)] py-6 no-underline md:grid-cols-[150px_1fr_120px] md:gap-8"
           >
-            <span className="text-[11px] tracking-[0.16em] uppercase text-brand">{p.cat}</span>
-            <h3 className="m-0 text-[20px] text-ink md:text-[26px]">{p.title}</h3>
-            <span className="text-sm text-muted md:text-right">{p.read}</span>
+            <span className="text-brand text-[11px] tracking-[0.16em] uppercase">{p.cat}</span>
+            <h3 className="text-ink m-0 text-[20px] md:text-[26px]">{p.title}</h3>
+            <span className="text-muted text-sm md:text-right">{p.read}</span>
           </Link>
         ))}
         {visible.length === 0 && (
-          <p className="py-8 text-muted">Nothing filed under that yet — try another filter.</p>
+          <p className="text-muted py-8">Nothing filed under that yet — try another filter.</p>
         )}
       </div>
     </>

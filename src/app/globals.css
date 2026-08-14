@@ -1,4 +1,7 @@
-@import "tailwindcss";
+/* source("../") scopes class detection to src/. Without it Tailwind scans the
+   repo root and mints utilities from prose — README.md's "no rounded corners"
+   was generating a .rounded rule, which is exactly what this system forbids. */
+@import "tailwindcss" source("../");
 
 /* ══════════════════════════════════════════════════════════════════════════
    Modernist — design-system tokens.

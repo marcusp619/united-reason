@@ -33,7 +33,7 @@ export default function WhatIDoPage() {
         >
           <div>
             <h2 className="m-0 mb-2.5 max-w-[12ch] text-[28px] md:text-[36px]">{s.title}</h2>
-            <p className="m-0 text-sm text-muted">{s.timeline}</p>
+            <p className="text-muted m-0 text-sm">{s.timeline}</p>
           </div>
           <div>
             <p className="m-0 mb-5 max-w-[62ch] text-base leading-[1.55] md:text-[17px]">
@@ -51,7 +51,10 @@ export default function WhatIDoPage() {
         </div>
       ))}
 
-      <Band rule={false} className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center md:gap-10">
+      <Band
+        rule={false}
+        className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center md:gap-10"
+      >
         <h2 className="m-0 max-w-[20ch] text-[26px] md:text-[34px]">
           Not sure which one you need? That&rsquo;s what the call is for.
         </h2>

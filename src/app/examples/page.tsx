@@ -27,11 +27,13 @@ export default function ExamplesPage() {
 
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-2">
         <article className="border-b-2 border-[var(--color-divider)] md:border-r-2 md:border-b-0">
-          <div className="flex min-h-[240px] flex-col justify-center gap-5.5 border-b-2 border-[var(--color-divider)] bg-brand-100 px-5 py-8 md:h-70 md:px-10">
+          <div className="bg-brand-100 flex min-h-[240px] flex-col justify-center gap-5.5 border-b-2 border-[var(--color-divider)] px-5 py-8 md:h-70 md:px-10">
             <PipelineDiagram steps={["Invoice", "Read", "Ledger"]} />
             <div className="flex items-center gap-3 border-t-2 border-[var(--color-divider)] pt-4">
               <Play size={26} className="fill-brand text-brand" />
-              <span className="text-[13px] font-bold tracking-[0.14em] uppercase">Watch · 2 min</span>
+              <span className="text-[13px] font-bold tracking-[0.14em] uppercase">
+                Watch · 2 min
+              </span>
             </div>
           </div>
           <div className="px-5 py-7 md:px-10">
@@ -39,7 +41,7 @@ export default function ExamplesPage() {
             <h3 className="m-0 mb-2.5 text-[22px] md:text-[28px]">
               Invoice inbox → spreadsheet, untouched by human hands
             </h3>
-            <p className="m-0 text-[15px] leading-[1.55] text-muted">
+            <p className="text-muted m-0 text-[15px] leading-[1.55]">
               A PDF arrives, gets read, checked and filed. Built in an afternoon on tools most
               businesses already pay for.
             </p>
@@ -48,10 +50,10 @@ export default function ExamplesPage() {
 
         <article>
           <div className="flex min-h-[240px] flex-col justify-center gap-3 border-b-2 border-[var(--color-divider)] px-5 py-8 md:h-70 md:px-10">
-            <div className="max-w-[78%] border-2 border-[var(--color-divider)] bg-ground px-3.5 py-3 text-sm">
+            <div className="bg-ground max-w-[78%] border-2 border-[var(--color-divider)] px-3.5 py-3 text-sm">
               Do you deliver to Hastings?
             </div>
-            <div className="max-w-[82%] self-end border-2 border-[var(--color-divider)] bg-brand px-3.5 py-3 text-sm text-ground">
+            <div className="bg-brand text-ground max-w-[82%] self-end border-2 border-[var(--color-divider)] px-3.5 py-3 text-sm">
               Yes — Tuesdays and Fridays, free over $200.
             </div>
             <div className="mt-1.5 flex items-center gap-2.5 border-t-2 border-[var(--color-divider)] pt-3.5">
@@ -66,7 +68,7 @@ export default function ExamplesPage() {
             <h3 className="m-0 mb-2.5 text-[22px] md:text-[28px]">
               An FAQ assistant answering from a real price list
             </h3>
-            <p className="m-0 text-[15px] leading-[1.55] text-muted">
+            <p className="text-muted m-0 text-[15px] leading-[1.55]">
               Trained on one plumbing firm&rsquo;s public pages. Try to catch it out — it&rsquo;s
               supposed to admit when it doesn&rsquo;t know.
             </p>
@@ -83,7 +85,7 @@ export default function ExamplesPage() {
               Enquiry email → copied into a spreadsheet → priced by hand → typed into a template →
               sent, if someone remembers.
             </p>
-            <p className="m-0 text-[15px] text-muted">
+            <p className="text-muted m-0 text-[15px]">
               Around 25 minutes each, two days average to send.
             </p>
           </div>
@@ -93,14 +95,14 @@ export default function ExamplesPage() {
               Enquiry arrives → priced from your own rate card → draft quote waiting for approval →
               sent with one click.
             </p>
-            <p className="m-0 text-[15px] text-brand-700">Around 2 minutes each, same day.</p>
+            <p className="text-brand-700 m-0 text-[15px]">Around 2 minutes each, same day.</p>
           </div>
         </div>
       </Band>
 
-      <section className="flex flex-col items-start justify-between gap-8 bg-ink px-5 py-9 text-ground md:flex-row md:items-end md:gap-12 md:px-16 md:py-14">
+      <section className="bg-ink text-ground flex flex-col items-start justify-between gap-8 px-5 py-9 md:flex-row md:items-end md:gap-12 md:px-16 md:py-14">
         <div>
-          <p className="m-0 mb-4.5 text-[11px] tracking-[0.16em] uppercase text-brand-400">
+          <p className="text-brand-400 m-0 mb-4.5 text-[11px] tracking-[0.16em] uppercase">
             Founding clients
           </p>
           <h2 className="m-0 mb-3.5 max-w-[20ch] text-[30px] leading-[1.05] md:text-[42px]">

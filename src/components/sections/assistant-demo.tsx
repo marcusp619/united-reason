@@ -57,8 +57,8 @@ export function AssistantDemo() {
             className={cn(
               "px-4 py-3 text-[15px] leading-[1.5]",
               t.role === "user"
-                ? "max-w-[70%] self-end bg-ink text-ground"
-                : "max-w-[80%] self-start border border-[var(--color-divider)] bg-ground",
+                ? "bg-ink text-ground max-w-[70%] self-end"
+                : "bg-ground max-w-[80%] self-start border border-[var(--color-divider)]",
             )}
           >
             {t.text}
@@ -78,11 +78,11 @@ export function AssistantDemo() {
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
           placeholder="Ask it something"
-          className="min-h-9 w-full border border-[var(--color-divider)] bg-[var(--color-surface)] px-2.5 py-1.5 text-sm caret-brand focus-visible:border-brand"
+          className="caret-brand focus-visible:border-brand min-h-9 w-full border border-[var(--color-divider)] bg-[var(--color-surface)] px-2.5 py-1.5 text-sm"
         />
         <button
           type="submit"
-          className="shrink-0 cursor-pointer bg-brand px-4 py-2 font-heading text-sm font-extrabold text-ground hover:bg-[var(--color-accent-600)]"
+          className="bg-brand font-heading text-ground shrink-0 cursor-pointer px-4 py-2 text-sm font-extrabold hover:bg-[var(--color-accent-600)]"
         >
           Send
         </button>

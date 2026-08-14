@@ -23,7 +23,7 @@ export function Kicker({
   return (
     <p
       className={cn(
-        "m-0 mb-5 text-[10px] uppercase tracking-[0.16em] md:text-[11px]",
+        "m-0 mb-5 text-[10px] tracking-[0.16em] uppercase md:text-[11px]",
         tone === "accent" && "text-brand",
         tone === "deep" && "text-brand-700",
         tone === "muted" && "text-muted",
@@ -81,7 +81,8 @@ export function Button({
     "inline-flex cursor-pointer items-center gap-1.5 font-heading font-extrabold leading-tight no-underline transition-colors";
 
   const variants = {
-    primary: "bg-brand text-ground hover:bg-[var(--color-accent-600)] active:bg-[var(--color-accent-700)]",
+    primary:
+      "bg-brand text-ground hover:bg-[var(--color-accent-600)] active:bg-[var(--color-accent-700)]",
     secondary:
       "border border-[var(--color-divider)] text-ink hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)]",
     ghost: "text-brand hover:bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)]",
@@ -118,12 +119,11 @@ export function UrMark({
 
   return (
     <div
-      className={cn(
-        "grid-panel flex flex-col justify-between p-6 text-ground md:p-11",
-        className,
-      )}
+      className={cn("grid-panel text-ground flex flex-col justify-between p-6 md:p-11", className)}
     >
-      <div className={cn("font-heading font-extrabold leading-[0.82] tracking-[-0.04em]", type[size])}>
+      <div
+        className={cn("font-heading leading-[0.82] font-extrabold tracking-[-0.04em]", type[size])}
+      >
         UR
       </div>
       {children}
@@ -145,7 +145,7 @@ export function PosterCta({
   href: string;
 }) {
   return (
-    <section className="flex flex-col items-start justify-between gap-6 bg-brand px-5 py-9 text-ground md:flex-row md:items-end md:gap-12 md:px-16 md:py-16">
+    <section className="bg-brand text-ground flex flex-col items-start justify-between gap-6 px-5 py-9 md:flex-row md:items-end md:gap-12 md:px-16 md:py-16">
       <h2 className="m-0 max-w-[15ch] text-[32px] leading-[1.02] tracking-[-0.025em] md:text-[52px]">
         {headline}
       </h2>
@@ -171,7 +171,7 @@ export function Tag({
       className={cn(
         "inline-flex items-center px-3 py-1.5 text-[13px] tracking-[0.02em]",
         variant === "neutral" && "bg-[var(--color-neutral-100)] text-[var(--color-neutral-800)]",
-        variant === "outline" && "border border-brand text-brand",
+        variant === "outline" && "border-brand text-brand border",
         variant === "accent" && "bg-brand-100 text-[var(--color-accent-800)]",
         className,
       )}

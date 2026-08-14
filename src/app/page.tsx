@@ -32,9 +32,7 @@ export default function HomePage() {
           <Button href={cta.href} size="lg">
             {cta.long}
           </Button>
-          <span className="text-[15px] text-muted">
-            Thirty minutes. Free. Nothing to prepare.
-          </span>
+          <span className="text-muted text-[15px]">Thirty minutes. Free. Nothing to prepare.</span>
         </div>
       </Band>
 
@@ -48,7 +46,7 @@ export default function HomePage() {
             You describe what&rsquo;s slow, expensive or embarrassing. I work out whether software
             actually fixes it — and tell you if it doesn&rsquo;t.
           </p>
-          <p className="m-0 text-sm text-muted">30 minutes · free · no follow-up sequence</p>
+          <p className="text-muted m-0 text-sm">30 minutes · free · no follow-up sequence</p>
         </div>
         <div className="px-5 py-8 md:px-12 md:py-12 md:pr-16">
           <Kicker>Three days later</Kicker>
@@ -59,7 +57,7 @@ export default function HomePage() {
             What I&rsquo;d build, what it does, when it&rsquo;s done and what it costs. One number,
             not a rate card. Yes or no, no hard feelings either way.
           </p>
-          <p className="m-0 text-sm text-muted">Fixed price · you own everything I write</p>
+          <p className="text-muted m-0 text-sm">Fixed price · you own everything I write</p>
         </div>
       </div>
 
@@ -86,7 +84,7 @@ export default function HomePage() {
       </Band>
 
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[340px_1fr]">
-        <div className="grid border-b-2 border-[var(--color-divider)] grid-cols-3 md:grid-cols-1 md:grid-rows-3 md:border-r-2 md:border-b-0">
+        <div className="grid grid-cols-3 border-b-2 border-[var(--color-divider)] md:grid-cols-1 md:grid-rows-3 md:border-r-2 md:border-b-0">
           {stats.map((s, i) => (
             <div
               key={s.label}
@@ -96,10 +94,10 @@ export default function HomePage() {
                   : ""
               }`}
             >
-              <p className="m-0 font-heading text-[32px] leading-none font-extrabold text-brand md:text-[46px]">
+              <p className="font-heading text-brand m-0 text-[32px] leading-none font-extrabold md:text-[46px]">
                 {s.n}
               </p>
-              <p className="mt-1.5 mb-0 text-[11px] tracking-[0.16em] uppercase text-muted md:text-xs">
+              <p className="text-muted mt-1.5 mb-0 text-[11px] tracking-[0.16em] uppercase md:text-xs">
                 {s.label}
               </p>
             </div>
