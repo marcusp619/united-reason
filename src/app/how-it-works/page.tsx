@@ -1,11 +1,28 @@
 import type { Metadata } from "next";
 import { Clock } from "lucide-react";
 
+import { JsonLd } from "@/components/json-ld";
 import { Band, Button, Kicker } from "@/components/primitives";
 import { faqs, steps } from "@/content/services";
 import { cta } from "@/content/site";
 
+/**
+ * Derived from the same `faqs` the page renders, so the markup and the schema
+ * can't drift. Marking up answers that aren't visible on the page is what gets
+ * FAQ structured data penalised.
+ */
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export const metadata: Metadata = {
+  alternates: { canonical: "/how-it-works" },
   title: "How it works",
   description:
     "Four steps, no surprises: a free call, a written plan with one fixed price, weekly demos while I build, then handover and training.",
@@ -14,6 +31,8 @@ export const metadata: Metadata = {
 export default function HowItWorksPage() {
   return (
     <>
+      <JsonLd data={faqSchema} />
+
       <Band reveal={false}>
         <Kicker>How it works</Kicker>
         <h1 className="m-0 text-[40px] leading-none tracking-[-0.03em] md:text-[66px]">

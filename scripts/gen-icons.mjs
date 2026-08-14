@@ -131,3 +131,54 @@ writeFileSync(`${out}/apple-icon.png`, png(180));
 writeFileSync(`${out}/favicon.ico`, ico([16, 32, 48]));
 console.log("apple-icon.png", png(180).length, "bytes");
 console.log("favicon.ico   ", ico([16, 32, 48]).length, "bytes");
+
+/* ── Open Graph poster ────────────────────────────────────────────────────
+   1200x630 accent field with the UR mark set left, matching the closing
+   poster blocks on the site. Text is deliberately absent: rendering type
+   here would need font data, and a wrong typeface reads worse than none. */
+function ogPoster() {
+  const W = 1200;
+  const H = 630;
+  const px = Buffer.alloc(W * H * 4);
+  const SS = 3;
+  const markSize = 360;
+  const originX = (W - markSize) / 2;
+  const originY = (H - markSize) / 2;
+
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      let hits = 0;
+      for (let sy = 0; sy < SS; sy++) {
+        for (let sx = 0; sx < SS; sx++) {
+          const dx = ((x + (sx + 0.5) / SS - originX) / markSize) * 64;
+          const dy = ((y + (sy + 0.5) / SS - originY) / markSize) * 64;
+          if (dx >= 0 && dx < 64 && dy >= 0 && dy < 64 && covers(dx, dy)) hits++;
+        }
+      }
+      const a = hits / (SS * SS);
+      const o = (y * W + x) * 4;
+      for (let c = 0; c < 3; c++) px[o + c] = Math.round(BG[c] * (1 - a) + FG[c] * a);
+      px[o + 3] = 255;
+    }
+  }
+
+  const raw = Buffer.alloc(H * (W * 4 + 1));
+  for (let y = 0; y < H; y++) {
+    raw[y * (W * 4 + 1)] = 0;
+    px.copy(raw, y * (W * 4 + 1) + 1, y * W * 4, (y + 1) * W * 4);
+  }
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(W, 0);
+  ihdr.writeUInt32BE(H, 4);
+  ihdr[8] = 8;
+  ihdr[9] = 6;
+  return Buffer.concat([
+    Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+    chunk("IHDR", ihdr),
+    chunk("IDAT", deflateSync(raw, { level: 9 })),
+    chunk("IEND", Buffer.alloc(0)),
+  ]);
+}
+
+writeFileSync(`${out}/opengraph-image.png`, ogPoster());
+console.log("opengraph-image.png", ogPoster().length, "bytes");

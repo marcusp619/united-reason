@@ -6,6 +6,7 @@ import { PipelineDiagram } from "@/components/sections/pipeline-diagram";
 import { cta } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/examples" },
   title: "Examples",
   description:
     "Things I've built and things I'd build for you: self-built demos, a before/after on a quoting process, and a founding-client offer.",
@@ -51,7 +52,7 @@ export default function ExamplesPage() {
         <article>
           <div className="flex min-h-[240px] flex-col justify-center gap-3 border-b-2 border-[var(--color-divider)] px-5 py-8 md:h-70 md:px-10">
             <div className="bg-ground max-w-[78%] border-2 border-[var(--color-divider)] px-3.5 py-3 text-sm">
-              Do you deliver to Hastings?
+              Do you deliver to Riverside?
             </div>
             <div className="bg-brand text-ground max-w-[82%] self-end border-2 border-[var(--color-divider)] px-3.5 py-3 text-sm">
               Yes. Tuesdays and Fridays, free over $200.

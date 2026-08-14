@@ -82,6 +82,6 @@ export const faqs = [
   },
   {
     q: "You're one person. What if you disappear?",
-    a: "Fair question. I build on ordinary, well-known tools and write things down so any competent developer can pick it up. I'll tell you exactly what's under the bonnet.",
+    a: "Fair question. I build on ordinary, well-known tools and write things down so any competent developer can pick it up. I'll tell you exactly what's under the hood.",
   },
 ] as const;

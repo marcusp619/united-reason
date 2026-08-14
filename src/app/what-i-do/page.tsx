@@ -5,6 +5,7 @@ import { services } from "@/content/services";
 import { cta } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/what-i-do" },
   title: "What I do",
   description:
     "Three kinds of work: automating the busywork, AI assistants, and websites & small apps. Everything is quoted after a call.",

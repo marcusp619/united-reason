@@ -14,7 +14,19 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
-  return post ? { title: post.title } : {};
+  if (!post) return {};
+
+  return {
+    title: post.title,
+    alternates: { canonical: `/notes/${post.slug}` },
+    /**
+     * Noindexed until the bodies are written. Each of these renders about
+     * fifty words, most of it chrome; five empty pages on a nine-page site is
+     * enough thin content to affect how the whole domain is assessed. Remove
+     * this once a post has a body, and add it back to sitemap.ts.
+     */
+    robots: { index: false, follow: true },
+  };
 }
 
 /**

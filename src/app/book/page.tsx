@@ -6,6 +6,7 @@ import { env } from "@/env";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/book" },
   title: "Book a call",
   description:
     "Thirty minutes, free, no sales pitch. You describe the problem, I tell you whether software fixes it and roughly what it would take.",

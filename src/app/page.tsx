@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { Clock, LayoutGrid, MessageSquare, Play, Zap } from "lucide-react";
 
+import { JsonLd } from "@/components/json-ld";
 import { Band, Button, Kicker, PosterCta, UrMark } from "@/components/primitives";
 import { PipelineDiagram } from "@/components/sections/pipeline-diagram";
 import { ProblemPicker } from "@/components/sections/problem-picker";
@@ -15,6 +17,10 @@ import { cta, site } from "@/content/site";
  * gone too, since the fold already establishes who you'd be working with.
  */
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 const markPoints = [
   { Icon: Zap, label: "Automations that run themselves" },
   { Icon: MessageSquare, label: "Assistants trained on your own material" },
@@ -24,9 +30,35 @@ const markPoints = [
 
 const serviceIcons = [Zap, MessageSquare, LayoutGrid];
 
+/**
+ * Establishes the brand entity. Kept to facts the site actually states — no
+ * address, phone or rating, since inventing them is both a schema violation
+ * and a way to get structured data ignored.
+ */
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  url: site.url,
+  email: site.email,
+  description:
+    "One person, start to finish. Automations, AI assistants, websites and small internal apps for small businesses.",
+  founder: { "@type": "Person", name: site.owner },
+  areaServed: { "@type": "Place", name: "Worldwide" },
+  availableLanguage: "en",
+  logo: `${site.url}/icon.svg`,
+  image: `${site.url}/opengraph-image.png`,
+  makesOffer: services.map((s) => ({
+    "@type": "Offer",
+    itemOffered: { "@type": "Service", name: s.title, description: s.short },
+  })),
+};
+
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={businessSchema} />
+
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[minmax(0,1fr)_460px]">
         <div className="border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:py-16 md:pr-14 md:pl-16">
           <Kicker>
