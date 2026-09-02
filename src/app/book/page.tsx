@@ -58,7 +58,7 @@ export default function BookPage() {
       </section>
 
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[340px_1fr]">
-        <aside className="border-b-2 border-[var(--color-divider)] md:border-r-2 md:border-b-0">
+        <aside className="rule-draw-y-end border-b-2 border-[var(--color-divider)] md:border-b-0">
           <UrMark size="sm" className="h-50 border-b-2 border-[var(--color-divider)] p-7">
             <p className="m-0 text-[13px] tracking-[0.16em] uppercase">30 minutes · free</p>
           </UrMark>

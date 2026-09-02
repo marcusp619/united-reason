@@ -73,7 +73,7 @@ export default function HowItWorksPage() {
       </Band>
 
       <div className="bg-brand-100 grid md:grid-cols-[320px_1fr]">
-        <div className="grid-panel text-ground flex min-h-[220px] flex-col justify-between border-b-2 border-[var(--color-divider)] p-8 md:border-r-2 md:border-b-0">
+        <div className="grid-panel rule-draw-y-end text-ground flex min-h-[220px] flex-col justify-between border-b-2 border-[var(--color-divider)] p-8 md:border-b-0">
           <Clock size={34} strokeWidth={2} />
           <div>
             <p className="font-heading m-0 text-[48px] leading-[0.9] font-extrabold tracking-[-0.04em] md:text-[62px]">

@@ -27,7 +27,7 @@ export default function NotesPage() {
         {/* Modular grid block — the system's structure standing in for a photo. */}
         <div
           aria-hidden="true"
-          className="grid min-h-[200px] grid-cols-4 grid-rows-4 border-b-2 border-[var(--color-divider)] md:min-h-[340px] md:border-r-2 md:border-b-0"
+          className="rule-draw-y-end grid min-h-[200px] grid-cols-4 grid-rows-4 border-b-2 border-[var(--color-divider)] md:min-h-[340px] md:border-b-0"
         >
           <div className="bg-brand col-span-2 row-span-2 border-r-2 border-b-2 border-[var(--color-divider)]" />
           <div className="col-span-2 border-r-2 border-b-2 border-[var(--color-divider)]" />
