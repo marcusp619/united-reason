@@ -4,7 +4,7 @@ import { Clock, LayoutGrid, MessageSquare, Workflow, Zap } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { Band, Button, Kicker, PosterCta, UrMark } from "@/components/primitives";
 import { PipelineDiagram } from "@/components/sections/pipeline-diagram";
-import { ProblemPicker } from "@/components/sections/problem-picker";
+import { AutomationShowcase } from "@/components/showcase/automation-showcase";
 import { services } from "@/content/services";
 import { cta, site } from "@/content/site";
 
@@ -60,12 +60,12 @@ export default function HomePage() {
     <>
       <JsonLd data={businessSchema} />
 
-      <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[minmax(0,1fr)_460px]">
-        <div className="border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:py-16 md:pr-14 md:pl-16">
+      <div className="rule-draw grid lg:grid-cols-[minmax(0,1fr)_460px]">
+        <div className="rule-draw-y-end-lg border-b-2 border-[var(--color-divider)] px-5 py-8 md:px-16 md:py-16 lg:border-b-0 lg:pr-14 lg:pl-16">
           <Kicker>
             {site.owner} · {site.name}
           </Kicker>
-          <h1 className="m-0 mb-6 max-w-[11ch] text-[34px] leading-[1.02] tracking-[-0.025em] md:text-[58px]">
+          <h1 className="m-0 mb-6 max-w-[11ch] text-[40px] leading-[0.98] tracking-[-0.04em] md:text-[64px] xl:text-[80px]">
             I build the software small businesses keep asking for.
           </h1>
           <p className="m-0 mb-8 max-w-[44ch] text-base leading-[1.5] md:text-[19px]">
@@ -86,7 +86,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <UrMark className="min-h-[260px] md:min-h-[620px]">
+        <UrMark className="min-h-[260px] lg:min-h-[620px]">
           <div className="grid grid-cols-2 border-t-2 border-white/50">
             {markPoints.map(({ Icon, label }, i) => (
               <div
@@ -104,7 +104,7 @@ export default function HomePage() {
       </div>
 
       <Band rule={false} className="md:pb-10">
-        <h2 className="m-0 mb-4 text-[32px] leading-[1.02] tracking-[-0.03em] md:text-[52px]">
+        <h2 className="m-0 mb-4 text-[38px] leading-[0.98] tracking-[-0.04em] md:text-[60px] xl:text-[72px]">
           What are you still doing by hand?
         </h2>
         <p className="text-muted m-0 max-w-[52ch] text-base md:text-lg">
@@ -112,11 +112,11 @@ export default function HomePage() {
         </p>
       </Band>
 
-      <ProblemPicker />
+      <AutomationShowcase />
 
-      <Band>
+      <Band tone="ink" rule={false} reveal={false}>
         <Kicker tone="muted">Three things people hire me for</Kicker>
-        <div className="grid gap-8 md:grid-cols-3 md:gap-0">
+        <div data-stagger className="grid gap-8 md:grid-cols-3 md:gap-0">
           {services.map((s, i) => {
             const Icon = serviceIcons[i];
             return (
@@ -125,7 +125,7 @@ export default function HomePage() {
                 className={
                   i === 0
                     ? "md:pr-9"
-                    : "border-t-2 border-[var(--color-divider)] pt-6 md:border-t-0 md:border-l-2 md:pt-0 md:pr-9 md:pl-9"
+                    : "rule-draw-y-start border-t-2 border-[var(--color-divider)] pt-6 md:border-t-0 md:pt-0 md:pr-9 md:pl-9"
                 }
               >
                 <div className="text-brand mb-3 flex items-center gap-2.5">
@@ -134,7 +134,9 @@ export default function HomePage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="m-0 mb-3 text-[22px] md:text-[26px]">{s.title}</h3>
+                <h3 className="m-0 mb-3 text-[24px] tracking-[-0.025em] md:text-[30px]">
+                  {s.title}
+                </h3>
                 <p className="m-0 text-[15px] leading-[1.55]">{s.short}</p>
               </div>
             );
@@ -142,8 +144,8 @@ export default function HomePage() {
         </div>
       </Band>
 
-      <div className="bg-brand-100 grid border-b-2 border-[var(--color-divider)] md:grid-cols-2">
-        <div className="flex min-h-[280px] items-center border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:px-10 md:py-11">
+      <div data-reveal className="bg-brand-100 rule-draw grid md:grid-cols-2">
+        <div className="rule-draw-y-end flex min-h-[280px] items-center border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-b-0 md:px-10 md:py-11">
           <div className="flex w-full flex-col gap-5.5">
             <PipelineDiagram steps={["Inbox", "Read", "Match", "Books"]} />
             <div className="flex items-center gap-3 border-t-2 border-[var(--color-divider)] pt-4">
@@ -156,7 +158,7 @@ export default function HomePage() {
         </div>
         <div className="px-5 py-8 md:px-12 md:py-13">
           <Kicker tone="deep">Instead of a case study</Kicker>
-          <h2 className="m-0 mb-4 max-w-[16ch] text-[26px] md:text-[34px]">
+          <h2 className="m-0 mb-4 max-w-[16ch] text-[30px] tracking-[-0.03em] md:text-[40px]">
             A real automation, start to finish.
           </h2>
           <p className="m-0 mb-6.5 max-w-[42ch] text-base leading-[1.55]">
