@@ -41,24 +41,30 @@ export function Kicker({
  * Reveals on scroll by default. Pass `reveal={false}` for anything above the
  * fold — a hero that starts at opacity 0 delays the largest contentful paint
  * for no visual gain, since it's on screen before there's anything to reveal.
+ *
+ * `tone="ink"` inverts the band onto a dark ground. It carries no rule of its
+ * own by default at the call site — the tonal edge is the division.
  */
 export function Band({
   children,
   className,
   rule = true,
   reveal = true,
+  tone = "ground",
 }: {
   children: ReactNode;
   className?: string;
   rule?: boolean;
   reveal?: boolean;
+  tone?: "ground" | "ink";
 }) {
   return (
     <section
       data-reveal={reveal ? "" : undefined}
       className={cn(
         "px-5 py-8 md:px-16 md:py-13",
-        rule && "border-b-2 border-[var(--color-divider)]",
+        tone === "ink" && "tone-ink",
+        rule && "rule-draw",
         className,
       )}
     >
@@ -155,7 +161,7 @@ export function PosterCta({
 }) {
   return (
     <section className="bg-brand text-ground flex flex-col items-start justify-between gap-6 px-5 py-9 md:flex-row md:items-end md:gap-12 md:px-16 md:py-16">
-      <h2 className="m-0 max-w-[15ch] text-[32px] leading-[1.02] tracking-[-0.025em] md:text-[52px]">
+      <h2 className="m-0 max-w-[15ch] text-[38px] leading-[0.98] tracking-[-0.04em] md:text-[60px] xl:text-[72px]">
         {headline}
       </h2>
       <Button href={href} variant="inverse" size="lg" className="shrink-0">

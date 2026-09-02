@@ -13,7 +13,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="border-b-2 border-[var(--color-divider)]">
+    <header className="view-anchor border-b-2 border-[var(--color-divider)]">
       <div className="flex items-center gap-8 px-5 py-4 md:px-16 md:py-5">
         <Link
           href="/"
