@@ -11,7 +11,10 @@
  * drawings of the same diagram with different words would be a screensaver.
  *
  * Figures are illustrative and the showcase says so on screen: the shape of a
- * typical small business's week, not a measurement of anyone's.
+ * typical small business's week, not a measurement of anyone's. They are
+ * deliberately modest, and none of them claims a run costs you nothing — what
+ * the automation hands back is priced in `flow-figures.ts` and subtracted, so
+ * the hours on screen cannot contradict the flagged items beside them.
  */
 
 export type FlowNodeKind = "trigger" | "step" | "outcome" | "human";
@@ -50,7 +53,15 @@ export type Flow = {
   /** Set where the job goes round more than once by hand, as chasing does. */
   manualLoop?: boolean;
   minutesByHandEach: number;
-  minutesAutomatedEach: number;
+  /**
+   * The share of items a built run hands back to a person, per hundred. This is
+   * the honest rate, not the demo's: the showcase flags every third item so a
+   * six-item run actually shows the exception path, which is pacing rather than
+   * a claim. Everything the page states about time comes from this number.
+   */
+  flaggedPerHundred: number;
+  /** What clearing one flagged item costs you. Never nothing. */
+  minutesPerFlagEach: number;
   itemsPerWeek: number;
   /** Said under the stats once a run completes. */
   note: string;
@@ -81,9 +92,10 @@ const READ_AND_FILE: Flow = {
   exceptionRoute: ["arrive", "read", "dupe", "ask"],
   items: ["INV-4471", "PO-8812", "INV-4472", "DN-2201", "INV-4473", "PO-8814"],
   manualSteps: ["Someone opens it", "Someone types it in"],
-  minutesByHandEach: 6,
-  minutesAutomatedEach: 0,
-  itemsPerWeek: 90,
+  minutesByHandEach: 5,
+  flaggedPerHundred: 8,
+  minutesPerFlagEach: 2,
+  itemsPerWeek: 40,
   note: "Both checks run on every document. The ones it isn't sure about are the only ones you see.",
 };
 
@@ -117,8 +129,9 @@ const ANSWER_QUESTIONS: Flow = {
   ],
   manualSteps: ["Someone reads it", "Someone writes the same reply"],
   minutesByHandEach: 4,
-  minutesAutomatedEach: 0,
-  itemsPerWeek: 120,
+  flaggedPerHundred: 15,
+  minutesPerFlagEach: 3,
+  itemsPerWeek: 60,
   note: "Every answer goes down into your own material and back. When it isn't there, it says so instead of guessing.",
 };
 
@@ -143,9 +156,10 @@ const FOLLOW_UP: Flow = {
   items: ["Alder Rd", "Ward St", "Kemp & Sons", "Riverside", "Milton Yard", "Eastbank"],
   manualSteps: ["Someone remembers", "Someone writes the chaser"],
   manualLoop: true,
-  minutesByHandEach: 9,
-  minutesAutomatedEach: 1,
-  itemsPerWeek: 40,
+  minutesByHandEach: 7,
+  flaggedPerHundred: 10,
+  minutesPerFlagEach: 4,
+  itemsPerWeek: 25,
   note: "Watch it go round: chased, and chased again. It stops the moment someone replies, and hands you the ones worth a call.",
 };
 
@@ -176,10 +190,11 @@ const WEEKLY_REPORT: Flow = {
   exceptionRoute: ["hours", "gather", "build", "odd"],
   items: ["Till takings", "Timesheets", "Bank feed", "Card takings", "Overtime", "Supplier spend"],
   manualSteps: ["Someone pulls the numbers", "Someone rebuilds the sheet"],
-  minutesByHandEach: 55,
-  minutesAutomatedEach: 4,
-  itemsPerWeek: 2,
-  note: "Three places, one sheet, same shape every week — so you read it in a minute instead of rebuilding it in an hour.",
+  minutesByHandEach: 50,
+  flaggedPerHundred: 20,
+  minutesPerFlagEach: 10,
+  itemsPerWeek: 1,
+  note: "Three places, one sheet, same shape every week — so you read it in a minute instead of losing the best part of an hour rebuilding it.",
 };
 
 /** One arrival fanning out into three ways of getting hold of you. */
@@ -211,9 +226,10 @@ const A_REAL_SITE: Flow = {
   exceptionRoute: ["land", "find", "gone"],
   items: ["Phone · Ward St", "Desktop", "Phone · Riverside", "Tablet", "Phone · Milton", "Desktop"],
   manualSteps: ["They ring instead", "Someone takes a message twice"],
-  minutesByHandEach: 12,
-  minutesAutomatedEach: 1,
-  itemsPerWeek: 15,
+  minutesByHandEach: 10,
+  flaggedPerHundred: 10,
+  minutesPerFlagEach: 5,
+  itemsPerWeek: 12,
   note: "Three ways in, all landing in the same place. The dashed one is the visitor who couldn't find it and left — that's the one costing you money.",
 };
 

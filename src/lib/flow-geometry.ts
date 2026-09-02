@@ -154,9 +154,3 @@ export function routeNodeTimes(
 
   return stops;
 }
-
-/** Hours a week the run gives back, rounded to a figure worth stating. */
-export function hoursSavedPerWeek(flow: Flow): number {
-  const savedMinutes = (flow.minutesByHandEach - flow.minutesAutomatedEach) * flow.itemsPerWeek;
-  return Math.round(savedMinutes / 60);
-}

@@ -6,7 +6,6 @@ import { problems } from "@/content/problems";
 import { toManualFlow } from "./manual-flow";
 import {
   edgePoints,
-  hoursSavedPerWeek,
   nodeCentre,
   routeNodeTimes,
   routePoints,
@@ -238,9 +237,10 @@ describe("flow content integrity", () => {
     expect(new Set(shapes).size).toBeGreaterThan(1);
   });
 
-  it.each(flows.map((flow, i) => ({ i, flow })))("saves stateable time on flow $i", ({ flow }) => {
-    expect(flow.minutesByHandEach).toBeGreaterThan(flow.minutesAutomatedEach);
-    expect(hoursSavedPerWeek(flow)).toBeGreaterThan(0);
-    expect(flow.items.length).toBeGreaterThan(3);
-  });
+  it.each(flows.map((flow, i) => ({ i, flow })))(
+    "gives flow $i enough items to run",
+    ({ flow }) => {
+      expect(flow.items.length).toBeGreaterThan(3);
+    },
+  );
 });

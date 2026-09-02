@@ -7,8 +7,8 @@ import { Button, Kicker } from "@/components/primitives";
 import { flows } from "@/content/flows";
 import { problems } from "@/content/problems";
 import { cta } from "@/content/site";
-import { hoursSavedPerWeek } from "@/lib/flow-geometry";
-import { hoursSpentPerWeek, toManualFlow } from "@/lib/manual-flow";
+import { oneInHowMany, timeSavedPerWeek, timeSpentPerWeek } from "@/lib/flow-figures";
+import { toManualFlow } from "@/lib/manual-flow";
 import type { RunStat, ShowcaseMode } from "@/types/showcase";
 import { AutomationCanvas } from "./automation-canvas";
 import { ModeSwitch } from "./mode-switch";
@@ -60,12 +60,12 @@ export function AutomationShowcase() {
     ? [
         { value: run.total, unit: "done", label: "All of it, by a person" },
         { value: builtFlow.minutesByHandEach, unit: "min", label: "Each one, every time" },
-        { value: hoursSpentPerWeek(builtFlow), unit: "hrs", label: "Gone, every week" },
+        { ...timeSpentPerWeek(builtFlow), label: "Gone, every week" },
       ]
     : [
         { value: run.total - flagged, unit: "done", label: "Handled by itself" },
         { value: flagged, unit: "you", label: "Sent to a person" },
-        { value: hoursSavedPerWeek(builtFlow), unit: "hrs", label: "Back, every week" },
+        { ...timeSavedPerWeek(builtFlow), label: "Back, every week" },
       ];
 
   const status = run.isComplete ? "Complete" : run.isRunning ? "Running" : "Ready";
@@ -113,6 +113,13 @@ export function AutomationShowcase() {
             travelSeconds={isManual ? TRAVEL_BY_HAND : TRAVEL_AUTOMATED}
             onArrive={run.handleArrive}
           />
+          {!isManual && (
+            <p className="text-muted m-0 mt-3 max-w-[70ch] text-[12px] leading-[1.5]">
+              It flags every third one here so you can watch it happen. A real run of this is nearer
+              one in {oneInHowMany(builtFlow)} &mdash; and the ones it flags are the ones worth your
+              judgement anyway.
+            </p>
+          )}
         </div>
 
         <div className="grid gap-5 px-5 pb-8 md:grid-cols-2 md:px-16 md:pb-11">
@@ -131,8 +138,8 @@ export function AutomationShowcase() {
         <div className="flex flex-wrap items-center justify-between gap-4 border-t-2 border-[var(--color-divider)] px-5 py-4 md:px-16">
           <p className="text-muted m-0 max-w-[58ch] text-[12px] leading-[1.5]">
             A demonstration, not a measurement &mdash; the shape of a typical week, with
-            illustrative figures. Yours get worked out on the call, in writing, before you commit to
-            anything.
+            illustrative figures. The hours above already have the flagged ones taken back out.
+            Yours get worked out on the call, in writing, before you commit to anything.
           </p>
           <div className="flex items-center gap-3">
             <Button href={cta.href}>Book a call about this</Button>

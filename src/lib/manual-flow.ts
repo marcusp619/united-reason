@@ -46,8 +46,3 @@ export function toManualFlow(flow: Flow): Flow {
     exceptionRoute: [sources[0].id, ...tail],
   };
 }
-
-/** Hours a week the job costs a person today. */
-export function hoursSpentPerWeek(flow: Flow): number {
-  return Math.round((flow.minutesByHandEach * flow.itemsPerWeek) / 60);
-}
