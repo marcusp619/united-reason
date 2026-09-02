@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { MessageSquare, Workflow } from "lucide-react";
 
+import { CountUp } from "@/components/count-up";
 import { Band, Button, Kicker } from "@/components/primitives";
-import { PipelineDiagram } from "@/components/sections/pipeline-diagram";
+import { AssistantDemo } from "@/components/sections/assistant-demo";
+import { WalkthroughPlayer } from "@/components/sections/walkthrough-player";
+import { invoiceRun, plumbingAssistant } from "@/content/demos";
 import { cta } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -21,15 +24,16 @@ export default function ExamplesPage() {
           Things I&rsquo;ve built, and things I&rsquo;d build for you.
         </h1>
         <p className="m-0 max-w-[60ch] text-base md:text-lg">
-          Straight up: this practice is new, so there&rsquo;s no logo wall here. Instead,
-          here&rsquo;s the actual work: built by me, running, and broken down step by step.
+          Straight up: this practice is new, so there&rsquo;s no logo wall here. What you get
+          instead is better: working demonstrations you can run, poke at and try to break, rather
+          than screenshots of somebody else&rsquo;s project.
         </p>
       </Band>
 
-      <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-2">
-        <article className="border-b-2 border-[var(--color-divider)] md:border-r-2 md:border-b-0">
-          <div className="bg-brand-100 flex min-h-[240px] flex-col justify-center gap-5.5 border-b-2 border-[var(--color-divider)] px-5 py-8 md:h-70 md:px-10">
-            <PipelineDiagram steps={["Invoice", "Read", "Ledger"]} />
+      <div data-reveal className="rule-draw grid md:grid-cols-2">
+        <article className="rule-draw-y-end border-b-2 border-[var(--color-divider)] md:border-b-0">
+          <div className="bg-brand-100 flex flex-col justify-center gap-5.5 border-b-2 border-[var(--color-divider)] px-5 py-8 md:px-10">
+            <WalkthroughPlayer run={invoiceRun} />
             <div className="flex items-center gap-3 border-t-2 border-[var(--color-divider)] pt-4">
               <Workflow size={26} strokeWidth={2} className="text-brand" />
               <span className="text-[13px] font-bold tracking-[0.14em] uppercase">
@@ -43,20 +47,15 @@ export default function ExamplesPage() {
               Invoice inbox → spreadsheet, untouched by human hands
             </h3>
             <p className="text-muted m-0 text-[15px] leading-[1.55]">
-              A PDF arrives, gets read, checked and filed. Built in an afternoon on tools most
-              businesses already pay for.
+              A PDF arrives, gets read, checked and filed. The kind of thing that takes an
+              afternoon, on tools most businesses are already paying for.
             </p>
           </div>
         </article>
 
         <article>
-          <div className="flex min-h-[240px] flex-col justify-center gap-3 border-b-2 border-[var(--color-divider)] px-5 py-8 md:h-70 md:px-10">
-            <div className="bg-ground max-w-[78%] border-2 border-[var(--color-divider)] px-3.5 py-3 text-sm">
-              Do you deliver to Riverside?
-            </div>
-            <div className="bg-brand text-ground max-w-[82%] self-end border-2 border-[var(--color-divider)] px-3.5 py-3 text-sm">
-              Yes. Tuesdays and Fridays, free over $200.
-            </div>
+          <div className="flex flex-col justify-center gap-3 border-b-2 border-[var(--color-divider)] px-5 py-8 md:px-10">
+            <AssistantDemo script={plumbingAssistant} />
             <div className="mt-1.5 flex items-center gap-2.5 border-t-2 border-[var(--color-divider)] pt-3.5">
               <MessageSquare size={22} strokeWidth={2} className="text-brand" />
               <span className="text-xs font-bold tracking-[0.14em] uppercase">
@@ -65,13 +64,14 @@ export default function ExamplesPage() {
             </div>
           </div>
           <div className="px-5 py-7 md:px-10">
-            <Kicker className="mb-3">Demo · live</Kicker>
+            <Kicker className="mb-3">Demo · try it</Kicker>
             <h3 className="m-0 mb-2.5 text-[22px] md:text-[28px]">
-              An FAQ assistant answering from a real price list
+              An FAQ assistant answering from a price list
             </h3>
             <p className="text-muted m-0 text-[15px] leading-[1.55]">
-              Trained on one plumbing firm&rsquo;s public pages. Try to catch it out. It&rsquo;s
-              supposed to admit when it doesn&rsquo;t know.
+              A stand-in firm with a stand-in price list, so nothing here is anyone&rsquo;s real
+              pricing. Ask it something the list doesn&rsquo;t cover &mdash; admitting that is the
+              part worth testing.
             </p>
           </div>
         </article>
@@ -80,8 +80,11 @@ export default function ExamplesPage() {
       <Band>
         <Kicker tone="muted">Before / after — a quoting process</Kicker>
         <div className="grid border-2 border-[var(--color-divider)] md:grid-cols-2">
-          <div className="border-b-2 border-[var(--color-divider)] px-6 py-7 md:border-r-2 md:border-b-0 md:px-9">
-            <h4 className="m-0 mb-3.5 text-xl">Before</h4>
+          <div className="rule-draw-y-end border-b-2 border-[var(--color-divider)] px-6 py-7 md:border-b-0 md:px-9">
+            <h4 className="m-0 mb-2.5 text-xl">Before</h4>
+            <p className="m-0 mb-4 text-[44px] leading-none tracking-[-0.04em] md:text-[56px]">
+              <CountUp to={25} unit="min" />
+            </p>
             <p className="m-0 mb-2.5 text-[15px] leading-[1.55]">
               Enquiry email → copied into a spreadsheet → priced by hand → typed into a template →
               sent, if someone remembers.
@@ -91,7 +94,10 @@ export default function ExamplesPage() {
             </p>
           </div>
           <div className="bg-brand-100 px-6 py-7 md:px-9">
-            <h4 className="m-0 mb-3.5 text-xl">After</h4>
+            <h4 className="m-0 mb-2.5 text-xl">After</h4>
+            <p className="text-brand m-0 mb-4 text-[44px] leading-none tracking-[-0.04em] md:text-[56px]">
+              <CountUp to={2} unit="min" />
+            </p>
             <p className="m-0 mb-2.5 text-[15px] leading-[1.55]">
               Enquiry arrives → priced from your own rate card → draft quote waiting for approval →
               sent with one click.

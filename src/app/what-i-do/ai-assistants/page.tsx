@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Band, Button, Kicker, PosterCta } from "@/components/primitives";
 import { AssistantDemo } from "@/components/sections/assistant-demo";
+import { unitedReasonAssistant } from "@/content/demos";
 import { cta } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -60,9 +61,9 @@ export default function AiAssistantsPage() {
       </Band>
 
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[1fr_420px]">
-        <div className="border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-r-2 md:border-b-0 md:py-11 md:pr-12 md:pl-16">
+        <div className="rule-draw-y-end border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-b-0 md:py-11 md:pr-12 md:pl-16">
           <Kicker tone="muted">Try it — this one is trained on my own site</Kicker>
-          <AssistantDemo />
+          <AssistantDemo script={unitedReasonAssistant} />
         </div>
         <div className="px-5 py-8 md:py-11 md:pr-16 md:pl-11">
           <Kicker tone="muted">What people use it for</Kicker>
@@ -102,7 +103,7 @@ export default function AiAssistantsPage() {
               className={
                 i === 0
                   ? "md:pr-10"
-                  : "border-t-2 border-[var(--color-divider)] pt-5 md:border-t-0 md:border-l-2 md:pt-0 md:pr-10 md:pl-10"
+                  : "rule-draw-y-start border-t-2 border-[var(--color-divider)] pt-5 md:border-t-0 md:pt-0 md:pr-10 md:pl-10"
               }
             >
               <p className="text-brand m-0 mb-2.5 text-[11px] tracking-[0.16em]">{s.n}</p>
