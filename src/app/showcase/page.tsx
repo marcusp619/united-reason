@@ -4,9 +4,10 @@ import { GitBranch, Hand, Repeat, Zap } from "lucide-react";
 import { Band, Kicker, PosterCta } from "@/components/primitives";
 import { AutomationShowcase } from "@/components/showcase/automation-showcase";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/showcase" },
+  ...pageMetadata("/showcase"),
   title: "Showcase",
   description:
     "Pick the thing eating your week and watch the automation get built and run. An interactive demonstration of what these projects actually look like.",

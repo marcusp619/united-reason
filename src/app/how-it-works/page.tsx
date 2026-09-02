@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { Band, Button, Kicker } from "@/components/primitives";
 import { faqs, steps } from "@/content/services";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/page-metadata";
 
 /**
  * Derived from the same `faqs` the page renders, so the markup and the schema
@@ -22,7 +23,7 @@ const faqSchema = {
 };
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/how-it-works" },
+  ...pageMetadata("/how-it-works"),
   title: "How it works",
   description:
     "Four steps, no surprises: a free call, a written plan with one fixed price, weekly demos while I build, then handover and training.",

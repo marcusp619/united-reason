@@ -50,7 +50,7 @@ export function NewsletterForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-brand font-heading text-ground shrink-0 cursor-pointer px-4 py-2 text-sm font-extrabold hover:bg-[var(--color-accent-600)] disabled:cursor-not-allowed disabled:opacity-45"
+          className="bg-brand-700 font-heading text-ground shrink-0 cursor-pointer px-4 py-2 text-sm font-extrabold hover:bg-[var(--color-accent-800)] disabled:cursor-not-allowed disabled:opacity-45"
         >
           Add me
         </button>

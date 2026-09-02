@@ -7,6 +7,7 @@ import { PipelineDiagram } from "@/components/sections/pipeline-diagram";
 import { AutomationShowcase } from "@/components/showcase/automation-showcase";
 import { services } from "@/content/services";
 import { cta, site } from "@/content/site";
+import { pageMetadata } from "@/lib/page-metadata";
 
 /**
  * Homepage — variant A's fold running into variant B's problem list.
@@ -18,7 +19,7 @@ import { cta, site } from "@/content/site";
  */
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  ...pageMetadata("/"),
 };
 
 const markPoints = [

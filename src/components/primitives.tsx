@@ -95,9 +95,15 @@ export function Button({
   const base =
     "inline-flex cursor-pointer items-center gap-1.5 font-heading font-extrabold leading-tight no-underline transition-colors";
 
+  /*
+   * The primary fill is the 700 step, not the raw accent: #f3f2f2 on #ec3013
+   * is 3.76:1, and a 14px bold label needs 4.5:1. #ae1800 gives 6.41:1. The
+   * bright accent still runs as a field behind display type (PosterCta,
+   * UrMark), where the 3:1 large-text bar applies and it clears.
+   */
   const variants = {
     primary:
-      "bg-brand text-ground hover:bg-[var(--color-accent-600)] active:bg-[var(--color-accent-700)]",
+      "bg-brand-700 text-ground [--focus-ring:var(--color-bg)] hover:bg-[var(--color-accent-800)] active:bg-[var(--color-accent-900)]",
     secondary:
       "border border-[var(--color-divider)] text-ink hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)]",
     ghost: "text-brand hover:bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)]",
@@ -160,7 +166,7 @@ export function PosterCta({
   href: string;
 }) {
   return (
-    <section className="bg-brand text-ground flex flex-col items-start justify-between gap-6 px-5 py-9 md:flex-row md:items-end md:gap-12 md:px-16 md:py-16">
+    <section className="bg-brand text-ground flex flex-col items-start justify-between gap-6 px-5 py-9 [--focus-ring:var(--color-bg)] md:flex-row md:items-end md:gap-12 md:px-16 md:py-16">
       <h2 className="m-0 max-w-[15ch] text-[38px] leading-[0.98] tracking-[-0.04em] md:text-[60px] xl:text-[72px]">
         {headline}
       </h2>

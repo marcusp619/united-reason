@@ -185,8 +185,11 @@
     outline: none;
   }
 
+  /* The ring is the accent by default. On a red or dark field that would be
+     invisible — red on red is 1:1 — so anything sitting on one sets
+     --focus-ring to the ground colour instead. */
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--focus-ring, var(--color-accent));
     outline-offset: 2px;
   }
 
@@ -222,8 +225,11 @@
     color: var(--color-text);
   }
 
+  /* 63%, not 55%: at 55% this lands on 3.66:1 against the ground, and it
+     carries 13–15px body copy on every page. 63% clears 4.5:1 at 4.67:1 and
+     is the darkest step that still reads as secondary next to full ink. */
   .text-muted {
-    color: color-mix(in srgb, var(--color-text) 55%, transparent);
+    color: color-mix(in srgb, var(--color-text) 63%, transparent);
   }
 
   /* ── prose ───────────────────────────────────────────────────────────────

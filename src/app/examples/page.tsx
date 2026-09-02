@@ -7,9 +7,10 @@ import { AssistantDemo } from "@/components/sections/assistant-demo";
 import { WalkthroughPlayer } from "@/components/sections/walkthrough-player";
 import { invoiceRun, plumbingAssistant } from "@/content/demos";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/examples" },
+  ...pageMetadata("/examples"),
   title: "Examples",
   description:
     "Things I've built and things I'd build for you: self-built demos, a before/after on a quoting process, and a founding-client offer.",
@@ -120,7 +121,9 @@ export default function ExamplesPage() {
             If you&rsquo;d rather stay anonymous, the rate still stands.
           </p>
         </div>
-        <Button href={cta.href} size="lg" className="shrink-0">
+        {/* Inverse, not primary: the deep-red fill is only 2.3:1 against this
+            dark ground, so the button would lose its edge. */}
+        <Button href={cta.href} variant="inverse" size="lg" className="shrink-0">
           Book a free call
         </Button>
       </section>

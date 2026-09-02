@@ -5,9 +5,10 @@ import { Kicker } from "@/components/primitives";
 import { NewsletterForm } from "@/components/sections/newsletter-form";
 import { NotesIndex } from "@/components/sections/notes-index";
 import { featured } from "@/content/posts";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/notes" },
+  ...pageMetadata("/notes"),
   title: "Notes",
   description:
     "Plain-English notes on automating a small business. Written for owners, not developers.",

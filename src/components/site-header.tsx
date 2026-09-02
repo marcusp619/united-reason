@@ -41,7 +41,7 @@ export function SiteHeader() {
           })}
           <Link
             href={cta.href}
-            className="bg-brand font-heading text-ground px-[18px] py-[11px] text-sm font-extrabold no-underline transition-colors hover:bg-[var(--color-accent-600)] active:bg-[var(--color-accent-700)]"
+            className="bg-brand-700 font-heading text-ground px-[18px] py-[11px] text-sm font-extrabold no-underline transition-colors hover:bg-[var(--color-accent-800)] active:bg-[var(--color-accent-900)]"
           >
             {cta.short}
           </Link>
@@ -77,7 +77,7 @@ export function SiteHeader() {
           <Link
             href={cta.href}
             onClick={() => setOpen(false)}
-            className="bg-brand font-heading text-ground px-5 py-4 text-lg font-extrabold no-underline"
+            className="bg-brand-700 font-heading text-ground px-5 py-4 text-lg font-extrabold no-underline"
           >
             {cta.long}
           </Link>

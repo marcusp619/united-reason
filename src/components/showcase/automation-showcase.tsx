@@ -98,7 +98,7 @@ export function AutomationShowcase() {
               type="button"
               onClick={run.start}
               disabled={run.isRunning && !run.isComplete}
-              className="bg-brand font-heading text-ground cursor-pointer px-4 py-2.5 text-sm font-extrabold transition-colors hover:bg-[var(--color-accent-600)] disabled:cursor-default disabled:opacity-40"
+              className="bg-brand-700 font-heading text-ground cursor-pointer px-4 py-2.5 text-sm font-extrabold transition-colors hover:bg-[var(--color-accent-800)] disabled:cursor-default disabled:opacity-40"
             >
               Run it
             </button>

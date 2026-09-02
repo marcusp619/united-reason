@@ -1,5 +1,12 @@
 export type Service = {
   slug: string;
+  /**
+   * The service's own page, when it has one. Two of the three don't yet, and
+   * the card used to link all three at the AI assistants page — a card that
+   * sends you to a different service is worse than one that sends you to the
+   * call.
+   */
+  detail: string | null;
   title: string;
   timeline: string;
   blurb: string;
@@ -10,6 +17,7 @@ export type Service = {
 export const services: readonly Service[] = [
   {
     slug: "automation",
+    detail: null,
     title: "Automating the busywork",
     timeline: "Typically 2–4 weeks",
     blurb:
@@ -20,6 +28,7 @@ export const services: readonly Service[] = [
   },
   {
     slug: "ai-assistants",
+    detail: "/what-i-do/ai-assistants",
     title: "AI assistants & bots",
     timeline: "Typically 2–5 weeks",
     blurb:
@@ -30,6 +39,7 @@ export const services: readonly Service[] = [
   },
   {
     slug: "websites",
+    detail: null,
     title: "Websites & small apps",
     timeline: "Typically 3–8 weeks",
     blurb:

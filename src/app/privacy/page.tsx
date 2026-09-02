@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 
 import { Band, Kicker } from "@/components/primitives";
 import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/privacy" },
+  ...pageMetadata("/privacy"),
   title: "Privacy",
   description:
     "What this site collects, what it doesn't, and what happens to anything you send. Plain English, no boilerplate.",

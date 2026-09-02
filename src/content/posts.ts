@@ -6,6 +6,9 @@ export type Post = {
   cat: Exclude<Category, "All">;
   title: string;
   read: string;
+  /** One sentence. Doubles as the page's meta description, so it has to stand
+   *  alone in a search result, not lead into the body. */
+  excerpt: string;
 };
 
 /**
@@ -29,35 +32,47 @@ export const posts: readonly Post[] = [
     cat: featured.cat,
     title: featured.title,
     read: "4 min",
+    excerpt:
+      "The same five jobs are being done by hand in almost every small business. None of them need AI, a migration or a consultant with a deck.",
   },
   {
     slug: "three-hours-a-week",
     cat: "Automation",
     title: "Three hours a week, back: the boring math",
     read: "3 min",
+    excerpt:
+      "Whether automating something is worth it is arithmetic, and it takes two minutes to do yourself. Four numbers, multiplied out, before you talk to anyone.",
   },
   {
     slug: "do-you-need-an-ai-bot",
     cat: "AI",
     title: "Do you actually need an AI bot?",
     read: "3 min",
+    excerpt:
+      "Probably not, and I build them for a living. How to tell whether an assistant solves your problem or is just the thing every agency is selling.",
   },
   {
     slug: "what-a-website-should-cost",
     cat: "Websites",
     title: "What a website should cost in 2026",
     read: "5 min",
+    excerpt:
+      "Ask five people and you get five honest numbers between two hundred dollars and fifty thousand. Here is the actual landscape, and where I sit in it.",
   },
   {
     slug: "the-spreadsheet",
     cat: "Automation",
     title: "The spreadsheet everyone's afraid to touch",
     read: "4 min",
+    excerpt:
+      "The one that runs something important, that one person understands, that everyone else closes without saving. I am not going to tell you to throw it away.",
   },
   {
     slug: "stop-an-assistant-making-things-up",
     cat: "AI",
     title: "How I stop an assistant making things up",
     read: "4 min",
+    excerpt:
+      "The right question is what happens when it gets something wrong. Not if. When. The answer is that you design for being wrong from the start.",
   },
 ];

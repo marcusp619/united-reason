@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Band, Kicker } from "@/components/primitives";
 import { noteBodies } from "@/content/notes";
 import { posts } from "@/content/posts";
+import { pageMetadata } from "@/lib/page-metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,7 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: post.title,
-    alternates: { canonical: `/notes/${post.slug}` },
+    /*
+     * Without this every note inherited the homepage's description, so the six
+     * pages most likely to be found in a search all described the same thing.
+     */
+    description: post.excerpt,
+    ...pageMetadata(`/notes/${post.slug}`),
     /**
      * Unwritten shells stay out of the index: each renders about fifty words,
      * most of it chrome, and thin pages drag on how the whole domain is

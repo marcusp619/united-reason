@@ -1,15 +1,50 @@
 import type { Metadata } from "next";
 
 import { Band, Button, Kicker, Tag } from "@/components/primitives";
-import { services } from "@/content/services";
+import { services, type Service } from "@/content/services";
 import { cta } from "@/content/site";
+import { pageMetadata } from "@/lib/page-metadata";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/what-i-do" },
+  ...pageMetadata("/what-i-do"),
   title: "What I do",
   description:
     "Three kinds of work: automating the busywork, AI assistants, and websites & small apps. Everything is quoted after a call.",
 };
+
+/** One service. Links at its own page where it has one, at the call where it doesn't. */
+function ServiceRow({ service, tinted }: { service: Service; tinted: boolean }) {
+  const href = service.detail ?? cta.href;
+  const label = service.detail ? "See how this works →" : "Talk to me about this →";
+
+  return (
+    <div
+      className={cn(
+        "grid gap-4 border-b-2 border-[var(--color-divider)] px-5 py-8 md:grid-cols-[360px_1fr] md:gap-0 md:px-16 md:py-11",
+        tinted && "bg-brand-100",
+      )}
+    >
+      <div>
+        <h2 className="m-0 mb-2.5 max-w-[12ch] text-[28px] md:text-[36px]">{service.title}</h2>
+        <p className="text-muted m-0 text-sm">{service.timeline}</p>
+      </div>
+      <div>
+        <p className="m-0 mb-5 max-w-[62ch] text-base leading-[1.55] md:text-[17px]">
+          {service.blurb}
+        </p>
+        <div className="mb-4.5 flex flex-wrap gap-2">
+          {service.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </div>
+        <Button href={href} variant="ghost" className="px-1 text-[15px]">
+          {label}
+        </Button>
+      </div>
+    </div>
+  );
+}
 
 export default function WhatIDoPage() {
   return (
@@ -25,31 +60,8 @@ export default function WhatIDoPage() {
         </p>
       </Band>
 
-      {services.map((s, i) => (
-        <div
-          key={s.slug}
-          className={`grid gap-4 border-b-2 border-[var(--color-divider)] px-5 py-8 md:grid-cols-[360px_1fr] md:gap-0 md:px-16 md:py-11 ${
-            i === 1 ? "bg-brand-100" : ""
-          }`}
-        >
-          <div>
-            <h2 className="m-0 mb-2.5 max-w-[12ch] text-[28px] md:text-[36px]">{s.title}</h2>
-            <p className="text-muted m-0 text-sm">{s.timeline}</p>
-          </div>
-          <div>
-            <p className="m-0 mb-5 max-w-[62ch] text-base leading-[1.55] md:text-[17px]">
-              {s.blurb}
-            </p>
-            <div className="mb-4.5 flex flex-wrap gap-2">
-              {s.tags.map((t) => (
-                <Tag key={t}>{t}</Tag>
-              ))}
-            </div>
-            <Button href="/what-i-do/ai-assistants" variant="ghost" className="px-1 text-[15px]">
-              See how this works →
-            </Button>
-          </div>
-        </div>
+      {services.map((service, i) => (
+        <ServiceRow key={service.slug} service={service} tinted={i === 1} />
       ))}
 
       <Band

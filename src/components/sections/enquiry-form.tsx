@@ -109,7 +109,7 @@ export function EnquiryForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-brand font-heading text-ground inline-flex cursor-pointer items-center px-5 py-3.5 text-sm font-extrabold transition-colors hover:bg-[var(--color-accent-600)] active:bg-[var(--color-accent-700)] disabled:cursor-not-allowed disabled:opacity-45"
+          className="bg-brand-700 font-heading text-ground inline-flex cursor-pointer items-center px-5 py-3.5 text-sm font-extrabold transition-colors hover:bg-[var(--color-accent-800)] active:bg-[var(--color-accent-900)] disabled:cursor-not-allowed disabled:opacity-45"
         >
           Send it
         </button>

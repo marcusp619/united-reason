@@ -5,9 +5,10 @@ import { CalEmbed } from "@/components/sections/cal-embed";
 import { EnquiryForm } from "@/components/sections/enquiry-form";
 import { env } from "@/env";
 import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/book" },
+  ...pageMetadata("/book"),
   title: "Book a call",
   description:
     "Thirty minutes, free, no sales pitch. You describe the problem, I tell you whether software fixes it and roughly what it would take.",

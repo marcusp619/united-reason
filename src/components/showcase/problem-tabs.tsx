@@ -26,7 +26,9 @@ export function ProblemTabs({
             onClick={() => onSelect(i)}
             className={cn(
               "flex w-full cursor-pointer items-center gap-5 border-b-2 border-[var(--color-divider)] px-5 py-4.5 text-left transition-colors md:gap-7 md:px-16 md:py-5.5",
-              on ? "bg-brand text-ground" : "text-ink hover:bg-brand-100 bg-transparent",
+              on
+                ? "bg-brand text-ground [--focus-ring:var(--color-bg)]"
+                : "text-ink hover:bg-brand-100 bg-transparent",
             )}
           >
             <span
