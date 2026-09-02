@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { MessageSquare, Workflow } from "lucide-react";
 
 import { CountUp } from "@/components/count-up";
-import { Band, Button, Kicker } from "@/components/primitives";
+import { Band, Kicker, PosterCta } from "@/components/primitives";
 import { AssistantDemo } from "@/components/sections/assistant-demo";
 import { WalkthroughPlayer } from "@/components/sections/walkthrough-player";
 import { invoiceRun, plumbingAssistant } from "@/content/demos";
-import { cta } from "@/content/site";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
@@ -108,25 +107,11 @@ export default function ExamplesPage() {
         </div>
       </Band>
 
-      <section className="bg-ink text-ground flex flex-col items-start justify-between gap-8 px-5 py-9 md:flex-row md:items-end md:gap-12 md:px-16 md:py-14">
-        <div>
-          <p className="text-brand-400 m-0 mb-4.5 text-[11px] tracking-[0.16em] uppercase">
-            Founding clients
-          </p>
-          <h2 className="m-0 mb-3.5 max-w-[20ch] text-[30px] leading-[1.05] md:text-[42px]">
-            My first three projects go out at a reduced rate.
-          </h2>
-          <p className="m-0 max-w-[56ch] text-base leading-[1.55] text-[var(--color-neutral-300)]">
-            In exchange I&rsquo;d like to write the work up as a case study, with your name on it.
-            If you&rsquo;d rather stay anonymous, the rate still stands.
-          </p>
-        </div>
-        {/* Inverse, not primary: the deep-red fill is only 2.3:1 against this
-            dark ground, so the button would lose its edge. */}
-        <Button href={cta.href} variant="inverse" size="lg" className="shrink-0">
-          Book a free call
-        </Button>
-      </section>
+      <PosterCta
+        headline="Curious what one of these costs?"
+        label="See the numbers"
+        href="/pricing"
+      />
     </>
   );
 }

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 
 import { Band, Button, Kicker, PosterCta } from "@/components/primitives";
 import { AssistantDemo } from "@/components/sections/assistant-demo";
+import { GettingAPrice } from "@/components/sections/getting-a-price";
+import { ServiceLimits } from "@/components/sections/service-limits";
+import { ServiceUses, type ServiceUse } from "@/components/sections/service-uses";
 import { unitedReasonAssistant } from "@/content/demos";
 import { cta } from "@/content/site";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -13,7 +16,7 @@ export const metadata: Metadata = {
     "An assistant that knows your business, not the internet. It reads your price list, your policies and your past replies, and answers the way you would.",
 };
 
-const uses = [
+const uses: readonly ServiceUse[] = [
   {
     title: "Answering customers around the clock",
     body: "Out of hours is where most enquiries are lost.",
@@ -38,12 +41,6 @@ const limits = [
   "It won't work well on a business with no written-down knowledge. Part of the job is helping you write it down.",
 ];
 
-const priceSteps = [
-  { n: "Step 01", title: "A call", body: "Free, thirty minutes, this week if you like." },
-  { n: "Step 02", title: "A written scope", body: "Three days later, in plain English." },
-  { n: "Step 03", title: "One fixed price", body: "Yes or no. No pressure either way." },
-];
-
 export default function AiAssistantsPage() {
   return (
     <>
@@ -63,57 +60,19 @@ export default function AiAssistantsPage() {
 
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[1fr_420px]">
         <div className="rule-draw-y-end border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-b-0 md:py-11 md:pr-12 md:pl-16">
-          <Kicker tone="muted">Try it — this one is trained on my own site</Kicker>
+          <Kicker as="h2" tone="muted">
+            Try it &mdash; this one is trained on my own site
+          </Kicker>
           <AssistantDemo script={unitedReasonAssistant} />
         </div>
         <div className="px-5 py-8 md:py-11 md:pr-16 md:pl-11">
-          <Kicker tone="muted">What people use it for</Kicker>
-          <div className="flex flex-col">
-            {uses.map((u, i) => (
-              <div
-                key={u.title}
-                className={`border-t-2 border-[var(--color-divider)] py-4 ${
-                  i === uses.length - 1 ? "border-b-2" : ""
-                }`}
-              >
-                <h4 className="m-0 mb-1 text-[17px] md:text-[19px]">{u.title}</h4>
-                <p className="text-muted m-0 text-sm">{u.body}</p>
-              </div>
-            ))}
-          </div>
+          <ServiceUses uses={uses} />
         </div>
       </div>
 
-      <div className="bg-brand-100 grid gap-6 border-b-2 border-[var(--color-divider)] px-5 py-8 md:grid-cols-[340px_1fr] md:gap-10 md:px-16 md:py-12">
-        <h2 className="m-0 max-w-[12ch] text-[28px] md:text-[36px]">What it won&rsquo;t do</h2>
-        <div className="flex flex-col gap-3.5">
-          {limits.map((l) => (
-            <p key={l} className="m-0 text-base leading-[1.55] md:text-[17px]">
-              {l}
-            </p>
-          ))}
-        </div>
-      </div>
+      <ServiceLimits limits={limits} />
 
-      <Band>
-        <Kicker tone="muted">Getting a price</Kicker>
-        <div className="grid gap-6 md:grid-cols-3 md:gap-0">
-          {priceSteps.map((s, i) => (
-            <div
-              key={s.n}
-              className={
-                i === 0
-                  ? "md:pr-10"
-                  : "rule-draw-y-start border-t-2 border-[var(--color-divider)] pt-5 md:border-t-0 md:pt-0 md:pr-10 md:pl-10"
-              }
-            >
-              <p className="text-brand m-0 mb-2.5 text-[11px] tracking-[0.16em]">{s.n}</p>
-              <h3 className="m-0 mb-2 text-[22px] md:text-[26px]">{s.title}</h3>
-              <p className="text-muted m-0 text-[15px]">{s.body}</p>
-            </div>
-          ))}
-        </div>
-      </Band>
+      <GettingAPrice />
 
       <PosterCta headline="Curious what yours would cost?" label={cta.long} href={cta.href} />
     </>

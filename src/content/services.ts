@@ -1,10 +1,9 @@
 export type Service = {
   slug: string;
   /**
-   * The service's own page, when it has one. Two of the three don't yet, and
-   * the card used to link all three at the AI assistants page — a card that
-   * sends you to a different service is worse than one that sends you to the
-   * call.
+   * The service's own page. Nullable because the href used to be hardcoded
+   * inside the card, which sent two of the three services at a third one's
+   * page — a service without a page links at the call instead.
    */
   detail: string | null;
   title: string;
@@ -17,7 +16,7 @@ export type Service = {
 export const services: readonly Service[] = [
   {
     slug: "automation",
-    detail: null,
+    detail: "/what-i-do/automation",
     title: "Automating the busywork",
     timeline: "Typically 2–4 weeks",
     blurb:
@@ -39,7 +38,7 @@ export const services: readonly Service[] = [
   },
   {
     slug: "websites",
-    detail: null,
+    detail: "/what-i-do/websites",
     title: "Websites & small apps",
     timeline: "Typically 3–8 weeks",
     blurb:
@@ -94,4 +93,14 @@ export const faqs = [
     q: "You're one person. What if you disappear?",
     a: "Fair question. I build on ordinary, well-known tools and write things down so any competent developer can pick it up. I'll tell you exactly what's under the hood.",
   },
+] as const;
+
+/**
+ * The three steps between a visitor and a number. Identical on every service
+ * page, so it lives here rather than being retyped on each one.
+ */
+export const priceSteps = [
+  { n: "Step 01", title: "A call", body: "Free, thirty minutes, this week if you like." },
+  { n: "Step 02", title: "A written scope", body: "Three days later, in plain English." },
+  { n: "Step 03", title: "One fixed price", body: "Yes or no. No pressure either way." },
 ] as const;

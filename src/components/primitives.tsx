@@ -10,20 +10,29 @@ import { cn } from "@/lib/utils";
  * used sparingly — live here so pages compose rather than restyle.
  */
 
-/** Small uppercase kicker above a heading. */
+/**
+ * Small uppercase kicker above a heading.
+ *
+ * Where the kicker *is* the section's heading rather than a label above one,
+ * pass `as="h2"`: it renders identically but stops the page skipping from h1
+ * straight to the h3s inside the section. The explicit weight and leading are
+ * what keep the two renderings identical, since the base layer styles headings.
+ */
 export function Kicker({
   children,
+  as: Tag = "p",
   tone = "accent",
   className,
 }: {
   children: ReactNode;
+  as?: "p" | "h2";
   tone?: "accent" | "muted" | "deep";
   className?: string;
 }) {
   return (
-    <p
+    <Tag
       className={cn(
-        "m-0 mb-5 text-[10px] tracking-[0.16em] uppercase md:text-[11px]",
+        "m-0 mb-5 text-[10px] leading-normal font-normal tracking-[0.16em] uppercase md:text-[11px]",
         tone === "accent" && "text-brand",
         tone === "deep" && "text-brand-700",
         tone === "muted" && "text-muted",
@@ -31,7 +40,7 @@ export function Kicker({
       )}
     >
       {children}
-    </p>
+    </Tag>
   );
 }
 
