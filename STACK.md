@@ -58,19 +58,13 @@ that script has served its purpose and is gone.
 
 ## Known gaps
 
-- **Booking isn't live.** `NEXT_PUBLIC_CAL_LINK` is unset, so `/book` renders the email fallback
-  rather than the Cal embed — and every CTA on the site points there. It's a build-time inline,
-  so setting it needs a fresh deploy, not just a new env var.
-- **Neither form posts anywhere.** The enquiry and newsletter forms compose a `mailto:` and say
-  so on the page. A visitor with no mail client configured submits into nothing, and there's no
-  record it happened. This is the weakest link in the funnel.
+- **Delivery is off until `RESEND_API_KEY` is set.** Both forms post to a server action; with no
+  key it returns `notConfigured` and they fall back to composing the message in the visitor's own
+  mail client, saying so on screen. Set the key — and verify the domain in Resend, since it sends
+  from `hello@unitedreason.org` — and they start delivering with no code change.
 - The **assistant demos** are scripted — they answer unscripted questions with a holding reply
-  that says so. Wire to a server action and a model when you're ready.
-- **Nothing measures the funnel.** `@vercel/analytics` is mounted and its `track()` is never
-  called, so there's no signal on whether the showcase gets used or a CTA gets clicked.
-- `class-variance-authority` is a dependency with **zero uses**. Drop it with
-  `pnpm remove class-variance-authority` — it needs a lockfile update, so it can't be done by
-  editing `package.json` alone.
+  that says so. Wire to a model when you're ready.
+- The **assistant demos are still scripted.** Wire them to a model when you're ready.
 
 ## Deploying
 

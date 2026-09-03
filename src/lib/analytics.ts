@@ -19,11 +19,12 @@ export const Event = {
   /** The funnel dead-ends at a mailto, so knowing people get this far matters. */
   BookClicked: "book clicked",
   /**
-   * A form handed off to the visitor's mail client. It is not a lead — it is
-   * the last thing this site can see before one either arrives or evaporates,
-   * and the gap between this count and the inbox is the cost of the mailto.
+   * A form was submitted, with what became of it: `sent` means it was
+   * delivered, anything else means the visitor was handed to their own mail
+   * client and it may quietly evaporate there. The split between the two is
+   * the whole reason to record it.
    */
-  FormHandedOff: "form handed off",
+  EnquirySubmitted: "enquiry submitted",
 } as const;
 export type Event = (typeof Event)[keyof typeof Event];
 

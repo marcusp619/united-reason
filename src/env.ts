@@ -8,6 +8,13 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+    /**
+     * Resend API key. Optional in the same spirit as the Cal link: unset means
+     * there is no delivery yet, and the forms hand off to the visitor's mail
+     * client rather than claiming to have received something they haven't.
+     * Set it and the forms start posting, with no code change.
+     */
+    RESEND_API_KEY: z.string().min(1).optional(),
   },
   client: {
     /**
@@ -20,6 +27,7 @@ export const env = createEnv({
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
     NEXT_PUBLIC_CAL_LINK: process.env.NEXT_PUBLIC_CAL_LINK,
   },
   emptyStringAsUndefined: true,

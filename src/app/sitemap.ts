@@ -18,7 +18,6 @@ const routes = [
   { path: "/what-i-do/websites", changeFrequency: "monthly", priority: 0.8 },
   { path: "/how-it-works", changeFrequency: "monthly", priority: 0.8 },
   { path: "/showcase", changeFrequency: "monthly", priority: 0.85 },
-  { path: "/examples", changeFrequency: "monthly", priority: 0.7 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.9 },
   { path: "/book", changeFrequency: "yearly", priority: 0.9 },
   { path: "/notes", changeFrequency: "weekly", priority: 0.6 },

@@ -27,7 +27,14 @@ const TRAVEL_BY_HAND = 3.6;
 const MANUAL_NOTE =
   "That's the version running today. Every one of those went through a person, and it will again tomorrow.";
 
-export function AutomationShowcase() {
+/**
+ * `headingLevel` because the panel renders at two depths: on the homepage it
+ * sits under a section heading, on /showcase it is the first thing after the
+ * page title. Getting it wrong skips a level on one page or the other.
+ */
+export function AutomationShowcase({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3" } = {}) {
+  const PanelHeading = headingLevel;
+
   const panelRef = useRef<HTMLDivElement>(null);
   const isVisible = useInView(panelRef, { once: true, amount: 0.3 });
 
@@ -116,9 +123,9 @@ export function AutomationShowcase() {
             <Kicker tone="deep">
               {isManual ? "How that happens today" : "What I’d build for that"}
             </Kicker>
-            <h3 className="m-0 mb-3 max-w-[20ch] text-[26px] tracking-[-0.03em] md:text-[36px]">
+            <PanelHeading className="m-0 mb-3 max-w-[20ch] text-[26px] tracking-[-0.03em] md:text-[36px]">
               {isManual ? problem.title : problem.build}
-            </h3>
+            </PanelHeading>
             <p className="m-0 max-w-[46ch] text-[15px] leading-[1.55]">{problem.blurb}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">

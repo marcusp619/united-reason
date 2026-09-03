@@ -13,7 +13,7 @@ Vitest · GitHub Actions · Vercel
 
 ```bash
 pnpm install
-cp .env.example .env.local   # set NEXT_PUBLIC_CAL_LINK
+cp .env.example .env.local   # NEXT_PUBLIC_CAL_LINK, RESEND_API_KEY
 pnpm dev
 ```
 
@@ -36,14 +36,16 @@ pnpm dev
 | `/what-i-do/ai-assistants` | Service detail — the scripted assistant demo                |
 | `/what-i-do/websites`      | Service detail — the four ways to get a website             |
 | `/how-it-works`            | Four steps + FAQs                                           |
-| `/showcase`                | The interactive automation showcase, with the worth panel   |
-| `/examples`                | Demos and a before/after                                    |
+| `/showcase`                | The showcase, the worth panel, two operable demos           |
 | `/pricing`                 | The three figures, what a fixed price means, founding offer |
 | `/notes`                   | Blog index with working filters                             |
 | `/notes/[slug]`            | Six written notes, MDX bodies                               |
-| `/book`                    | Cal.com embed, themed — falls back to email until it is set |
+| `/book`                    | Cal.com embed, themed, plus the written route in            |
 | `/privacy`                 | Privacy policy                                              |
 | `/feed.xml`                | RSS for the notes                                           |
+
+`/examples` redirects here permanently: it and `/showcase` were two pages making the same offer,
+and the nav asked visitors to guess which.
 
 The homepage runs variant A's fold (the person, the promise, the UR mark panel) into the
 interactive showcase, then the services trio and the demo. Variant C ("the offer as a promise")
@@ -90,9 +92,10 @@ No copy is hardcoded in a component. Changing the owner's name is a one-line edi
 Each form has one Zod schema in `src/lib/schemas/forms.ts`, used by the client form and — when
 you add one — the server action. `enquirySchema` includes a honeypot field.
 
-Both forms compose a `mailto:` rather than posting anywhere, and say so on the page — nothing
-claims to have been received that hasn't been. When a backend exists, swap `onSubmit` for a
-server action; the schemas already validate both sides. The assistant demo on
+Both forms post to a server action in `src/app/actions/contact.ts`, which delivers through
+Resend's REST API. With `RESEND_API_KEY` unset the action returns `notConfigured` and the form
+composes the message in the visitor's mail client instead, saying so on screen — nothing claims
+to have been received that hasn't been. A delivery that fails falls back the same way. The assistant demo on
 `/what-i-do/ai-assistants` is scripted, not a live model, and says so when you ask it something
 unscripted.
 

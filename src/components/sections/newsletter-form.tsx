@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 
+import { subscribe } from "@/app/actions/contact";
 import { site } from "@/content/site";
 import { Event, record } from "@/lib/analytics";
+import type { Delivery } from "@/lib/mail";
+import { handOffToMailClient } from "@/lib/mailto";
 
 /**
  * Newsletter signup.
@@ -26,22 +29,24 @@ const LOOKS_LIKE_AN_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [handedOff, setHandedOff] = useState(false);
+  const [outcome, setOutcome] = useState<Delivery["status"] | null>(null);
 
-  function handleSubmit(submit: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(submit: React.FormEvent<HTMLFormElement>) {
     submit.preventDefault();
+    const address = email.trim();
 
-    if (!LOOKS_LIKE_AN_EMAIL.test(email.trim())) {
-      setError(email.trim() ? "That doesn't look like an email address" : "Email is required");
+    if (!LOOKS_LIKE_AN_EMAIL.test(address)) {
+      setError(address ? "That doesn't look like an email address" : "Email is required");
       return;
     }
 
     setError(null);
-    const subject = encodeURIComponent("Add me to the list");
-    const body = encodeURIComponent(`Please add ${email.trim()} to the monthly note.`);
-    window.location.assign(`mailto:${site.email}?subject=${subject}&body=${body}`);
-    setHandedOff(true);
-    record(Event.FormHandedOff, { form: "newsletter" });
+    const delivery = await subscribe({ email: address });
+    setOutcome(delivery.status);
+    record(Event.EnquirySubmitted, { form: "newsletter", outcome: delivery.status });
+
+    if (delivery.status === "sent") return;
+    handOffToMailClient("Add me to the list", `Please add ${address} to the monthly note.`);
   }
 
   return (
@@ -78,7 +83,12 @@ export function NewsletterForm() {
           {error}
         </p>
       )}
-      {handedOff && !error && (
+      {outcome === "sent" && !error && (
+        <p role="status" className="text-brand-700 mt-2 mb-0 text-[13px]">
+          You&rsquo;re on the list. One note a month, nothing else.
+        </p>
+      )}
+      {outcome !== null && outcome !== "sent" && !error && (
         <p role="status" className="text-brand-700 mt-2 mb-0 text-[13px]">
           Your email app should open. Send that message and you&rsquo;re on the list. If nothing
           happened, email {site.email} instead.

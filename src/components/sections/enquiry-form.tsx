@@ -4,35 +4,41 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { sendEnquiry } from "@/app/actions/contact";
 import { site } from "@/content/site";
 import { Event, record } from "@/lib/analytics";
+import type { Delivery } from "@/lib/mail";
+import { handOffToMailClient } from "@/lib/mailto";
 import { enquirySchema, type EnquiryInput } from "@/lib/schemas/forms";
 
 /**
  * The written route in, for people who would rather describe the problem than
  * book a call.
  *
- * There is no server action yet, so a validated enquiry is composed into the
- * visitor's mail client rather than posted anywhere. That keeps the promise
- * honest: nothing claims to have been received that hasn't been. When a
- * backend exists, swap `onSubmit` for the action — `enquirySchema` already
- * validates both sides, honeypot included.
+ * Posts to a server action. Where no delivery is configured — or where it
+ * fails — it falls back to composing the message in the visitor's mail client,
+ * because the one thing this must never do is tell someone their enquiry
+ * arrived when it did not. `enquirySchema` validates both sides.
  */
 export function EnquiryForm() {
-  const [handedOff, setHandedOff] = useState(false);
+  const [outcome, setOutcome] = useState<Delivery["status"] | null>(null);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<EnquiryInput>({ resolver: zodResolver(enquirySchema) });
 
-  function onSubmit(values: EnquiryInput) {
+  async function onSubmit(values: EnquiryInput) {
     // A filled honeypot never reaches here — the schema rejects it.
-    const subject = encodeURIComponent(`Enquiry from ${values.name}`);
-    const body = encodeURIComponent(`${values.problem}\n\n— ${values.name}\n${values.email}`);
-    window.location.assign(`mailto:${site.email}?subject=${subject}&body=${body}`);
-    setHandedOff(true);
-    record(Event.FormHandedOff, { form: "enquiry" });
+    const delivery = await sendEnquiry(values);
+    setOutcome(delivery.status);
+    record(Event.EnquirySubmitted, { form: "enquiry", outcome: delivery.status });
+
+    if (delivery.status === "sent") return;
+    handOffToMailClient(
+      `Enquiry from ${values.name}`,
+      `${values.problem}\n\n— ${values.name}\n${values.email}`,
+    );
   }
 
   const field =
@@ -118,7 +124,12 @@ export function EnquiryForm() {
         <span className="text-muted text-sm">I reply within {site.replyWindow}.</span>
       </div>
 
-      {handedOff && (
+      {outcome === "sent" && (
+        <p role="status" className="text-brand-700 m-0 text-[13px]">
+          Got it. I&rsquo;ll read it properly and reply within {site.replyWindow}.
+        </p>
+      )}
+      {outcome !== null && outcome !== "sent" && (
         <p role="status" className="text-brand-700 m-0 text-[13px]">
           Your email app should open with this filled in. Send it and it reaches me. If nothing
           happened, write to {site.email} directly.
