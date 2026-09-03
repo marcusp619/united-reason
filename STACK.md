@@ -5,14 +5,14 @@ The site for **unitedreason.org**, built from the UnitedReason Modernist mockups
 ## Running it
 
 ```bash
-unzip united-reason-bootstrap.zip && cd united-reason-bootstrap
-chmod +x bootstrap.sh && ./bootstrap.sh
+pnpm install
+cp .env.example .env.local
+pnpm dev
 ```
 
-Requires node ≥ 20, `pnpm`, `git`, and `gh` authenticated as `marcusp619`. It scaffolds Next.js,
-installs deps, initialises shadcn/ui, lays the site source from `app-src/` over the top,
-verifies (lint → typecheck → test → build), then creates `marcusp619/united-reason` as
-**private** and pushes `main`.
+Requires node ≥ 20 and `pnpm`. The repo was originally laid down by a `bootstrap.sh` that
+scaffolded Next.js, installed deps and initialised shadcn/ui over the source in `app-src/`;
+that script has served its purpose and is gone.
 
 ## Stack
 
@@ -42,24 +42,35 @@ verifies (lint → typecheck → test → build), then creates `marcusp619/unite
 
 - **The homepage merges variants A and B.** All three directions were built and compared in a
   browser; the chosen shape is A's fold (the person, the promise, the UR mark panel) running
-  into B's interactive problem picker, then A's services trio and demo. A's static "Sound like
-  you?" quotes were dropped because the picker does that job better, and B's "just me" panel
+  into the interactive showcase, then A's services trio and demo. A's static "Sound like you?"
+  quotes were dropped because the showcase does that job better, and B's "just me" panel
   because the fold already establishes it. Variant C and the `/v/` routes are deleted.
+- **Figures derive, they never get asserted.** `flow-figures.ts` and `flow-worth.ts` compute
+  every number the showcase states from the flow definitions, so the hours can't contradict the
+  flagged items beside them and the money can't contradict the hours above it. Property tests
+  hold the honesty: nothing is free, a figure never exceeds the truth, and at least one of the
+  five flows still says don't build it.
+- **The published prices live in `src/content/pricing.ts`,** and a test asserts the FAQ prose
+  quotes the same figures. They used to exist only inside one FAQ answer.
 - **The owner is "Mark"** — set once in `src/content/site.ts`, referenced everywhere else.
 - **Cal.com embed rather than a custom picker.** The mockup drew its own day/time grid; this is
   the real widget wearing that design. No scheduling, timezone, or invite logic to own.
 
 ## Known gaps
 
-- The **assistant demo** on the AI assistants page is scripted — it answers unscripted questions
-  with a holding reply that says so. Wire it to a server action and a model when you're ready.
-- The **newsletter form** validates and resets but only `console.info`s the address. Point it at
-  Buttondown / Resend audiences / whatever you pick.
-- **Note bodies aren't written.** `/notes/[slug]` renders a shell with title and metadata.
-- The **demo videos** referenced on the home and examples pages ("Play the 2-minute run") are
-  static diagrams — there's no video file yet.
-- `bootstrap.sh` was **syntax-checked but never executed** — the sandbox this was authored in
-  had no npm registry access. Treat the first run as the real test.
+- **Booking isn't live.** `NEXT_PUBLIC_CAL_LINK` is unset, so `/book` renders the email fallback
+  rather than the Cal embed — and every CTA on the site points there. It's a build-time inline,
+  so setting it needs a fresh deploy, not just a new env var.
+- **Neither form posts anywhere.** The enquiry and newsletter forms compose a `mailto:` and say
+  so on the page. A visitor with no mail client configured submits into nothing, and there's no
+  record it happened. This is the weakest link in the funnel.
+- The **assistant demos** are scripted — they answer unscripted questions with a holding reply
+  that says so. Wire to a server action and a model when you're ready.
+- **Nothing measures the funnel.** `@vercel/analytics` is mounted and its `track()` is never
+  called, so there's no signal on whether the showcase gets used or a CTA gets clicked.
+- `class-variance-authority` is a dependency with **zero uses**. Drop it with
+  `pnpm remove class-variance-authority` — it needs a lockfile update, so it can't be done by
+  editing `package.json` alone.
 
 ## Deploying
 

@@ -3,6 +3,8 @@ import { Archivo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { MotionConfig } from "motion/react";
+
 import { Motion } from "@/components/motion";
 import { PageTransition } from "@/components/page-transition";
 import { SiteFooter } from "@/components/site-footer";
@@ -54,12 +56,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={archivo.variable}>
       <body className="min-h-dvh">
-        <Motion />
-        <SiteHeader />
-        <main>
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <SiteFooter />
+        {/*
+         * The CSS reveals respect prefers-reduced-motion on their own, but
+         * everything driven by `motion` — the whole showcase, the run log,
+         * the page transition — does not: the library's default is "never".
+         * One config here covers all of it.
+         */}
+        <MotionConfig reducedMotion="user">
+          <a href="#main" className="skip-link">
+            Skip to the content
+          </a>
+          <Motion />
+          <SiteHeader />
+          <main id="main">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <SiteFooter />
+        </MotionConfig>
         {/* Cookieless by design — no consent banner needed, unlike GA. */}
         <Analytics />
         <SpeedInsights />

@@ -28,21 +28,26 @@ pnpm dev
 
 ## Routes
 
-| Route                      | Mockup | Notes                                        |
-| -------------------------- | ------ | -------------------------------------------- |
-| `/`                        | 1a+1b  | Homepage — the person, then the problem list |
-| `/what-i-do`               | 1d     | Services overview                            |
-| `/what-i-do/ai-assistants` | 1e     | Service detail                               |
-| `/how-it-works`            | 1f     | Four steps + FAQs                            |
-| `/examples`                | 1g     | Demos, before/after, founding-client offer   |
-| `/notes`                   | 1h     | Blog index with working filters              |
-| `/notes/[slug]`            | —      | Post shell; bodies not written yet           |
-| `/book`                    | 1i     | Cal.com embed, themed                        |
+| Route                      | Notes                                                       |
+| -------------------------- | ----------------------------------------------------------- |
+| `/`                        | Homepage — the person, then the interactive showcase        |
+| `/what-i-do`               | Services overview                                           |
+| `/what-i-do/automation`    | Service detail — the invoice walkthrough                    |
+| `/what-i-do/ai-assistants` | Service detail — the scripted assistant demo                |
+| `/what-i-do/websites`      | Service detail — the four ways to get a website             |
+| `/how-it-works`            | Four steps + FAQs                                           |
+| `/showcase`                | The interactive automation showcase, with the worth panel   |
+| `/examples`                | Demos and a before/after                                    |
+| `/pricing`                 | The three figures, what a fixed price means, founding offer |
+| `/notes`                   | Blog index with working filters                             |
+| `/notes/[slug]`            | Six written notes, MDX bodies                               |
+| `/book`                    | Cal.com embed, themed — falls back to email until it is set |
+| `/privacy`                 | Privacy policy                                              |
+| `/feed.xml`                | RSS for the notes                                           |
 
-The homepage combines two of the three mockup directions: variant A's fold (the person, the
-promise, the UR mark panel) running into variant B's problem picker, then the services trio and
-the demo. Variant C ("the offer as a promise") and the `/v/` comparison routes have been
-deleted now that the direction is settled.
+The homepage runs variant A's fold (the person, the promise, the UR mark panel) into the
+interactive showcase, then the services trio and the demo. Variant C ("the offer as a promise")
+and the `/v/` comparison routes have been deleted now that the direction is settled.
 
 ## How the design system is wired
 
@@ -71,9 +76,12 @@ the closing poster.
 Everything editable lives in `src/content/`:
 
 - `site.ts` — name, owner, email, nav, CTA labels
-- `services.ts` — the three services, the four process steps, the FAQs
-- `problems.ts` — the problem list driving the homepage picker
-- `posts.ts` — notes index and categories
+- `services.ts` — the three services, the four process steps, the FAQs, the price steps
+- `pricing.ts` — the published figures, the loaded-hourly-cost range, the price bands
+- `problems.ts` — the problem list driving the showcase tabs
+- `flows.ts` — the five graphs behind the showcase, and the figures they derive from
+- `posts.ts` — notes index, excerpts, publication dates
+- `notes/*.mdx` — the note bodies, registered in `notes/index.ts`
 
 No copy is hardcoded in a component. Changing the owner's name is a one-line edit in `site.ts`.
 
@@ -82,9 +90,19 @@ No copy is hardcoded in a component. Changing the owner's name is a one-line edi
 Each form has one Zod schema in `src/lib/schemas/forms.ts`, used by the client form and — when
 you add one — the server action. `enquirySchema` includes a honeypot field.
 
-The newsletter form currently logs instead of subscribing; point `onSubmit` at your list
-provider. The assistant demo on `/what-i-do/ai-assistants` is scripted, not a live model — it
-says so when you ask it something unscripted.
+Both forms compose a `mailto:` rather than posting anywhere, and say so on the page — nothing
+claims to have been received that hasn't been. When a backend exists, swap `onSubmit` for a
+server action; the schemas already validate both sides. The assistant demo on
+`/what-i-do/ai-assistants` is scripted, not a live model, and says so when you ask it something
+unscripted.
+
+## Figures
+
+Everything the showcase states about time comes from `src/lib/flow-figures.ts`, and everything
+it states about money from `src/lib/flow-worth.ts`. Both derive rather than assert, so no two
+numbers on screen can contradict each other, and the honesty properties are locked by tests —
+nothing is free, nothing saves more than the job costs, a figure never exceeds the truth, and
+at least one of the five flows still tells you not to build it.
 
 ## Booking
 

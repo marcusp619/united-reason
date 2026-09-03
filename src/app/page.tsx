@@ -166,7 +166,7 @@ export default function HomePage() {
             No stock footage, no logo wall. An invoice lands in an inbox and ends up in the books
             without anyone touching it, laid out step by step.
           </p>
-          <Button href="/examples">See how it works</Button>
+          <Button href="/examples">See the walkthrough</Button>
         </div>
       </div>
 

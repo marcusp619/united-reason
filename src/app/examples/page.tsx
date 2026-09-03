@@ -42,7 +42,9 @@ export default function ExamplesPage() {
             </div>
           </div>
           <div className="px-5 py-7 md:px-10">
-            <Kicker className="mb-3">Walkthrough</Kicker>
+            <Kicker as="h2" className="mb-3">
+              Walkthrough
+            </Kicker>
             <h3 className="m-0 mb-2.5 text-[22px] md:text-[28px]">
               Invoice inbox → spreadsheet, untouched by human hands
             </h3>
@@ -64,7 +66,9 @@ export default function ExamplesPage() {
             </div>
           </div>
           <div className="px-5 py-7 md:px-10">
-            <Kicker className="mb-3">Demo · try it</Kicker>
+            <Kicker as="h2" className="mb-3">
+              Demo &middot; try it
+            </Kicker>
             <h3 className="m-0 mb-2.5 text-[22px] md:text-[28px]">
               An FAQ assistant answering from a price list
             </h3>
@@ -78,10 +82,12 @@ export default function ExamplesPage() {
       </div>
 
       <Band>
-        <Kicker tone="muted">Before / after — a quoting process</Kicker>
+        <Kicker as="h2" tone="muted">
+          Before / after &mdash; a quoting process
+        </Kicker>
         <div className="grid border-2 border-[var(--color-divider)] md:grid-cols-2">
           <div className="rule-draw-y-end border-b-2 border-[var(--color-divider)] px-6 py-7 md:border-b-0 md:px-9">
-            <h4 className="m-0 mb-2.5 text-xl">Before</h4>
+            <h3 className="m-0 mb-2.5 text-xl">Before</h3>
             <p className="m-0 mb-4 text-[44px] leading-none tracking-[-0.04em] md:text-[56px]">
               <CountUp to={25} unit="min" />
             </p>
@@ -94,7 +100,7 @@ export default function ExamplesPage() {
             </p>
           </div>
           <div className="bg-brand-100 px-6 py-7 md:px-9">
-            <h4 className="m-0 mb-2.5 text-xl">After</h4>
+            <h3 className="m-0 mb-2.5 text-xl">After</h3>
             <p className="text-brand m-0 mb-4 text-[44px] leading-none tracking-[-0.04em] md:text-[56px]">
               <CountUp to={2} unit="min" />
             </p>

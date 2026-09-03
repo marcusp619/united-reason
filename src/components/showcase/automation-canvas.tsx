@@ -54,6 +54,18 @@ function EdgeLine({ flow, index }: { flow: Flow; index: number }) {
  * type stays crisp and selectable while the connectors keep the exactness of a
  * drawing. Every position comes from `flow-geometry`, never a hand-tuned number.
  */
+/** The graph as a sentence, for anyone who can't see it drawn. */
+function FlowInWords({ flow }: { flow: Flow }) {
+  const label = (id: string) => flow.nodes.find((node) => node.id === id)?.label ?? id;
+
+  return (
+    <div className="sr-only">
+      <p>Normally: {flow.routes[0].map(label).join(", then ")}.</p>
+      <p>When it isn&rsquo;t sure: {flow.exceptionRoute.map(label).join(", then ")}.</p>
+    </div>
+  );
+}
+
 export function AutomationCanvas({
   flow,
   flowKey,
@@ -82,8 +94,20 @@ export function AutomationCanvas({
   );
 
   return (
-    <div className="overflow-x-auto">
-      <div className="relative aspect-[100/72] min-w-[620px]">
+    /*
+     * A scrolling region needs a name and a tab stop, or it can't be reached
+     * from a keyboard on the phone-width layouts where it actually scrolls.
+     * The SVG stays aria-hidden and the route below carries the meaning — a
+     * screen reader gets the flow in order rather than a heap of node labels.
+     */
+    <div
+      role="group"
+      tabIndex={0}
+      aria-label="The automation, drawn"
+      className="overflow-x-auto focus-visible:outline-offset-0"
+    >
+      <FlowInWords flow={flow} />
+      <div aria-hidden="true" className="relative aspect-[100/72] min-w-[620px]">
         <svg
           viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
           className="absolute inset-0 h-full w-full"

@@ -149,7 +149,7 @@ export function AutomationShowcase() {
         </div>
 
         <div className="grid gap-5 px-5 pb-8 md:grid-cols-2 md:px-16 md:pb-11">
-          <RunLog entries={run.entries} />
+          <RunLog entries={run.entries} isRunning={run.isRunning} />
           {run.isComplete ? (
             <RunStats stats={stats} note={isManual ? MANUAL_NOTE : builtFlow.note} />
           ) : (

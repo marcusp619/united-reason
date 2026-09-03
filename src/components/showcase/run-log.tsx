@@ -8,7 +8,13 @@ import { cn } from "@/lib/utils";
 const EASE_OUT = [0.2, 0, 0, 1] as const;
 
 /** The running record. Every item that moves through the graph lands here. */
-export function RunLog({ entries }: { entries: readonly LogEntry[] }) {
+export function RunLog({
+  entries,
+  isRunning,
+}: {
+  entries: readonly LogEntry[];
+  isRunning: boolean;
+}) {
   return (
     <div className="flex h-full min-h-[190px] flex-col border-2 border-[var(--color-divider)]">
       <div className="flex items-center justify-between border-b-2 border-[var(--color-divider)] px-4 py-2.5">
@@ -18,7 +24,16 @@ export function RunLog({ entries }: { entries: readonly LogEntry[] }) {
         </span>
       </div>
 
-      <ol className="m-0 flex-1 list-none overflow-y-auto p-0" aria-live="polite">
+      {/*
+       * Announced when the run settles, not on every insert. A row lands every
+       * 720ms for the length of a run, and a live region reading each one as it
+       * arrives is a continuous stream nobody can follow.
+       */}
+      <ol
+        className="m-0 flex-1 list-none overflow-y-auto p-0"
+        aria-live="polite"
+        aria-busy={isRunning}
+      >
         <AnimatePresence initial={false}>
           {entries.map((entry) => (
             <motion.li

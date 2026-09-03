@@ -228,6 +228,26 @@
   /* 63%, not 55%: at 55% this lands on 3.66:1 against the ground, and it
      carries 13–15px body copy on every page. 63% clears 4.5:1 at 4.67:1 and
      is the darkest step that still reads as secondary next to full ink. */
+  /* Reachable only by keyboard: the first tab stop on every page, so nobody
+     has to tab the wordmark and six nav items to get to the content. */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border: 2px solid var(--color-text);
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-archivo), system-ui, sans-serif;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .skip-link:focus {
+    left: 0;
+  }
+
   .text-muted {
     color: color-mix(in srgb, var(--color-text) 63%, transparent);
   }

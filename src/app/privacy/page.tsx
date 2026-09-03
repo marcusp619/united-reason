@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Band, Kicker } from "@/components/primitives";
 import { site } from "@/content/site";
+import { formatPublished } from "@/content/posts";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
     "What this site collects, what it doesn't, and what happens to anything you send. Plain English, no boilerplate.",
 };
 
-const UPDATED = "14 August 2026";
+/* Bump when the policy changes. Formatted through the same helper the notes
+   use, so the site writes one kind of date. */
+const UPDATED = "2026-08-14";
 
 /**
  * Written to describe what the site actually does, which in two places is less
@@ -27,7 +30,7 @@ export default function PrivacyPage() {
         <h1 className="m-0 mb-5 max-w-[20ch] text-[38px] leading-none tracking-[-0.03em] md:text-[58px]">
           What this site collects, and what it doesn&rsquo;t.
         </h1>
-        <p className="text-muted m-0 text-sm">Last updated {UPDATED}</p>
+        <p className="text-muted m-0 text-sm">Last updated {formatPublished(UPDATED)}</p>
       </Band>
 
       <Band rule={false}>
