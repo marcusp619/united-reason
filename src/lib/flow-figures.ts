@@ -42,9 +42,16 @@ function unitFor(flow: Flow): TimeFigure["unit"] {
   return minutesByHandPerWeek(flow) < HOURS_FROM_MINUTES ? "min" : "hrs";
 }
 
+/**
+ * Floor, not round. Rounding sent three of the five flows up — 3.55 hours
+ * saved printed as 4 — which is invisible until money sits next to it, and
+ * then it is either a monetised rounding-up or a figure a visitor can't
+ * reproduce from the two numbers above it. A figure on screen never exceeds
+ * the truth.
+ */
 function toFigure(minutes: number, unit: TimeFigure["unit"]): TimeFigure {
   const value = unit === "min" ? minutes : minutes / MINUTES_PER_HOUR;
-  return { value: Math.round(value), unit };
+  return { value: Math.floor(value), unit };
 }
 
 /** Time a week the job costs a person today. */
@@ -61,4 +68,18 @@ export function timeSavedPerWeek(flow: Flow): TimeFigure {
 /** "about one in twelve" — the flag rate said the way a person would say it. */
 export function oneInHowMany(flow: Flow): number {
   return Math.round(PER_HUNDRED / flow.flaggedPerHundred);
+}
+
+/** The figure as hours, whichever unit it prints in. What money multiplies. */
+export function hoursOf(figure: TimeFigure): number {
+  return figure.unit === "min" ? figure.value / MINUTES_PER_HOUR : figure.value;
+}
+
+/**
+ * The same flow at a visitor's own volume. Every time figure follows from a
+ * flow, so handing the panel a re-based flow keeps the stat row and the money
+ * under it answering to one number rather than two.
+ */
+export function flowAtVolume(flow: Flow, itemsPerWeek: number): Flow {
+  return { ...flow, itemsPerWeek };
 }

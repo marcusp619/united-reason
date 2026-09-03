@@ -15,6 +15,12 @@ const FLAG_RANGE = { least: 5, most: 25 };
 
 const cases = flows.map((flow, i) => ({ i, flow }));
 
+const MINUTES_PER_HOUR = 60;
+
+function inMinutes(figure: { value: number; unit: string }): number {
+  return figure.unit === "min" ? figure.value : figure.value * MINUTES_PER_HOUR;
+}
+
 describe("flow figures", () => {
   it.each(cases)("flow $i never claims to cost you nothing", ({ flow }) => {
     // The canvas shows items peeling off to a person. A zero here would be
@@ -40,6 +46,20 @@ describe("flow figures", () => {
   it.each(cases)("flow $i is sized for a small business", ({ flow }) => {
     expect(flow.itemsPerWeek).toBeLessThanOrEqual(MOST_ITEMS_PER_WEEK);
     expect(flow.minutesByHandEach).toBeGreaterThan(flow.minutesPerFlagEach);
+  });
+
+  /*
+   * The property that makes it safe to put money beside these. Rounding used
+   * to send three of the five up — 3.55 hours printed as 4 — which nothing on
+   * screen contradicted until a dollar figure had to be derived from it.
+   */
+  it.each(cases)("flow $i never states more time than it saves", ({ flow }) => {
+    const exactSavedMinutes =
+      (flow.minutesByHandEach - minutesAutomatedEach(flow)) * flow.itemsPerWeek;
+    const exactSpentMinutes = flow.minutesByHandEach * flow.itemsPerWeek;
+
+    expect(inMinutes(timeSavedPerWeek(flow))).toBeLessThanOrEqual(exactSavedMinutes);
+    expect(inMinutes(timeSpentPerWeek(flow))).toBeLessThanOrEqual(exactSpentMinutes);
   });
 
   it("reads minutes rather than rounding a short job up to an hour", () => {

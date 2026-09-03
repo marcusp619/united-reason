@@ -59,10 +59,20 @@ export function CountUp({ to, unit }: { to: number; unit: string }) {
     };
   }, [to]);
 
+  const shown = counted ?? to;
+
   return (
     <span ref={ref} className="font-heading tabular-nums">
-      {counted ?? to}
-      <span className="ml-1.5 text-[0.42em] tracking-[0.16em] uppercase">{unit}</span>
+      {shown}
+      <span className="ml-1.5 text-[0.42em] tracking-[0.16em] uppercase">
+        {singularise(unit, shown)}
+      </span>
     </span>
   );
+}
+
+/** "1 hrs" reads like a bug. The unit itself stays plural so figures sharing a
+ *  basis stay comparable; only the label drops the s. */
+function singularise(unit: string, value: number): string {
+  return value === 1 && unit.endsWith("s") ? unit.slice(0, -1) : unit;
 }

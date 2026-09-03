@@ -16,6 +16,35 @@ export function formatMoney(amount: number): string {
   return `$${amount.toLocaleString("en-US")}`;
 }
 
+/**
+ * What a build is, for the purpose of pricing it. A classification rather than
+ * a new claim — it maps a flow onto a figure the site already publishes, so no
+ * per-flow price has to be invented.
+ */
+export const BuildKind = { Workflow: "workflow", Site: "site" } as const;
+export type BuildKind = (typeof BuildKind)[keyof typeof BuildKind];
+
+export const buildPriceFrom: Record<BuildKind, number> = {
+  [BuildKind.Workflow]: prices.workflowFrom,
+  [BuildKind.Site]: prices.websiteFrom,
+};
+
+/**
+ * From "Three hours a week": the loaded cost of an hour, which is wage plus
+ * tax plus everything else — not the wage. `typical` is the default the panel
+ * opens with, and it sits in the bottom half of the range the note publishes.
+ */
+export const loadedHourlyCost = { least: 25, typical: 30, most: 45 } as const;
+
+/**
+ * Outside these an input has stopped describing a small business's admin hour,
+ * so the panel clamps rather than arguing with the visitor.
+ */
+export const hourlyCostLimits = { least: 10, most: 200 } as const;
+
+/** Two weeks nobody works. The multiplier the note uses. */
+export const WORKING_WEEKS_PER_YEAR = 50;
+
 export type PriceBand = {
   what: string;
   from: string;

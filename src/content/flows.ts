@@ -17,6 +17,8 @@
  * the hours on screen cannot contradict the flagged items beside them.
  */
 
+import { BuildKind } from "@/content/pricing";
+
 export type FlowNodeKind = "trigger" | "step" | "outcome" | "human";
 
 /** Placed on a 4×3 schematic grid. Geometry is derived, never hand-tuned. */
@@ -63,6 +65,11 @@ export type Flow = {
   /** What clearing one flagged item costs you. Never nothing. */
   minutesPerFlagEach: number;
   itemsPerWeek: number;
+  /**
+   * Which published price this build is quoted against. A classification, not
+   * a fifth invented number — the figures come from `pricing.ts`.
+   */
+  build: BuildKind;
   /** Said under the stats once a run completes. */
   note: string;
 };
@@ -96,6 +103,7 @@ const READ_AND_FILE: Flow = {
   flaggedPerHundred: 8,
   minutesPerFlagEach: 2,
   itemsPerWeek: 40,
+  build: BuildKind.Workflow,
   note: "Both checks run on every document. The ones it isn't sure about are the only ones you see.",
 };
 
@@ -132,6 +140,7 @@ const ANSWER_QUESTIONS: Flow = {
   flaggedPerHundred: 15,
   minutesPerFlagEach: 3,
   itemsPerWeek: 60,
+  build: BuildKind.Workflow,
   note: "Every answer goes down into your own material and back. When it isn't there, it says so instead of guessing.",
 };
 
@@ -160,6 +169,7 @@ const FOLLOW_UP: Flow = {
   flaggedPerHundred: 10,
   minutesPerFlagEach: 4,
   itemsPerWeek: 25,
+  build: BuildKind.Workflow,
   note: "Watch it go round: chased, and chased again. It stops the moment someone replies, and hands you the ones worth a call.",
 };
 
@@ -194,6 +204,7 @@ const WEEKLY_REPORT: Flow = {
   flaggedPerHundred: 20,
   minutesPerFlagEach: 10,
   itemsPerWeek: 1,
+  build: BuildKind.Workflow,
   note: "Three places, one sheet, same shape every week — so you read it in a minute instead of losing the best part of an hour rebuilding it.",
 };
 
@@ -230,6 +241,7 @@ const A_REAL_SITE: Flow = {
   flaggedPerHundred: 10,
   minutesPerFlagEach: 5,
   itemsPerWeek: 12,
+  build: BuildKind.Site,
   note: "Three ways in, all landing in the same place. The dashed one is the visitor who couldn't find it and left — that's the one costing you money.",
 };
 

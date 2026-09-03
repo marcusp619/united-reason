@@ -7,7 +7,8 @@ import { Button, Kicker } from "@/components/primitives";
 import { flows } from "@/content/flows";
 import { problems } from "@/content/problems";
 import { cta } from "@/content/site";
-import { oneInHowMany, timeSavedPerWeek, timeSpentPerWeek } from "@/lib/flow-figures";
+import { flowAtVolume, oneInHowMany, timeSavedPerWeek, timeSpentPerWeek } from "@/lib/flow-figures";
+import { clampWorthInputs, defaultWorthInputs, type WorthInputs } from "@/lib/flow-worth";
 import { toManualFlow } from "@/lib/manual-flow";
 import type { RunStat, ShowcaseMode } from "@/types/showcase";
 import { AutomationCanvas } from "./automation-canvas";
@@ -16,6 +17,7 @@ import { ProblemTabs } from "./problem-tabs";
 import { RunLog } from "./run-log";
 import { RunStats } from "./run-stats";
 import { useFlowRun } from "./use-flow-run";
+import { WorthPanel } from "./worth-panel";
 
 const TRAVEL_AUTOMATED = 2.4;
 /** Slower by hand, because it is. */
@@ -30,6 +32,13 @@ export function AutomationShowcase() {
 
   const [selected, setSelected] = useState(0);
   const [mode, setMode] = useState<ShowcaseMode>("automated");
+  /*
+   * Volume is a fact about the job, so it follows the tab; the hourly cost is
+   * a fact about the visitor's business, so it survives one. `null` means
+   * "whatever this flow says".
+   */
+  const [hourlyCost, setHourlyCost] = useState<number | null>(null);
+  const [itemsPerWeek, setItemsPerWeek] = useState<number | null>(null);
 
   const builtFlow = flows[selected];
   const problem = problems[selected];
@@ -46,7 +55,13 @@ export function AutomationShowcase() {
 
   function handleSelect(index: number) {
     setSelected(index);
+    setItemsPerWeek(null);
     run.restart();
+  }
+
+  function handleWorth(next: WorthInputs) {
+    setHourlyCost(next.hourlyCost);
+    setItemsPerWeek(next.itemsPerWeek);
   }
 
   function handleMode(next: ShowcaseMode) {
@@ -54,18 +69,29 @@ export function AutomationShowcase() {
     run.restart();
   }
 
+  const defaults = defaultWorthInputs(builtFlow);
+  const worthInputs = clampWorthInputs(builtFlow, {
+    hourlyCost: hourlyCost ?? defaults.hourlyCost,
+    itemsPerWeek: itemsPerWeek ?? defaults.itemsPerWeek,
+  });
+  /*
+   * The hours in the stat row are re-based on the visitor's volume too. Two
+   * bases on one screen is how the figures start disagreeing with each other.
+   */
+  const basisFlow = flowAtVolume(builtFlow, worthInputs.itemsPerWeek);
+
   const flagged = run.entries.filter((entry) => entry.isException).length;
 
   const stats: readonly RunStat[] = isManual
     ? [
         { value: run.total, unit: "done", label: "All of it, by a person" },
         { value: builtFlow.minutesByHandEach, unit: "min", label: "Each one, every time" },
-        { ...timeSpentPerWeek(builtFlow), label: "Gone, every week" },
+        { ...timeSpentPerWeek(basisFlow), label: "Gone, every week" },
       ]
     : [
         { value: run.total - flagged, unit: "done", label: "Handled by itself" },
         { value: flagged, unit: "you", label: "Sent to a person" },
-        { ...timeSavedPerWeek(builtFlow), label: "Back, every week" },
+        { ...timeSavedPerWeek(basisFlow), label: "Back, every week" },
       ];
 
   const status = run.isComplete ? "Complete" : run.isRunning ? "Running" : "Ready";
@@ -134,6 +160,10 @@ export function AutomationShowcase() {
             </div>
           )}
         </div>
+
+        {!isManual && run.isComplete && (
+          <WorthPanel flow={builtFlow} inputs={worthInputs} onChange={handleWorth} />
+        )}
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t-2 border-[var(--color-divider)] px-5 py-4 md:px-16">
           <p className="text-muted m-0 max-w-[58ch] text-[12px] leading-[1.5]">
