@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Kicker } from "@/components/primitives";
 import { NewsletterForm } from "@/components/sections/newsletter-form";
 import { NotesIndex } from "@/components/sections/notes-index";
-import { featured } from "@/content/posts";
+import { featured, formatPublished } from "@/content/posts";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = {
@@ -22,6 +22,9 @@ export default function NotesPage() {
         <h1 className="m-0 mb-6 max-w-[20ch] text-[38px] leading-none tracking-[-0.03em] md:text-[60px]">
           Plain-English notes on automating a small business.
         </h1>
+        <a href="/feed.xml" className="text-brand text-sm">
+          Subscribe by RSS
+        </a>
       </section>
 
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-2">
@@ -47,7 +50,8 @@ export default function NotesPage() {
           </Link>
           <p className="m-0 mb-5 max-w-[50ch] text-base leading-[1.55]">{featured.excerpt}</p>
           <p className="text-muted m-0 text-sm">
-            {featured.read} · {featured.date}
+            {featured.read} ·{" "}
+            <time dateTime={featured.published}>{formatPublished(featured.published)}</time>
           </p>
         </article>
       </div>

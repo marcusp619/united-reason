@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { noteBodies } from "@/content/notes";
+import { posts } from "@/content/posts";
 import { site } from "@/content/site";
 
 /**
@@ -34,12 +35,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
 
-  const writtenNotes = Object.keys(noteBodies).map((slug) => ({
-    url: `${site.url}/notes/${slug}`,
-    lastModified,
-    changeFrequency: "yearly" as const,
-    priority: 0.7,
-  }));
+  /*
+   * A note's lastModified is the day it was published, not the day of the
+   * build. Stamping every URL with `new Date()` tells a crawler the whole site
+   * changed on every deploy, which is both false and a reason to be ignored.
+   */
+  const writtenNotes = posts
+    .filter((post) => post.slug in noteBodies)
+    .map((post) => ({
+      url: `${site.url}/notes/${post.slug}`,
+      lastModified: new Date(`${post.published}T00:00:00Z`),
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    }));
 
   return [...pages, ...writtenNotes];
 }

@@ -38,6 +38,10 @@ export const metadata: Metadata = {
     url: site.url,
   },
   twitter: { card: "summary_large_image" },
+  /* So a reader's browser and any aggregator can find the notes feed. */
+  alternates: {
+    types: { "application/rss+xml": [{ url: "/feed.xml", title: `${site.name} — notes` }] },
+  },
   /**
    * Search Console. The same token verifies either property type: as a DNS TXT
    * record for the domain property, or as this tag for the URL-prefix one.

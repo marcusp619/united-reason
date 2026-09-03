@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { noteBodies } from "./notes";
 import { formatMoney, priceBands, prices } from "./pricing";
-import { categories, featured, posts } from "./posts";
+import { categories, featured, formatPublished, posts } from "./posts";
 import { problems } from "./problems";
 import { faqs, services } from "./services";
 import { nav } from "./site";
@@ -48,6 +48,23 @@ describe("content integrity", () => {
     for (const item of nav) {
       expect(item.href.startsWith("/")).toBe(true);
     }
+  });
+
+  it("dates every post, newest first", () => {
+    const dates = posts.map((post) => post.published);
+
+    for (const date of dates) {
+      expect(date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(Number.isNaN(Date.parse(date))).toBe(false);
+      expect(formatPublished(date)).not.toContain("Invalid");
+    }
+    expect([...dates].sort().reverse()).toEqual(dates);
+  });
+
+  it("features the newest post rather than a copy of one", () => {
+    // The card used to carry its own title, read time and date, in a different
+    // format from the post it stood in for.
+    expect(featured).toBe(posts[0]);
   });
 
   /*
