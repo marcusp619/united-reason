@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { MotionConfig } from "motion/react";
 
+import { FunnelEvents } from "@/components/funnel-events";
 import { Motion } from "@/components/motion";
 import { PageTransition } from "@/components/page-transition";
 import { SiteFooter } from "@/components/site-footer";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Skip to the content
           </a>
           <Motion />
+          <FunnelEvents />
           <SiteHeader />
           <main id="main">
             <PageTransition>{children}</PageTransition>

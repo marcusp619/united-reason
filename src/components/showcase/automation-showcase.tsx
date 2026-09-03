@@ -9,6 +9,7 @@ import { problems } from "@/content/problems";
 import { cta } from "@/content/site";
 import { flowAtVolume, oneInHowMany, timeSavedPerWeek, timeSpentPerWeek } from "@/lib/flow-figures";
 import { clampWorthInputs, defaultWorthInputs, type WorthInputs } from "@/lib/flow-worth";
+import { Event, record } from "@/lib/analytics";
 import { toManualFlow } from "@/lib/manual-flow";
 import type { RunStat, ShowcaseMode } from "@/types/showcase";
 import { AutomationCanvas } from "./automation-canvas";
@@ -57,11 +58,14 @@ export function AutomationShowcase() {
     setSelected(index);
     setItemsPerWeek(null);
     run.restart();
+    record(Event.ProblemPicked, { problem: problems[index].title });
   }
 
   function handleWorth(next: WorthInputs) {
     setHourlyCost(next.hourlyCost);
     setItemsPerWeek(next.itemsPerWeek);
+    // The event, not the numbers: what someone's hour costs them is theirs.
+    record(Event.WorthChanged, { problem: problem.title });
   }
 
   function handleMode(next: ShowcaseMode) {
@@ -122,7 +126,10 @@ export function AutomationShowcase() {
             <span className="text-muted text-[11px] tracking-[0.16em] uppercase">{status}</span>
             <button
               type="button"
-              onClick={run.start}
+              onClick={() => {
+                run.start();
+                record(Event.RunStarted, { problem: problem.title, mode });
+              }}
               disabled={run.isRunning && !run.isComplete}
               className="bg-brand-700 font-heading text-ground cursor-pointer px-4 py-2.5 text-sm font-extrabold transition-colors hover:bg-[var(--color-accent-800)] disabled:cursor-default disabled:opacity-40"
             >

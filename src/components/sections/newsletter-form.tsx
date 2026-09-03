@@ -1,11 +1,9 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 
 import { site } from "@/content/site";
-import { newsletterSchema, type NewsletterInput } from "@/lib/schemas/forms";
+import { Event, record } from "@/lib/analytics";
 
 /**
  * Newsletter signup.
@@ -14,25 +12,40 @@ import { newsletterSchema, type NewsletterInput } from "@/lib/schemas/forms";
  * mail client rather than storing it. That is a real action with an honest
  * confirmation — the previous version discarded the address and told people
  * they were subscribed, which they were not. When a provider exists, replace
- * `handOff` with a server action and drop the mail-client copy.
+ * the hand-off with a server action and drop the mail-client copy.
+ *
+ * Validated by hand rather than through zod and react-hook-form. Those are the
+ * right tools for the enquiry form, which has four fields and a honeypot and
+ * shares its schema with a server action; pulling them onto /notes to check one
+ * email field cost 300KB of JavaScript on the page people read.
  */
-export function NewsletterForm() {
-  const [handedOff, setHandedOff] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<NewsletterInput>({ resolver: zodResolver(newsletterSchema) });
 
-  function onSubmit(values: NewsletterInput) {
+/** Deliberately loose. The only real test of an address is sending to it. */
+const LOOKS_LIKE_AN_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [handedOff, setHandedOff] = useState(false);
+
+  function handleSubmit(submit: React.FormEvent<HTMLFormElement>) {
+    submit.preventDefault();
+
+    if (!LOOKS_LIKE_AN_EMAIL.test(email.trim())) {
+      setError(email.trim() ? "That doesn't look like an email address" : "Email is required");
+      return;
+    }
+
+    setError(null);
     const subject = encodeURIComponent("Add me to the list");
-    const body = encodeURIComponent(`Please add ${values.email} to the monthly note.`);
+    const body = encodeURIComponent(`Please add ${email.trim()} to the monthly note.`);
     window.location.assign(`mailto:${site.email}?subject=${subject}&body=${body}`);
     setHandedOff(true);
+    record(Event.FormHandedOff, { form: "newsletter" });
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit} noValidate>
       <div className="flex gap-2.5">
         <label htmlFor="newsletter-email" className="sr-only">
           Your email address
@@ -42,30 +55,30 @@ export function NewsletterForm() {
           type="email"
           autoComplete="email"
           placeholder="your@email.com"
-          aria-invalid={errors.email ? true : undefined}
-          aria-describedby={errors.email ? "newsletter-email-error" : undefined}
+          value={email}
+          onChange={(change) => setEmail(change.target.value)}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? "newsletter-email-error" : undefined}
           className="caret-brand focus-visible:border-brand min-h-9 w-full border border-[var(--color-divider)] bg-[var(--color-surface)] px-2.5 py-1.5 text-sm"
-          {...register("email")}
         />
         <button
           type="submit"
-          disabled={isSubmitting}
-          className="bg-brand-700 font-heading text-ground shrink-0 cursor-pointer px-4 py-2 text-sm font-extrabold hover:bg-[var(--color-accent-800)] disabled:cursor-not-allowed disabled:opacity-45"
+          className="bg-brand-700 font-heading text-ground shrink-0 cursor-pointer px-4 py-2 text-sm font-extrabold hover:bg-[var(--color-accent-800)]"
         >
           Add me
         </button>
       </div>
 
-      {errors.email && (
+      {error && (
         <p
           id="newsletter-email-error"
           role="alert"
           className="text-brand-700 mt-2 mb-0 text-[13px]"
         >
-          {errors.email.message}
+          {error}
         </p>
       )}
-      {handedOff && !errors.email && (
+      {handedOff && !error && (
         <p role="status" className="text-brand-700 mt-2 mb-0 text-[13px]">
           Your email app should open. Send that message and you&rsquo;re on the list. If nothing
           happened, email {site.email} instead.

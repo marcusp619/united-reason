@@ -1,25 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { enquirySchema, newsletterSchema } from "./forms";
-
-describe("newsletterSchema", () => {
-  it("accepts a valid address", () => {
-    expect(newsletterSchema.safeParse({ email: "sam@yourbusiness.co" }).success).toBe(true);
-  });
-
-  it("rejects a malformed address", () => {
-    const result = newsletterSchema.safeParse({ email: "sam@" });
-    expect(result.success).toBe(false);
-  });
-
-  it("rejects an empty address with the required message", () => {
-    const result = newsletterSchema.safeParse({ email: "" });
-    expect(result.success).toBe(false);
-    if (!result.success) {
-      expect(result.error.issues[0].message).toBe("Email is required");
-    }
-  });
-});
+import { enquirySchema } from "./forms";
 
 describe("enquirySchema", () => {
   const valid = {

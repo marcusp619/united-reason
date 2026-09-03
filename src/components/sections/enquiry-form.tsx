@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { site } from "@/content/site";
+import { Event, record } from "@/lib/analytics";
 import { enquirySchema, type EnquiryInput } from "@/lib/schemas/forms";
 
 /**
@@ -31,6 +32,7 @@ export function EnquiryForm() {
     const body = encodeURIComponent(`${values.problem}\n\n— ${values.name}\n${values.email}`);
     window.location.assign(`mailto:${site.email}?subject=${subject}&body=${body}`);
     setHandedOff(true);
+    record(Event.FormHandedOff, { form: "enquiry" });
   }
 
   const field =

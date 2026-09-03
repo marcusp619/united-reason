@@ -46,6 +46,11 @@ function BookingFallback() {
 export default function BookPage() {
   return (
     <>
+      {/* The embed pulls a script from Cal at runtime, on the one page the
+          whole site's CTA points at. Opening the connections early costs
+          nothing and saves a round trip on the slowest step of the funnel. */}
+      <link rel="preconnect" href="https://cal.com" />
+      <link rel="preconnect" href="https://app.cal.com" />
       <section className="border-b-2 border-[var(--color-divider)] px-5 py-8 md:px-16 md:py-13">
         <Kicker>Book a call</Kicker>
         <h1 className="m-0 mb-5 text-[38px] leading-none tracking-[-0.03em] md:text-[64px]">
