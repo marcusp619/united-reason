@@ -22,9 +22,8 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
         That&rsquo;s my fault, not yours.
       </h1>
       <p className="m-0 mb-8 max-w-[52ch] text-base md:text-lg">
-        Something on this page failed to load. Try again &mdash; and if it keeps happening, tell me
-        at {site.email} and I&rsquo;ll fix it. A site that breaks quietly is worse than one that
-        says so.
+        Something on this page failed to load. Try again, and if it keeps happening, tell me at{" "}
+        {site.email} and I&rsquo;ll fix it.
       </p>
       <div className="flex flex-wrap items-center gap-3">
         <button

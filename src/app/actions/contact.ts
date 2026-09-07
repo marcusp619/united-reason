@@ -31,7 +31,7 @@ export async function sendEnquiry(input: unknown): Promise<Delivery> {
 
   return deliver({
     subject: `Enquiry from ${name}`,
-    body: `${problem}\n\n— ${name}\n${email}`,
+    body: `${problem}\n\n${name}\n${email}`,
     replyTo: email,
   });
 }

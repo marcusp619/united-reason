@@ -66,7 +66,7 @@ export const priceBands: readonly PriceBand[] = [
   {
     what: "An assistant",
     from: `From ${formatMoney(prices.workflowFrom)}`,
-    body: "Answers from your own material — your prices, your policies, your way of saying things. It hands over rather than guessing.",
+    body: "It answers out of your own material rather than the internet, and hands over to you instead of guessing.",
     includes: [
       "Your material gathered and structured",
       "The limits set, and tested against questions it can't answer",
@@ -80,7 +80,7 @@ export const priceBands: readonly PriceBand[] = [
     includes: [
       "Design, build and launch",
       "Migration with your search rankings intact",
-      "No retainer — most people need me about twice a year",
+      "No retainer, since most people need me about twice a year",
     ],
   },
 ];
@@ -89,7 +89,7 @@ export const priceBands: readonly PriceBand[] = [
 export const priceTerms = [
   {
     title: "One number, in writing, before you commit",
-    body: "Not a range that firms up later. You see the scope and the price together, and you decide with both in front of you.",
+    body: "It isn't a range that firms up later. You see the scope and the price together, and you decide with both in front of you.",
   },
   {
     title: "No hourly rate",

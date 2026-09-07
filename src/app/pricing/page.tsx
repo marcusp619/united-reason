@@ -105,8 +105,8 @@ export default function PricingPage() {
           </h2>
           <p className="m-0 max-w-[56ch] text-base leading-[1.55] text-[var(--color-neutral-300)]">
             In exchange I&rsquo;d like to write the work up as a case study, with your name on it.
-            If you&rsquo;d rather stay anonymous, the rate still stands. Ask on the call &mdash; or
-            email {site.email} and I&rsquo;ll tell you whether any are left.
+            If you&rsquo;d rather stay anonymous, the rate still stands. Ask on the call, or email{" "}
+            {site.email} and I&rsquo;ll tell you whether any are left.
           </p>
         </div>
         <Button href={cta.href} variant="inverse" size="lg" className="shrink-0">

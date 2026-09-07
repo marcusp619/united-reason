@@ -58,7 +58,7 @@ export function DemoPair() {
           </h3>
           <p className="text-muted m-0 text-[15px] leading-[1.55]">
             A stand-in firm with a stand-in price list, so nothing here is anyone&rsquo;s real
-            pricing. Ask it something the list doesn&rsquo;t cover &mdash; admitting that is the
+            pricing. Ask it something the list doesn&rsquo;t cover, because admitting that is the
             part worth testing.
           </p>
         </div>

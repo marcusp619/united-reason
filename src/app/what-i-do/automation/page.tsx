@@ -36,7 +36,7 @@ const uses: readonly ServiceUse[] = [
 ];
 
 const limits = [
-  "It won't handle the judgement calls. The ones it isn't sure about come to you, and that's the design, not a shortfall — a system with no exception path is one that's guessing quietly.",
+  "It won't handle the judgement calls. The ones it isn't sure about come to you, and that's the design rather than a shortfall. A system with no exception path is one that's guessing quietly.",
   "It won't fix a process nobody agrees on. If two people do the job two different ways, automating it just makes the disagreement faster. Part of the work is settling that first.",
   "It won't pay for itself on something you do twice a year. Frequency beats duration, and if the arithmetic doesn't work I'd rather show you that on the call than build it.",
 ];
@@ -45,7 +45,7 @@ export default function AutomationPage() {
   return (
     <>
       <Band reveal={false}>
-        <Kicker>What I do — automation</Kicker>
+        <Kicker>What I do · automation</Kicker>
         <h1 className="m-0 mb-5.5 max-w-[18ch] text-[38px] leading-none tracking-[-0.03em] md:text-[62px]">
           If you&rsquo;re re-typing it, a machine should be doing it.
         </h1>
@@ -66,7 +66,7 @@ export default function AutomationPage() {
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[1fr_420px]">
         <div className="bg-brand-100 rule-draw-y-end flex flex-col justify-center gap-5.5 border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-b-0 md:py-11 md:pr-12 md:pl-16">
           <Kicker as="h2" tone="deep">
-            Step through one &mdash; an invoice, start to finish
+            Step through one: an invoice, start to finish
           </Kicker>
           <WalkthroughPlayer run={invoiceRun} />
         </div>
@@ -84,8 +84,8 @@ export default function AutomationPage() {
         <p className="m-0 mb-5 max-w-[62ch] text-base leading-[1.55] md:text-[17px]">
           It&rsquo;s arithmetic, and it takes about two minutes to do yourself before you talk to
           anyone: how long the job takes, how often it happens, what an hour of that person costs
-          you, and what it costs to fix. The number people get wrong is frequency &mdash; a five
-          minute job done twelve times a day is an hour a day.
+          you, and what it costs to fix. The number people get wrong is frequency. A five minute job
+          done twelve times a day is an hour a day.
         </p>
         <Button href="/notes/three-hours-a-week" variant="ghost" className="px-1 text-[15px]">
           Read the whole calculation →

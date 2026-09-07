@@ -52,21 +52,21 @@ export const unitedReasonAssistant: AssistantScript = {
     {
       keywords: ["own", "owns", "ownership", "mine", "keep", "code", "lock"],
       answer:
-        "You do. The code, the accounts, the data — all yours, handed over at the end. There's no lock-in and nothing stops working if you stop talking to me.",
+        "You do. Code, accounts, data, all handed over at the end. There's no lock-in, and nothing stops working if you stop talking to me.",
     },
     {
       keywords: ["who", "team", "you", "agency", "many", "people"],
       answer:
-        "Just me, start to finish. You talk to the person building it, which is the whole point — no account manager relaying things to a developer you never meet.",
+        "Just me, start to finish. You talk to the person building it. There's no account manager relaying things to a developer you never meet.",
     },
     {
       keywords: ["wrong", "break", "broken", "fail", "support", "after", "maintain"],
       answer:
-        "You see it weekly, so you'd know long before the end. If it doesn't do what the scope says, I fix it — that's not extra. After handover I stay on the end of an email; most people need me about twice a year.",
+        "You see it weekly, so you'd know long before the end. If it doesn't do what the scope says, I fix it at no charge. After handover I stay on the end of an email, and most people need me about twice a year.",
     },
   ],
   fallback:
-    "That one isn't in the handful of answers I've been given — this is a scripted demo, not the real assistant. The real one reads your own material and would know. Book a call and I'll show you one trained on your site.",
+    "That one isn't in the handful of answers I've been given. This is a scripted demo rather than the real assistant. The real one reads your own material and would know. Book a call and I'll show you one trained on your site.",
 };
 
 /**
@@ -88,7 +88,7 @@ export const plumbingAssistant: AssistantScript = {
     {
       keywords: ["callout", "call", "out", "fee", "visit", "come", "attend"],
       answer:
-        "The standard call-out is $95 for the first hour and $70 an hour after that, charged in half-hours. That covers the visit and the diagnosis — parts are quoted separately before we fit anything.",
+        "The standard call-out is $95 for the first hour and $70 an hour after that, charged in half-hours. That covers the visit and the diagnosis. Parts are quoted separately before we fit anything.",
     },
     {
       keywords: ["emergency", "urgent", "night", "weekend", "sunday", "holiday", "hours"],
@@ -147,7 +147,7 @@ export type ScriptedRun = {
  */
 export const invoiceRun: ScriptedRun = {
   title: "Invoice inbox → ledger",
-  caption: "A scripted walkthrough with stand-in figures — not a recording of a live run.",
+  caption: "A scripted walkthrough with stand-in figures, not a recording of a live run.",
   steps: [
     {
       n: "01",

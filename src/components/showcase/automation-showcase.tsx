@@ -156,7 +156,7 @@ export function AutomationShowcase({ headingLevel = "h3" }: { headingLevel?: "h2
           {!isManual && (
             <p className="text-muted m-0 mt-3 max-w-[70ch] text-[12px] leading-[1.5]">
               It flags every third one here so you can watch it happen. A real run of this is nearer
-              one in {oneInHowMany(builtFlow)} &mdash; and the ones it flags are the ones worth your
+              one in {oneInHowMany(builtFlow)}, and the ones it flags are the ones worth your
               judgement anyway.
             </p>
           )}
@@ -181,7 +181,7 @@ export function AutomationShowcase({ headingLevel = "h3" }: { headingLevel?: "h2
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t-2 border-[var(--color-divider)] px-5 py-4 md:px-16">
           <p className="text-muted m-0 max-w-[58ch] text-[12px] leading-[1.5]">
-            A demonstration, not a measurement &mdash; the shape of a typical week, with
+            A demonstration rather than a measurement: the shape of a typical week, with
             illustrative figures. The hours above already have the flagged ones taken back out.
             Yours get worked out on the call, in writing, before you commit to anything.
           </p>

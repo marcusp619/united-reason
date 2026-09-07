@@ -40,7 +40,7 @@ export function GET(): Response {
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${escapeXml(`${site.name} — notes`)}</title>
+    <title>${escapeXml(`${site.name} · notes`)}</title>
     <link>${site.url}/notes</link>
     <description>Plain-English notes on automating a small business.</description>
     <language>en</language>

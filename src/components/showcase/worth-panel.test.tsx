@@ -62,7 +62,9 @@ describe("the worth panel", () => {
   it("declines to put a payback on a site", () => {
     renderPanel(site);
 
-    expect(screen.getByText("To pay for itself").previousSibling).toHaveTextContent("—");
+    expect(screen.getByText("To pay for itself").previousSibling).toHaveTextContent(
+      "Not from hours",
+    );
     expect(screen.getByText(/the work you win with it/)).toBeInTheDocument();
   });
 

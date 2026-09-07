@@ -76,7 +76,7 @@ export const posts: readonly Post[] = [
     title: "How I stop an assistant making things up",
     read: "4 min",
     excerpt:
-      "The right question is what happens when it gets something wrong. Not if. When. The answer is that you design for being wrong from the start.",
+      "The right question is what happens when it gets something wrong, because sooner or later it will. You design for being wrong from the start.",
     published: "2026-08-14",
   },
 ];

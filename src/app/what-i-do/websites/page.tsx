@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   ...pageMetadata("/what-i-do/websites"),
   title: "Websites & small apps",
   description:
-    "A site that reads like you talk and loads on a phone in a car park — or the small internal tool that finally replaces the spreadsheet nobody wants to touch.",
+    "A site that reads like you talk and loads on a phone in a car park. Or the small internal tool that finally replaces the spreadsheet nobody wants to touch.",
 };
 
 const uses: readonly ServiceUse[] = [
@@ -49,7 +49,7 @@ const landscape = [
   {
     who: "A marketplace freelancer",
     price: "$1,500–8,000",
-    body: "Custom work, wide quality range. The risk isn't skill, it's continuity — when something breaks in eight months, will they answer?",
+    body: "Custom work, wide quality range. The risk isn't skill so much as continuity. When something breaks in eight months, will they answer?",
     mine: false,
   },
   {
@@ -61,13 +61,13 @@ const landscape = [
   {
     who: "An agency",
     price: "$6,000–35,000+",
-    body: "Strategy, design, project management, several specialists. Genuinely worth it at a certain size — usually not at yours.",
+    body: "Strategy, design, project management, several specialists. Genuinely worth it at a certain size, though usually not at yours.",
     mine: false,
   },
 ];
 
 const limits = [
-  "It won't be worth it for a brochure. If your business is five pages of information and a phone number, use a builder — you'll be online this week for the price of a coffee a month.",
+  "It won't be worth it for a brochure. If your business is five pages of information and a phone number, use a builder. You'll be online this week for the price of a coffee a month.",
   "It won't come with a retainer. Most people need me about twice a year and pay for those hours when they use them. If someone quotes you a monthly fee, ask what happens in a month where nothing breaks.",
   "It won't write your copy or take your photographs. If those exist, we start. If they don't, someone has to make them, and that someone charges.",
 ];
@@ -76,7 +76,7 @@ export default function WebsitesPage() {
   return (
     <>
       <Band reveal={false}>
-        <Kicker>What I do — websites &amp; small apps</Kicker>
+        <Kicker>What I do · websites &amp; small apps</Kicker>
         <h1 className="m-0 mb-5.5 max-w-[18ch] text-[38px] leading-none tracking-[-0.03em] md:text-[62px]">
           A site that loads on a phone in a car park.
         </h1>
@@ -136,8 +136,8 @@ export default function WebsitesPage() {
           Page count barely matters. Integrations do, because now two systems have to agree forever.
           So do payments, which bring tax, refunds and failure states and roughly double a simple
           build. So does migration, which is real work that&rsquo;s invisible in the finished
-          product &mdash; and how many people have to approve things, which nobody quotes for and
-          everybody pays.
+          product. So does the number of people who have to approve things, which nobody quotes for
+          and everybody pays.
         </p>
         <Button
           href="/notes/what-a-website-should-cost"

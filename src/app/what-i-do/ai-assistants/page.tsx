@@ -45,7 +45,7 @@ export default function AiAssistantsPage() {
   return (
     <>
       <Band reveal={false}>
-        <Kicker>What I do — AI assistants</Kicker>
+        <Kicker>What I do · AI assistants</Kicker>
         <h1 className="m-0 mb-5.5 max-w-[18ch] text-[38px] leading-none tracking-[-0.03em] md:text-[62px]">
           An assistant that knows your business, not the internet.
         </h1>
@@ -61,7 +61,7 @@ export default function AiAssistantsPage() {
       <div className="grid border-b-2 border-[var(--color-divider)] md:grid-cols-[1fr_420px]">
         <div className="rule-draw-y-end border-b-2 border-[var(--color-divider)] px-5 py-8 md:border-b-0 md:py-11 md:pr-12 md:pl-16">
           <Kicker as="h2" tone="muted">
-            Try it &mdash; this one is trained on my own site
+            Try it: this one is trained on my own site
           </Kicker>
           <AssistantDemo script={unitedReasonAssistant} />
         </div>

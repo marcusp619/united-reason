@@ -205,7 +205,7 @@ const WEEKLY_REPORT: Flow = {
   minutesPerFlagEach: 10,
   itemsPerWeek: 1,
   build: BuildKind.Workflow,
-  note: "Three places, one sheet, same shape every week — so you read it in a minute instead of losing the best part of an hour rebuilding it.",
+  note: "Three places, one sheet, same shape every week, so you read it in a minute instead of losing the best part of an hour rebuilding it.",
 };
 
 /** One arrival fanning out into three ways of getting hold of you. */
@@ -242,7 +242,7 @@ const A_REAL_SITE: Flow = {
   minutesPerFlagEach: 5,
   itemsPerWeek: 12,
   build: BuildKind.Site,
-  note: "Three ways in, all landing in the same place. The dashed one is the visitor who couldn't find it and left — that's the one costing you money.",
+  note: "Three ways in, all landing in the same place. The dashed one is the visitor who couldn't find it and left, which is the one costing you money.",
 };
 
 /** Indexed to match `problems` in problems.ts, one flow per problem. */

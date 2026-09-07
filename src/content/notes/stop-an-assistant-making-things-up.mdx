@@ -1,11 +1,11 @@
 The first question anyone sensible asks about an assistant is what happens when
-it gets something wrong. Not if. When. (The question before that one —
-[whether you need an assistant at all](/notes/do-you-need-an-ai-bot) — is worth
-asking first.)
+it gets something wrong, because sooner or later it will. (The question before
+that one, [whether you need an assistant at all](/notes/do-you-need-an-ai-bot),
+is worth asking first.)
 
-It is the right question, and the answer is not "modern models are very good
-now." The answer is that you design for being wrong, the same way you design a
-form to handle someone typing letters into a phone number field.
+It is the right question, and the honest answer is not that modern models have
+got very good. You design for being wrong, the same way you design a form to
+handle someone typing letters into a phone number field.
 
 Here is what that looks like in practice.
 
@@ -33,7 +33,7 @@ to answer using those and nothing else.
 This alone removes most of the problem, because it changes the job from "know
 about plumbing" to "read these three paragraphs and answer."
 
-## 2. Make refusal the default, not the failure
+## 2. Make refusal the default
 
 Most assistants are built to always produce an answer. Yours should be built to
 decline.
@@ -43,9 +43,10 @@ do not have that, I will pass this to someone who does," and then it actually
 gets passed. A handover is a good outcome. An invented answer that sounds right
 is the worst possible one, because nobody catches it.
 
-This is a instruction and a design decision, and it is the one clients push back
-on most, because a bot that says "I do not know" feels like a bot that is not
-working. It is the opposite. It is a bot you can trust the rest of the time.
+This is both an instruction and a design decision, and it is the one clients
+push back on most, because a bot that says "I do not know" feels like a bot that
+is not working. In fact it is the opposite: a bot you can trust the rest of the
+time.
 
 ## 3. Make it show its source
 
@@ -61,8 +62,8 @@ In my experience the document is at fault more often than the model.
 
 ## 4. Keep the source material true
 
-The failure I see most is not hallucination. It is an assistant faithfully
-quoting a price list that changed in March.
+The failure I see most often isn't hallucination at all. It is an assistant
+faithfully quoting a price list that changed in March.
 
 The model did its job perfectly. The material was stale. This is the real
 ongoing cost of running an assistant and almost nobody mentions it when they

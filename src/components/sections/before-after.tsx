@@ -10,7 +10,7 @@ export function BeforeAfter() {
   return (
     <Band>
       <Kicker as="h2" tone="muted">
-        Before / after &mdash; a quoting process
+        Before / after: a quoting process
       </Kicker>
       <div className="grid border-2 border-[var(--color-divider)] md:grid-cols-2">
         <div className="rule-draw-y-end border-b-2 border-[var(--color-divider)] px-6 py-7 md:border-b-0 md:px-9">

@@ -55,8 +55,8 @@ export default function WhatIDoPage() {
           Three kinds of work.
         </h1>
         <p className="m-0 max-w-[58ch] text-base md:text-lg">
-          Everything is quoted after a call. No packages, no hourly guessing, no &ldquo;from
-          $X&rdquo; that turns into three times $X.
+          Everything is quoted after a call. There are no packages and no hourly rate, and the
+          number you get is the number you pay.
         </p>
       </Band>
 

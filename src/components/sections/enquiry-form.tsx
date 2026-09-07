@@ -37,7 +37,7 @@ export function EnquiryForm() {
     if (delivery.status === "sent") return;
     handOffToMailClient(
       `Enquiry from ${values.name}`,
-      `${values.problem}\n\n— ${values.name}\n${values.email}`,
+      `${values.problem}\n\n${values.name}\n${values.email}`,
     );
   }
 

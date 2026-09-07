@@ -33,7 +33,7 @@ export const services: readonly Service[] = [
     blurb:
       "An assistant that knows your business rather than the internet: your prices, your policies, your opening hours. It answers customers, takes enquiries, or helps your staff find things quickly.",
     short:
-      "An assistant that answers from your own material: your prices, your policies, your way of saying things.",
+      "An assistant that answers out of your own material instead of guessing from the internet.",
     tags: ["Customer Q&A", "Lead intake", "Internal helper", "Drafting replies"],
   },
   {

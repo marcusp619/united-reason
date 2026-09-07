@@ -50,7 +50,7 @@ export default function ShowcasePage() {
           Pick the thing that&rsquo;s eating your week. The automation I&rsquo;d build for it gets
           drawn, then it runs, with the work moving through it, and then you can put your own
           numbers against it. Below that are two demos you can operate yourself. This practice is
-          new, so there&rsquo;s no logo wall &mdash; what you get instead is the working thing.
+          new, so there&rsquo;s no logo wall. What you get instead is the working thing.
         </p>
       </Band>
 
@@ -90,8 +90,7 @@ export default function ShowcasePage() {
             look like rather than from a client&rsquo;s live system. The shapes are real. The
             figures are the shape of a typical small business&rsquo;s week, not a measurement of
             anyone&rsquo;s. Yours get worked out properly on the call, in writing, before you commit
-            to anything &mdash; and if a template would do the job, I&rsquo;ll tell you that
-            instead.
+            to anything. If a template would do the job, I&rsquo;ll tell you that instead.
           </p>
         </div>
       </Band>

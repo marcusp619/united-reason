@@ -25,8 +25,8 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} · ${site.tagline}`,
+    template: `%s · ${site.name}`,
   },
   description:
     "One person, start to finish. Tell me what's eating your week and I'll tell you honestly whether software fixes it, roughly what it takes, and what it costs.",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   /* So a reader's browser and any aggregator can find the notes feed. */
   alternates: {
-    types: { "application/rss+xml": [{ url: "/feed.xml", title: `${site.name} — notes` }] },
+    types: { "application/rss+xml": [{ url: "/feed.xml", title: `${site.name} · notes` }] },
   },
   /**
    * Search Console. The same token verifies either property type: as a DNS TXT

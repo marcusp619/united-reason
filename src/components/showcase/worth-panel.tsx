@@ -119,7 +119,7 @@ export function WorthPanel({
             id="worth-hourly"
             label="What an hour of that person costs you"
             prefix="$"
-            hint={`Not their wage — wage plus tax plus everything else, which for most small businesses lands between ${formatMoney(loadedHourlyCost.least)} and ${formatMoney(loadedHourlyCost.most)} for admin work.`}
+            hint={`Wage plus tax plus everything else, which for most small businesses lands between ${formatMoney(loadedHourlyCost.least)} and ${formatMoney(loadedHourlyCost.most)} for admin work.`}
             value={inputs.hourlyCost}
             onChange={(hourlyCost) => onChange({ ...inputs, hourlyCost })}
           />
@@ -137,7 +137,10 @@ export function WorthPanel({
         <div className="flex flex-wrap divide-x-2 divide-[var(--color-divider)]">
           <Figure value={formatMoney(worth.savedPerWeek)} label="A week, back" />
           <Figure value={formatMoney(worth.savedPerYear)} label="A year, back" />
-          <Figure value={worth.months ? sayMonths(worth.months) : "—"} label="To pay for itself" />
+          <Figure
+            value={worth.months ? sayMonths(worth.months) : "Not from hours"}
+            label="To pay for itself"
+          />
         </div>
         <p
           aria-live="polite"
@@ -146,10 +149,11 @@ export function WorthPanel({
           {verdictLine(worth)}
         </p>
         <p className="text-muted m-0 border-t-2 border-[var(--color-divider)] px-4.5 py-3.5 text-[12px] leading-[1.5]">
-          Counted over 50 weeks, not 52 &mdash; you take holidays. Only the hours are in here: not
-          the invoice that went out wrong, not the quote nobody chased, not what you&rsquo;d do with
-          the time instead. Those are usually worth more, and they&rsquo;re left out on purpose. The
-          whole calculation is in <Link href="/notes/three-hours-a-week">Three hours a week</Link>.
+          Counted over 50 weeks rather than 52, because you take holidays. Only the hours are in
+          here. The invoice that went out wrong, the quote nobody chased and what you&rsquo;d do
+          with the time instead are all left out on purpose, and they&rsquo;re usually worth more.
+          The whole calculation is in{" "}
+          <Link href="/notes/three-hours-a-week">Three hours a week</Link>.
         </p>
       </div>
     </div>
